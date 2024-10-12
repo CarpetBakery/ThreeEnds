@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://blu1jjm8p20n0"]
+[gd_scene load_steps=18 format=3 uid="uid://blu1jjm8p20n0"]
 
 [ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_fnu4j"]
 [ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_hoa38"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="2_e1wdx"]
 [ext_resource type="Texture2D" uid="uid://bwqu2guj1r25y" path="res://assets/textures/dev/grids/Green/texture_08.png" id="3_2v4og"]
+[ext_resource type="Script" path="res://scripts/DialogManager.gd" id="5_sxxgu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxj8n"]
 albedo_texture = ExtResource("1_hoa38")
@@ -137,3 +138,22 @@ shadow_enabled = true
 [node name="Container" type="Container" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="DialogManager" type="Node" parent="CanvasLayer"]
+script = ExtResource("5_sxxgu")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DialogManager"]
+offset_left = 131.0
+offset_top = 655.0
+offset_right = 1172.0
+offset_bottom = 919.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/DialogManager"]
+offset_left = 151.0
+offset_top = 674.0
+offset_right = 1144.0
+offset_bottom = 899.0
+text = "This is some text on a label"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/DialogManager"]
