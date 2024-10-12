@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://crigife8qk6n8"]
+
+[ext_resource type="Texture2D" uid="uid://csbtynolnpwgd" path="res://assets/textures/dev/grids/Dark/texture_04.png" id="1_1jq3n"]
+[ext_resource type="Material" uid="uid://ck3nmc47iakd0" path="res://assets/materials/orange_grid.tres" id="2_pf0lq"]
+[ext_resource type="Environment" uid="uid://cpsrprwqo0fsa" path="res://assets/test_environment.tres" id="3_2tqfr"]
+[ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="4_vvxit"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mfua"]
+albedo_texture = ExtResource("1_1jq3n")
+uv1_triplanar = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_uvbq7"]
+
+[node name="world" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_0mfua")
+use_collision = true
+size = Vector3(1000, 1, 1000)
+
+[node name="arch" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("2_pf0lq")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="arch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="arch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985866, 0)
+operation = 2
+size = Vector3(2, 2, 5)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="arch"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 0)
+operation = 2
+radius = 1.0
+height = 6.0
+sides = 32
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_2tqfr")
+camera_attributes = SubResource("CameraAttributesPractical_uvbq7")
+
+[node name="player" parent="." instance=ExtResource("4_vvxit")]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -0.585441, 2.38419e-07, -8.64537)

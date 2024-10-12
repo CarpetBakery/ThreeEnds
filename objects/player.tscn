@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkl5uauqwgryi"]
+
+[ext_resource type="Script" path="res://scripts/PlayerFps.gd" id="1_l6dy0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aly1q"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h8hpb"]
+height = 1.2
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_l6dy0")
+
+[node name="standingCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_aly1q")
+disabled = true
+
+[node name="crouchingCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.599166, 0)
+shape = SubResource("CapsuleShape3D_h8hpb")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="head" type="Node3D" parent="Neck"]
+
+[node name="Eyes" type="Node3D" parent="Neck/head"]
+
+[node name="camera" type="Camera3D" parent="Neck/head/Eyes"]
+current = true
+fov = 85.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33114, 0)
+light_color = Color(0.847059, 1, 1, 1)
+light_energy = 0.1
+omni_range = 3.227

@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=3 uid="uid://bekphyc15v6e8"]
+
+[ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_lj3lu"]
+[ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_7c75q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxj8n"]
+albedo_texture = ExtResource("2_7c75q")
+uv1_scale = Vector3(117.67, 117.67, 117.67)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rbuyl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hci4b"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e5l27"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_skq4k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfa31"]
+albedo_color = Color(1, 0, 0, 1)
+roughness = 0.72
+
+[sub_resource type="Sky" id="Sky_6nip3"]
+
+[sub_resource type="Environment" id="Environment_2qq41"]
+background_mode = 2
+sky = SubResource("Sky_6nip3")
+ambient_light_sky_contribution = 0.0
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_light_energy = 0.05
+fog_density = 0.1743
+
+[node name="Playertest" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_lj3lu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.649309, 0)
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(50.3952, 0, 0, 0, 1, 0, 0, 0, 50.3952, 0, -1.76076, 0)
+material_override = SubResource("StandardMaterial3D_yxj8n")
+mesh = SubResource("BoxMesh_rbuyl")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_hci4b")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 4.70518, 0, 0, 0, 1, -4.17334, 0.20017, 1.96609)
+mesh = SubResource("BoxMesh_e5l27")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_skq4k")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(3.11015, 0, 0, 0, 3.05863, 0, 0, 0, 3.31197, 2.72762, 0.0903138, 6.10292)
+mesh = SubResource("BoxMesh_e5l27")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("BoxShape3D_skq4k")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 4.70518, 0, 0, 0, 1, 5.60562, 0.20017, -0.869142)
+mesh = SubResource("BoxMesh_e5l27")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("BoxShape3D_skq4k")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(3.46269, 0, 0, 0, 2.09872, 0, 0, 0, 3.38916, -2.74399, -0.266141, -6.97431)
+mesh = SubResource("BoxMesh_e5l27")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_vfa31")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D5/StaticBody3D"]
+shape = SubResource("BoxShape3D_skq4k")
+
+[node name="Env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_2qq41")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="Env"]
+size = Vector3(40, 20, 40)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68058, 0)
+light_energy = 2.939
+shadow_enabled = true
+omni_range = 24.676
