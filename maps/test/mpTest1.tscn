@@ -1,10 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://blu1jjm8p20n0"]
+[gd_scene load_steps=22 format=3 uid="uid://blu1jjm8p20n0"]
 
 [ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_fnu4j"]
 [ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_hoa38"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="2_e1wdx"]
 [ext_resource type="Texture2D" uid="uid://bwqu2guj1r25y" path="res://assets/textures/dev/grids/Green/texture_08.png" id="3_2v4og"]
 [ext_resource type="Script" path="res://scripts/DialogManager.gd" id="5_sxxgu"]
+[ext_resource type="AudioStream" uid="uid://dst1qdrmmnpca" path="res://assets/audio/sfx/dialogue click1.ogg" id="6_42rbj"]
+[ext_resource type="AudioStream" uid="uid://pr7k7e4q3a05" path="res://assets/audio/sfx/dialogue click2.ogg" id="7_knb2f"]
+[ext_resource type="AudioStream" uid="uid://6elo7hsaajpm" path="res://assets/audio/sfx/dialogue click3.ogg" id="8_aex48"]
+[ext_resource type="AudioStream" uid="uid://dak45r2ncivol" path="res://assets/audio/sfx/dialogue click4.ogg" id="9_mhxwm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxj8n"]
 albedo_texture = ExtResource("1_hoa38")
@@ -141,6 +145,7 @@ offset_bottom = 40.0
 
 [node name="DialogManager" type="Node" parent="CanvasLayer"]
 script = ExtResource("5_sxxgu")
+sounds = Array[AudioStream]([ExtResource("6_42rbj"), ExtResource("7_knb2f"), ExtResource("8_aex48"), ExtResource("9_mhxwm")])
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/DialogManager"]
 offset_left = 131.0
@@ -157,3 +162,7 @@ offset_bottom = 899.0
 text = "This is some text on a label"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/DialogManager"]
+volume_db = 3.337
+pitch_scale = 1.17
+max_polyphony = 60
+panning_strength = 0.0

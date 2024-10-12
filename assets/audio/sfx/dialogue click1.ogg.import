@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dst1qdrmmnpca"
+path="res://.godot/imported/dialogue click1.ogg-ea38cd8392896d6140654edc97c060fe.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/dialogue click1.ogg"
+dest_files=["res://.godot/imported/dialogue click1.ogg-ea38cd8392896d6140654edc97c060fe.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
