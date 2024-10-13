@@ -9,8 +9,9 @@ class_name DialogManager extends Node
 @export var speed : float = 0.01		## Printing speed of the text
 @export var sounds: Array[AudioStream]	## Array of sounds to play randomly
 
-var delay : float = 0		## For pausing text
-var printing: bool = false	## Are we currently printing?
+var entries: Array[DialogEntry]	## Entries of dialog
+var delay : float = 0			## For pausing text
+var printing: bool = false		## Are we currently printing?
 
 func _ready() -> void:
 	# Don't show any characters
@@ -18,6 +19,9 @@ func _ready() -> void:
 	
 	# Add sounds to stream player
 	speaker.stream = sounds[1]
+	
+	var de := DialogEntry.new()
+	
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
@@ -47,6 +51,8 @@ func printText():
 		dialogLabel.visible_characters += 1
 		
 		# Play a sound at interval
+		# NOTE: Audio might be able to be done in a slightly better way
+		# https://kidscancode.org/godot_recipes/4.x/audio/audio_manager/index.html
 		playSnd += 1
 		if playSnd % 3 == 0:
 			var choice: int = randi_range(0, len(sounds)-1)
