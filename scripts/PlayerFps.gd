@@ -9,6 +9,13 @@ extends CharacterBody3D
 @onready var crouching_collision_shape = $crouchingCollisionShape
 @onready var ray_cast_3d = $RayCast3D
 
+# Player options
+# TODO: these do nothing
+@export var canSprint: bool = true
+@export var canCrouch: bool = true
+@export var canSlide: bool = true
+@export var canFreelook: bool = true
+
 # Speed vars
 var currentSpd: float = 5.0
 @export_category("Movement Speeds")
@@ -30,13 +37,14 @@ var slideVec: Vector2 = Vector2.ZERO
 var slideSpd: float = 10.0
 
 # Headbobbing vars
-const headBobSprintSpd: float = 18.0
-const headBobWalkSpd: float = 14.0
-const headBobCrouchSpd: float = 10.0
+@export_category("Headbobbing")
+@export var headBobWalkSpd: float = 14.0
+@export var headBobSprintSpd: float = 18.0
+@export var headBobCrouchSpd: float = 10.0
 
-const headBobSprintIntensity: float = 0.2
-const headBobWalkIntensity: float = 0.1
-const headBobCrouchIntensity: float = 0.05
+@export var headBobWalkIntensity: float = 0.1
+@export var headBobSprintIntensity: float = 0.2
+@export var headBobCrouchIntensity: float = 0.05
 
 var headBobVec: Vector2 = Vector2.ZERO
 var headBobIndex: float = 0.0 
@@ -47,10 +55,11 @@ const jumpVelocity = 4.5 * 1.4
 var freeLookTiltAmt: float = -8.0
 var freeLookRange: float = deg_to_rad(80.0)
 
-# Fov changing
-var targetFov: float = 80.0
-var walkFov: float = 80.0
-var sprintFov: float = 85.0
+# Fov values
+@export_category("Fov")
+@export var targetFov: float = 80.0
+@export var walkFov: float = 80.0
+@export var sprintFov: float = 85.0
 
 # Mouse look sensitivity
 # NOTE: The sensitivity seems to change based on how big you set the viewport... wtf...

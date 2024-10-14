@@ -67,7 +67,7 @@ shadow_enabled = true
 omni_range = 24.676
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level"]
-transform = Transform3D(50.3952, 0, 0, 0, 1, 0, 0, 0, 50.3952, 0, -1.76076, 0)
+transform = Transform3D(314.152, 0, 0, 0, 1, 0, 0, 0, 301.609, 0, -1.76076, 0)
 material_override = SubResource("StandardMaterial3D_yxj8n")
 mesh = SubResource("BoxMesh_rbuyl")
 skeleton = NodePath("../..")
@@ -138,6 +138,7 @@ transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Container" type="Container" parent="CanvasLayer"]
 offset_right = 40.0
@@ -148,6 +149,7 @@ script = ExtResource("5_sxxgu")
 sounds = Array[AudioStream]([ExtResource("6_42rbj"), ExtResource("7_knb2f"), ExtResource("8_aex48"), ExtResource("9_mhxwm")])
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/DialogManager"]
+visible = false
 offset_left = 131.0
 offset_top = 655.0
 offset_right = 1172.0
@@ -155,6 +157,7 @@ offset_bottom = 919.0
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/DialogManager"]
+visible = false
 offset_left = 151.0
 offset_top = 674.0
 offset_right = 1144.0
@@ -162,6 +165,7 @@ offset_bottom = 899.0
 text = "This is some text on a label"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer/DialogManager"]
+visible = false
 volume_db = 3.337
 pitch_scale = 1.17
 max_polyphony = 60

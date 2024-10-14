@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cc560nk7wt1a3"]
+
+[ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_3u6ps"]
+[ext_resource type="PackedScene" uid="uid://e7qt882llk2s" path="res://assets/meshes/concept/roomconcept.blend" id="1_tne7s"]
+[ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="2_3mmdf"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mefdd"]
+panorama = ExtResource("1_3u6ps")
+
+[sub_resource type="Sky" id="Sky_rvnvy"]
+sky_material = SubResource("PanoramaSkyMaterial_mefdd")
+
+[sub_resource type="Environment" id="Environment_ngj73"]
+background_mode = 2
+background_energy_multiplier = 0.21
+sky = SubResource("Sky_rvnvy")
+tonemap_mode = 3
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
+fog_light_energy = 0.0
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 25.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dkttu"]
+
+[node name="MpWorld" type="Node3D"]
+
+[node name="level" type="Node3D" parent="."]
+
+[node name="env" type="Node3D" parent="level"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="level/env"]
+transform = Transform3D(0.380828, -0.715354, 0.585865, 0, 0.63361, 0.773652, -0.924646, -0.294629, 0.241297, 0, 1.92638, 0)
+light_color = Color(0.265324, 0.322527, 0.402729, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="level/env"]
+environment = SubResource("Environment_ngj73")
+
+[node name="roomconcept" parent="level" instance=ExtResource("1_tne7s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13133, 0, 1.91147)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="level/roomconcept"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/roomconcept/StaticBody3D"]
+transform = Transform3D(20.9735, 0, 0, 0, 1, 0, 0, 0, 14.2114, 0, -0.489882, 0)
+shape = SubResource("BoxShape3D_dkttu")
+
+[node name="player" parent="." instance=ExtResource("2_3mmdf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.448166, 0, 1.20255)
+targetFov = 60.0
+walkFov = 60.0
+sprintFov = 60.0

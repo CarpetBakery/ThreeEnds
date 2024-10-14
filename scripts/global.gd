@@ -5,7 +5,7 @@ const DEBUG_MODE : bool = true
 
 func _ready():
 	# Limit framerate
-	Engine.max_fps = 120
+	Engine.max_fps = 60
 	
 	# Change the "application surface
 	# (there is definitely a better way to do this... it's so blurry)

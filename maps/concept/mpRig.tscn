@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://cp6mv22b5nysq"]
+
+[ext_resource type="PackedScene" uid="uid://2fsuu2ud2pqj" path="res://assets/meshes/concept/oilrig.blend" id="1_5ki25"]
+[ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_h7t61"]
+
+[sub_resource type="Sky" id="Sky_a6te1"]
+
+[sub_resource type="Environment" id="Environment_w801k"]
+background_mode = 2
+sky = SubResource("Sky_a6te1")
+ssao_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.105797, 0.138079, 0.192085, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 18.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43dyh"]
+albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pwqje"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xc2fx"]
+size = Vector3(14.2636, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_30b6x"]
+size = Vector3(0.629883, 1, 1)
+
+[node name="MpWorld" type="Node3D"]
+
+[node name="level" type="Node3D" parent="."]
+
+[node name="env" type="Node3D" parent="level"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="level/env"]
+environment = SubResource("Environment_w801k")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="level/env"]
+transform = Transform3D(0.380828, -0.715354, 0.585865, 0, 0.63361, 0.773652, -0.924646, -0.294629, 0.241297, 0, 1.92638, 0)
+light_color = Color(0.265324, 0.322527, 0.402729, 1)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="level"]
+transform = Transform3D(2.60375, 0, 0, 0, 1, 0, 0, 0, 3.49192, 2, -1, 0.5)
+material_override = SubResource("StandardMaterial3D_43dyh")
+use_collision = true
+size = Vector3(19, 1, 20)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="level"]
+
+[node name="oilrig" parent="level" instance=ExtResource("1_5ki25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.53807, -0.5, 1.35156)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="level/oilrig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.3871, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
+transform = Transform3D(21.2997, 0, 0, 0, 0.999999, 0, 0, 0, 22.0655, 0, 0, 0)
+shape = SubResource("BoxShape3D_pwqje")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
+transform = Transform3D(21.2997, 0, 0, 0, 0.999999, 0, 0, 0, 22.0655, 0, -7.097, -0.807904)
+shape = SubResource("BoxShape3D_pwqje")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
+transform = Transform3D(0.919053, 0.394134, 0, -0.394134, 0.919053, 0, 0, 0, 1, -1.09605, 3.23003, 7.8989)
+shape = SubResource("BoxShape3D_xc2fx")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
+transform = Transform3D(0.847307, 0.531103, 0, -0.531103, 0.847307, 0, 0, 0, 1, -5.8873, -3.21524, -10.9107)
+shape = SubResource("BoxShape3D_xc2fx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
+transform = Transform3D(13.8915, 0, 0, 0, 1, 0, 0, 0, 12.6838, -3.57176, 5.78996, 0.824295)
+shape = SubResource("BoxShape3D_30b6x")
+
+[node name="player" parent="." instance=ExtResource("1_h7t61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86946, 11.7472, 4.6436)

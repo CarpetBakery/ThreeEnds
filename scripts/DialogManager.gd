@@ -24,11 +24,12 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("jump"):
-		dialogLabel.text = "QJIQJTOIQJWOTIJQWOIJQWOTIJQ OWTIJQOWITJ QWIPTJIQJWT\nJQWUOIJQWOITJQWOITJQOWIJT\nYAAAAHAHAHAHAHAHHAH WHAT THE HELL!!!!!!!!!!!!!!!!!!!!"
+	#if Input.is_action_just_pressed("jump"):
+		#dialogLabel.text = "QJIQJTOIQJWOTIJQWOIJQWOTIJQ OWTIJQOWITJ QWIPTJIQJWT\nJQWUOIJQWOITJQWOITJQOWIJT\nYAAAAHAHAHAHAHAHHAH WHAT THE HELL!!!!!!!!!!!!!!!!!!!!"
 		
-		hideText()
-		printText()
+		#hideText()
+		#printText()
+		pass
 
 func hideText():
 	dialogLabel.visible_characters = 0
