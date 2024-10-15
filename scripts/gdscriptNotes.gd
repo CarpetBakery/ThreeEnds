@@ -1,3 +1,5 @@
+## this is just me learning how gdscript works- it's not used anywhere in the game
+
 # Class name can be defined like this
 class_name GdScriptNotes
 # Inherit like this

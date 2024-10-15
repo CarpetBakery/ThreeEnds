@@ -113,8 +113,10 @@ shadow_enabled = true
 [node name="player" parent="." instance=ExtResource("4_e24md")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Fisheye Effect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_ncrxw")
 anchors_preset = -1
 anchor_left = -0.542969

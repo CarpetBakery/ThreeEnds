@@ -1,5 +1,7 @@
 extends Node
 
+## Singleton for providing global functions and variables
+
 # -- Constants --
 const DEBUG_MODE : bool = true
 
@@ -7,7 +9,7 @@ func _ready():
 	# Limit framerate
 	Engine.max_fps = 60
 	
-	# Change the "application surface
+	# Change the "application surface"
 	# (there is definitely a better way to do this... it's so blurry)
 	#get_viewport().scaling_3d_scale = 0.1
 	

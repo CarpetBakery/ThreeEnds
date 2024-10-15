@@ -22,7 +22,7 @@ buses/default_bus_layout=""
 
 [autoload]
 
-Global="*res://global.tscn"
+Global="*res://scripts/Global.gd"
 
 [display]
 
