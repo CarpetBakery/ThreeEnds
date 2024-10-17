@@ -1,18 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://kwkes1spk64y"]
+[gd_scene load_steps=11 format=3 uid="uid://kwkes1spk64y"]
 
 [ext_resource type="Texture2D" uid="uid://bs7tls7un2b8t" path="res://assets/textures/computer/computer background.png" id="1_3sei2"]
 [ext_resource type="Script" path="res://scripts/ComputerManager.gd" id="1_r3phi"]
 [ext_resource type="Texture2D" uid="uid://b8nkffo3vfrso" path="res://assets/textures/computer/cursor.png" id="3_y5wn1"]
+[ext_resource type="Texture2D" uid="uid://dy2nespmmae4m" path="res://assets/textures/computer/emailwindow.png" id="4_2oc2g"]
+[ext_resource type="Script" path="res://scripts/ComputerWindow.gd" id="5_b7anf"]
 
-[node name="ComputerObjects" type="Node2D" node_paths=PackedStringArray("cursor")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdq5h"]
+size = Vector2(472, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2to5"]
+
+[sub_resource type="Gradient" id="Gradient_tferh"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qq24s"]
+gradient = SubResource("Gradient_tferh")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aurqi"]
+size = Vector2(1, 1)
+
+[node name="ComputerObjects" type="Node2D"]
 script = ExtResource("1_r3phi")
-cursor = NodePath("Cursor")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("1_3sei2")
 centered = false
 
-[node name="Cursor" type="Sprite2D" parent="."]
+[node name="emailwindow" type="Sprite2D" parent="." node_paths=PackedStringArray("cursorArea", "dragArea", "closeArea")]
+position = Vector2(300, 236)
+texture = ExtResource("4_2oc2g")
+script = ExtResource("5_b7anf")
+cursorArea = NodePath("../cursor/CursorArea")
+dragArea = NodePath("DragArea")
+closeArea = NodePath("CloseArea")
+
+[node name="DragArea" type="Area2D" parent="emailwindow"]
+
+[node name="DragBox" type="CollisionShape2D" parent="emailwindow/DragArea"]
+position = Vector2(-28, -157)
+shape = SubResource("RectangleShape2D_xdq5h")
+
+[node name="CloseArea" type="Area2D" parent="emailwindow"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="emailwindow/CloseArea"]
+position = Vector2(251, -157)
+shape = SubResource("RectangleShape2D_s2to5")
+
+[node name="WhiteFlash" type="Sprite2D" parent="emailwindow"]
+position = Vector2(-1.41859e-05, 1.04308e-06)
+scale = Vector2(2.04688, 332)
+texture = SubResource("GradientTexture1D_qq24s")
+
+[node name="cursor" type="Sprite2D" parent="."]
 position = Vector2(186, 256)
 texture = ExtResource("3_y5wn1")
 centered = false
+
+[node name="CursorArea" type="Area2D" parent="cursor"]
+
+[node name="cursorCollider" type="CollisionShape2D" parent="cursor/CursorArea"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_aurqi")
