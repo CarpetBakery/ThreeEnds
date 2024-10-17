@@ -57,6 +57,7 @@ texture = ExtResource("3_b522p")
 centered = false
 
 [node name="borderright" type="ColorRect" parent="ComputerManager/Control"]
+layout_mode = 0
 offset_left = 747.0
 offset_right = 854.0
 offset_bottom = 480.0

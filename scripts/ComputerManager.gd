@@ -11,3 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Set the cursor to the mouse position
 	cursor.position = get_viewport().get_mouse_position()
+	
+	if Global.DEBUG_MODE:
+		if Input.is_action_just_pressed("ui_cancel"):
+			get_tree().quit()
