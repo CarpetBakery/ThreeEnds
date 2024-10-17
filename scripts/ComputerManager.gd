@@ -9,6 +9,8 @@ class_name ComputerManager extends Node
 
 
 func _ready() -> void:
+	#Engine.max_fps = 50
+	
 	# Hide the mouse cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
