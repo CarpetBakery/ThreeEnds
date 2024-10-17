@@ -58,9 +58,6 @@ func _process(delta: float) -> void:
 		position.x = clamp(position.x, xpad + texSize.x/2, viewSize.x - xpad - texSize.x/2)
 		position.y = clamp(position.y, texSize.y/2, viewSize.y - texSize.y/2)
 	
-	if Input.is_action_just_pressed("jump"):
-		showWindow()
-	
 	# Round position
 	position = floor(position)
 
