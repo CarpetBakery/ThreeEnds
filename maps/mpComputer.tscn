@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bl7bsf3mmh4cd"]
+[gd_scene load_steps=8 format=3 uid="uid://bl7bsf3mmh4cd"]
 
 [ext_resource type="Script" path="res://scripts/ComputerManager.gd" id="1_0lr6u"]
 [ext_resource type="Texture2D" uid="uid://bs7tls7un2b8t" path="res://assets/textures/computer/computer background.png" id="2_5ugu4"]
 [ext_resource type="Texture2D" uid="uid://b8nkffo3vfrso" path="res://assets/textures/computer/cursor.png" id="3_b522p"]
+[ext_resource type="Texture2D" uid="uid://dxk106lml51e7" path="res://assets/textures/computer/emailicon.png" id="3_h7drt"]
+[ext_resource type="Texture2D" uid="uid://dy2nespmmae4m" path="res://assets/textures/computer/emailwindow.png" id="4_56smt"]
+[ext_resource type="Script" path="res://scripts/ComputerWindow.gd" id="5_nbb0k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1xx3"]
+size = Vector2(472, 24)
 
 [node name="MpComputer" type="CanvasLayer"]
 
@@ -16,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="bg" type="Control" parent="ComputerManager/Control"]
 layout_mode = 1
@@ -24,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Black" type="ColorRect" parent="ComputerManager/Control/bg"]
 layout_mode = 1
@@ -49,7 +57,26 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_5ugu4")
 
+[node name="buttons" type="Node2D" parent="ComputerManager/Control"]
+
+[node name="emailbutton" type="Sprite2D" parent="ComputerManager/Control/buttons"]
+position = Vector2(640, 111)
+texture = ExtResource("3_h7drt")
+
 [node name="windows" type="Node2D" parent="ComputerManager/Control"]
+
+[node name="emailwindow" type="Sprite2D" parent="ComputerManager/Control/windows" node_paths=PackedStringArray("dragBox")]
+visible = false
+position = Vector2(426, 256)
+texture = ExtResource("4_56smt")
+script = ExtResource("5_nbb0k")
+dragBox = NodePath("Area2D/CollisionShape2D")
+
+[node name="Area2D" type="Area2D" parent="ComputerManager/Control/windows/emailwindow"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ComputerManager/Control/windows/emailwindow/Area2D"]
+position = Vector2(-28, -157)
+shape = SubResource("RectangleShape2D_e1xx3")
 
 [node name="cursor" type="Sprite2D" parent="ComputerManager/Control"]
 position = Vector2(410, 201)
@@ -61,10 +88,15 @@ layout_mode = 0
 offset_left = 747.0
 offset_right = 854.0
 offset_bottom = 480.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="borderleft" type="ColorRect" parent="ComputerManager/Control"]
 layout_mode = 0
 offset_right = 107.0
 offset_bottom = 480.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[connection signal="mouse_entered" from="ComputerManager/Control/windows/emailwindow/Area2D" to="ComputerManager/Control/windows/emailwindow" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="ComputerManager/Control/windows/emailwindow/Area2D" to="ComputerManager/Control/windows/emailwindow" method="_on_area_2d_mouse_exited"]
