@@ -77,7 +77,7 @@ func showWindow():
 
 ## Hide the window
 func hideWindow():
-	if not visible:
+	if not visible or whiteFlash.visible:
 		return
 	
 	whiteFlash.show()
