@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
 # Nodes
-@onready var neck = $Neck
-@onready var head = $Neck/head
-@onready var camera = $Neck/head/Eyes/camera
-@onready var eyes = $Neck/head/Eyes
+@onready var neck: Node3D = $Neck
+@onready var head: Node3D = $Neck/head
+@onready var eyes: Node3D = $Neck/head/Eyes
+@onready var camera: Camera3D = $HUD/SubViewport/camera
+
 @onready var standing_collision_shape = $standingCollisionShape
 @onready var crouching_collision_shape = $crouchingCollisionShape
 @onready var ray_cast_3d = $RayCast3D
@@ -239,3 +240,8 @@ func _physics_process(delta):
 	camera.fov = lerp(camera.fov, targetFov, delta * lerpSpd)
 	
 	move_and_slide()
+	
+	# Move the camera to be at the correct position and rotation
+	camera.position = position + neck.position + head.position + eyes.position
+	camera.rotation = rotation + neck.rotation + head.rotation + eyes.rotation
+	
