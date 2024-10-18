@@ -24,6 +24,11 @@ var currentSpd: float = 5.0
 @export var sprintSpd: float = 8.0
 @export var crouchSpd: float = 3.0
 
+# Mouse look sensitivity
+# NOTE: The sensitivity seems to change based on how big you set the viewport... wtf...
+@export_category("Mouse sensitivity")
+@export var mouseSens: float = 0.17
+
 # States
 var walking: bool = false
 var sprinting: bool = false
@@ -62,9 +67,6 @@ var freeLookRange: float = deg_to_rad(80.0)
 @export var walkFov: float = 80.0
 @export var sprintFov: float = 85.0
 
-# Mouse look sensitivity
-# NOTE: The sensitivity seems to change based on how big you set the viewport... wtf...
-const mouseSens = 0.17
 
 var lerpSpd: float = 10.0
 var airLerpSpd: float = 3.0
