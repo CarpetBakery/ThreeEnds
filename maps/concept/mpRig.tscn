@@ -1,20 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://cp6mv22b5nysq"]
+[gd_scene load_steps=13 format=3 uid="uid://cp6mv22b5nysq"]
 
 [ext_resource type="PackedScene" uid="uid://2fsuu2ud2pqj" path="res://assets/meshes/concept/oilrig.blend" id="1_5ki25"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_h7t61"]
+[ext_resource type="AudioStream" uid="uid://cqidkdg84jgsa" path="res://assets/audio/music/ambient3.ogg" id="3_73gos"]
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
 [sub_resource type="Environment" id="Environment_w801k"]
 background_mode = 2
 sky = SubResource("Sky_a6te1")
+tonemap_mode = 2
 ssao_enabled = true
+glow_enabled = true
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.105797, 0.138079, 0.192085, 1)
 fog_density = 1.0
 fog_depth_begin = 0.0
 fog_depth_end = 18.5
+adjustment_enabled = true
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kpugn"]
 emission_shape_offset = Vector3(0, 2.8, 0)
@@ -42,9 +46,10 @@ size = Vector2(0.1, 0.1)
 albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pwqje"]
+size = Vector3(1, 1, 0.961426)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xc2fx"]
-size = Vector3(14.2636, 1, 1)
+size = Vector3(14.7802, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_30b6x"]
 size = Vector3(0.629883, 1, 1)
@@ -71,6 +76,17 @@ lifetime = 14.45
 process_material = SubResource("ParticleProcessMaterial_kpugn")
 draw_pass_1 = SubResource("QuadMesh_o3hwl")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="level/env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4665, 24.4576, 6.45178)
+light_energy = 9.387
+omni_range = 14.624
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="level/env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.35198, 27.7457, 6.61786)
+light_color = Color(0.715476, 0.0884042, 0.274805, 1)
+light_energy = 9.387
+omni_range = 8.764
+
 [node name="CSGBox3D" type="CSGBox3D" parent="level"]
 transform = Transform3D(2.60375, 0, 0, 0, 1, 0, 0, 0, 3.49192, 2, -1, 0.5)
 material_override = SubResource("StandardMaterial3D_43dyh")
@@ -86,7 +102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.53807, -0.5, 1.35156)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.3871, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level/oilrig placeholder/StaticBody3D"]
-transform = Transform3D(21.2997, 0, 0, 0, 0.999999, 0, 0, 0, 22.0655, 0, 0, 0)
+transform = Transform3D(21.2997, 0, 0, 0, 0.999999, 0, 0, 0, 22.0655, 0, 0, 0.42558)
 shape = SubResource("BoxShape3D_pwqje")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="level/oilrig placeholder/StaticBody3D"]
@@ -94,7 +110,7 @@ transform = Transform3D(21.2997, 0, 0, 0, 0.999999, 0, 0, 0, 22.0655, 0, -7.097,
 shape = SubResource("BoxShape3D_pwqje")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="level/oilrig placeholder/StaticBody3D"]
-transform = Transform3D(0.919053, 0.394134, 0, -0.394134, 0.919053, 0, 0, 0, 1, -1.09605, 3.23003, 7.8989)
+transform = Transform3D(0.919053, 0.394134, 0, -0.394134, 0.919053, 0, 0, 0, 1, -0.565946, 2.8621, 7.8989)
 shape = SubResource("BoxShape3D_xc2fx")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="level/oilrig placeholder/StaticBody3D"]
@@ -107,3 +123,10 @@ shape = SubResource("BoxShape3D_30b6x")
 
 [node name="player" parent="." instance=ExtResource("1_h7t61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86946, 11.7472, 4.6436)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_73gos")
+volume_db = 1.0
+pitch_scale = 0.74
+autoplay = true
+parameters/looping = true

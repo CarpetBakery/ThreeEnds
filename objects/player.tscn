@@ -35,7 +35,7 @@ target_position = Vector3(0, 2, 0)
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33114, 0)
 light_color = Color(0.847059, 1, 1, 1)
-light_energy = 0.1
+light_energy = 0.005
 omni_range = 3.227
 
 [node name="HUD" type="Control" parent="."]
@@ -64,5 +64,6 @@ render_target_update_mode = 4
 
 [node name="camera" type="Camera3D" parent="HUD/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+visible = false
 current = true
 fov = 85.0
