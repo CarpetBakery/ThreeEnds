@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkl5uauqwgryi"]
+[gd_scene load_steps=6 format=3 uid="uid://bkl5uauqwgryi"]
 
 [ext_resource type="Script" path="res://scripts/PlayerFps.gd" id="1_l6dy0"]
+[ext_resource type="PackedScene" uid="uid://c6nrrp6eh5i5m" path="res://objects/playerHUD.tscn" id="2_qbs1g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aly1q"]
 
@@ -8,10 +9,20 @@
 height = 1.2
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3083w"]
-viewport_path = NodePath("HUD/SubViewport")
+viewport_path = NodePath("UI/SubViewport")
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "hud", "screenSurface")]
 script = ExtResource("1_l6dy0")
+neck = NodePath("Neck")
+head = NodePath("Neck/head")
+eyes = NodePath("Neck/head/Eyes")
+camera = NodePath("UI/SubViewport/camera")
+standing_collision_shape = NodePath("standingCollisionShape")
+crouching_collision_shape = NodePath("crouchingCollisionShape")
+ray_cast_3d = NodePath("RayCast3D")
+rayCastInteract = NodePath("Neck/head/Eyes/RayCastInteract")
+hud = NodePath("UI/SubViewportContainer/HudViewport/PlayerHud")
+screenSurface = NodePath("UI/ScreenSurface")
 
 [node name="Neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
@@ -43,7 +54,7 @@ light_color = Color(0.847059, 1, 1, 1)
 light_energy = 0.005
 omni_range = 3.227
 
-[node name="HUD" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +62,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="HUD"]
+[node name="SubViewport" type="SubViewport" parent="UI"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 3
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="camera" type="Camera3D" parent="UI/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+current = true
+fov = 85.0
+
+[node name="ScreenSurface" type="TextureRect" parent="UI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,13 +84,27 @@ grow_vertical = 2
 texture = SubResource("ViewportTexture_3083w")
 stretch_mode = 4
 
-[node name="SubViewport" type="SubViewport" parent="HUD"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+
+[node name="HudViewport" type="SubViewport" parent="UI/SubViewportContainer"]
+transparent_bg = true
 handle_input_locally = false
-canvas_item_default_texture_filter = 3
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="camera" type="Camera3D" parent="HUD/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
-current = true
-fov = 85.0
+[node name="PlayerHud" parent="UI/SubViewportContainer/HudViewport" instance=ExtResource("2_qbs1g")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_right = 0.0
+offset_bottom = 0.0
+grow_vertical = 0
