@@ -61,6 +61,6 @@ cam = NodePath("..")
 
 [node name="ComputerAmbience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_uvsa3")
-volume_db = -1.605
+volume_db = -10.22
 autoplay = true
 parameters/looping = true
