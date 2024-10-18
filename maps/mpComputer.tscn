@@ -63,5 +63,4 @@ cam = NodePath("..")
 stream = ExtResource("3_uvsa3")
 volume_db = -1.605
 autoplay = true
-bus = &"Sfx"
 parameters/looping = true
