@@ -1,4 +1,185 @@
-[gd_scene format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=13 format=3 uid="uid://min6rams7kgs"]
+
+[ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
+[ext_resource type="Texture2D" uid="uid://dsv66tl33pl8m" path="res://assets/textures/dev/grids/Dark/texture_01.png" id="1_pl5iy"]
+[ext_resource type="Script" path="res://scripts/Interactable.gd" id="2_086v0"]
+
+[sub_resource type="Sky" id="Sky_a6te1"]
+
+[sub_resource type="Environment" id="Environment_jhmsr"]
+background_mode = 2
+sky = SubResource("Sky_a6te1")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.105797, 0.138079, 0.192085, 1)
+fog_depth_begin = 0.0
+fog_depth_end = 46.0
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.859261, 0.837443, 0.925703, 1)
+adjustment_enabled = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0sega"]
+emission_shape_offset = Vector3(0, 2.8, 0)
+emission_shape = 3
+emission_box_extents = Vector3(4.28, 1, 5.11)
+gravity = Vector3(0, -0.425, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f44ox"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_distance = 30.43
+distance_fade_mode = 1
+distance_fade_max_distance = 36.45
+
+[sub_resource type="QuadMesh" id="QuadMesh_kam71"]
+material = SubResource("StandardMaterial3D_f44ox")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyd5q"]
+albedo_texture = ExtResource("1_pl5iy")
+uv1_scale = Vector3(12, 12, 12)
+texture_filter = 4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dcgqm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otcsb"]
+albedo_color = Color(0.600783, 0.411336, 0.323149, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ptdk3"]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0248675, -0.00916481, 0.0183249)
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_jhmsr")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="env"]
+transform = Transform3D(8.64588, 0, 0, 0, 2.7766, 0, 0, 0, 8.19878, -4.93701, 14.9058, 0)
+cast_shadow = 0
+amount = 2000
+lifetime = 14.45
+process_material = SubResource("ParticleProcessMaterial_0sega")
+draw_pass_1 = SubResource("QuadMesh_kam71")
+
+[node name="LevelBlockout" type="Node3D" parent="."]
+
+[node name="Lighting" type="Node3D" parent="LevelBlockout"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(0.866025, 0.433013, -0.25, 0, 0.5, 0.866025, 0.5, -0.75, 0.433013, -50.25, 15.75, 8.5)
+light_color = Color(0.205348, 0.309927, 0.551236, 1)
+light_energy = 0.557
+shadow_enabled = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.75, 10.25, 12.75)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(-0.482963, -0.595035, 0.642402, 0.12941, 0.677077, 0.724444, -0.866025, 0.433013, -0.25, -23.25, 4.25, -5.75)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 61.75
+spot_angle = 32.7234
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.75, 47.75, 12.75)
+light_color = Color(0.979388, 0.518187, 0.577516, 1)
+light_energy = 6.95
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.75, 47.75, -12)
+light_color = Color(0.979388, 0.518187, 0.577516, 1)
+light_energy = 6.95
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.75, 10.25, -11)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 15.5, 4.75, -5.25)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 9.75
+spot_angle = 53.0594
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 15.5, 4.75, 6.75)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 9.75
+spot_angle = 53.0594
+
+[node name="floor" type="CSGBox3D" parent="LevelBlockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.125, -0.125)
+material_override = SubResource("StandardMaterial3D_oyd5q")
+use_collision = true
+size = Vector3(57.25, 0.25, 48.25)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelBlockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.625, 2.625, -12.25)
+use_collision = true
+size = Vector3(19.25, 4.75, 13)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LevelBlockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.125, 5.25, 0.625001)
+use_collision = true
+size = Vector3(19.25, 0.5, 39.75)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LevelBlockout"]
+transform = Transform3D(11.0175, 0, 0, 0, 1, 0, 0, 0, 11.0175, 15.75, 53.875, -11)
+use_collision = true
+size = Vector3(1, 107.25, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="LevelBlockout"]
+transform = Transform3D(11.0175, 0, 0, 0, 1, 0, 0, 0, 11.0175, 15.75, 53.125, 12.5)
+use_collision = true
+size = Vector3(1, 105.75, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="LevelBlockout"]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 1.5, 2.5, 0)
+use_collision = true
+size = Vector3(0.25, 12, 2.75)
+
+[node name="Door" type="Area3D" parent="LevelBlockout" node_paths=PackedStringArray("meshInst")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.25, 0.75, -5.25)
+script = ExtResource("2_086v0")
+meshInst = NodePath("MeshInstance3D")
+interactionText = "Into room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Door"]
+transform = Transform3D(3.36, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
+shape = SubResource("BoxShape3D_dcgqm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelBlockout/Door"]
+transform = Transform3D(3.36, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
+material_override = SubResource("StandardMaterial3D_otcsb")
+mesh = SubResource("BoxMesh_ptdk3")
+
+[node name="player" parent="." instance=ExtResource("1_23sgh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5249, 0.00916481, 0.231675)
