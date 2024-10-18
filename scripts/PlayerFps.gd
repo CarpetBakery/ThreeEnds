@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-# Nodes
+# -- Nodes --
 @onready var neck: Node3D = $Neck
 @onready var head: Node3D = $Neck/head
 @onready var eyes: Node3D = $Neck/head/Eyes
@@ -9,6 +9,10 @@ extends CharacterBody3D
 @onready var standing_collision_shape = $standingCollisionShape
 @onready var crouching_collision_shape = $crouchingCollisionShape
 @onready var ray_cast_3d = $RayCast3D
+
+# -- Interaction --
+@onready var rayCastInteract: RayCast3D = $Neck/head/Eyes/RayCastInteract
+
 
 # Player options
 # TODO: these do nothing
@@ -120,6 +124,8 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			captureMouse = true
 
+func _process(delta: float) -> void:
+	_processInteraction(delta)
 
 func _physics_process(delta):
 	# Get movement inputs
@@ -247,3 +253,12 @@ func _physics_process(delta):
 	camera.position = position + neck.position + head.position + eyes.position
 	camera.rotation = rotation + neck.rotation + head.rotation + eyes.rotation
 	
+
+func _processInteraction(delta):
+	# Get all colliding areas
+	if rayCastInteract.is_colliding():
+		var collider = rayCastInteract.get_collider()
+		print(collider)
+		
+		if collider is Interactable:
+			collider.onInteract()

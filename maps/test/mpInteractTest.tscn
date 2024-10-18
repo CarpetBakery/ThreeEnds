@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=3 uid="uid://dk67utygqsb1p"]
+
+[ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_ujqab"]
+[ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_oksw5"]
+[ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="3_gutj5"]
+[ext_resource type="Script" path="res://scripts/Interactable.gd" id="3_ixfmc"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_g2xyr"]
+panorama = ExtResource("1_ujqab")
+
+[sub_resource type="Sky" id="Sky_orijp"]
+sky_material = SubResource("PanoramaSkyMaterial_g2xyr")
+
+[sub_resource type="Environment" id="Environment_a1ub1"]
+background_mode = 2
+sky = SubResource("Sky_orijp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3svr0"]
+albedo_texture = ExtResource("2_oksw5")
+texture_filter = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptqns"]
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_i8741"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ldho3"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
+environment = SubResource("Environment_a1ub1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(27.0731, 0, 0, 0, 1, 0, 0, 0, 22.7298, 0, -0.924217, 0)
+material_override = SubResource("StandardMaterial3D_3svr0")
+use_collision = true
+
+[node name="Area3D" type="Area3D" parent="Level" node_paths=PackedStringArray("meshInstance")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11339, 1.26653, 0)
+script = ExtResource("3_ixfmc")
+meshInstance = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Area3D"]
+material_override = SubResource("StandardMaterial3D_ptqns")
+mesh = SubResource("QuadMesh_i8741")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Area3D"]
+transform = Transform3D(1.08522, 0, 0, 0, 1.08522, 0, 0, 0, 1.08522, 0, 0, 0)
+shape = SubResource("BoxShape3D_ldho3")
+
+[node name="player" parent="." instance=ExtResource("3_gutj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.873555, 0, -1.13524)
