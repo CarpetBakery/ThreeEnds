@@ -283,7 +283,6 @@ func _processInteraction(delta):
 func _setupHud():
 	# Setup references
 	interactionText = hud.getInteractionText()
-	print(interactionText)
 	
 	# Make sure the main surfaces are visible
 	screenSurface.show()
