@@ -1,28 +1,55 @@
-[gd_scene load_steps=9 format=3 uid="uid://cp6mv22b5nysq"]
+[gd_scene load_steps=13 format=3 uid="uid://cp6mv22b5nysq"]
 
 [ext_resource type="PackedScene" uid="uid://2fsuu2ud2pqj" path="res://assets/meshes/concept/oilrig.blend" id="1_5ki25"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_h7t61"]
+[ext_resource type="AudioStream" uid="uid://cqidkdg84jgsa" path="res://assets/audio/music/ambient3.ogg" id="3_73gos"]
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
 [sub_resource type="Environment" id="Environment_w801k"]
 background_mode = 2
 sky = SubResource("Sky_a6te1")
+tonemap_mode = 2
 ssao_enabled = true
+glow_enabled = true
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.105797, 0.138079, 0.192085, 1)
 fog_density = 1.0
 fog_depth_begin = 0.0
 fog_depth_end = 18.5
+adjustment_enabled = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kpugn"]
+emission_shape_offset = Vector3(0, 2.8, 0)
+emission_shape = 3
+emission_box_extents = Vector3(4.28, 1, 5.11)
+gravity = Vector3(0, -0.425, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f44ox"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_distance = 30.43
+distance_fade_mode = 1
+distance_fade_max_distance = 36.45
+
+[sub_resource type="QuadMesh" id="QuadMesh_o3hwl"]
+material = SubResource("StandardMaterial3D_f44ox")
+size = Vector2(0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43dyh"]
 albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pwqje"]
+size = Vector3(1, 1, 0.961426)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xc2fx"]
-size = Vector3(14.2636, 1, 1)
+size = Vector3(14.7802, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_30b6x"]
 size = Vector3(0.629883, 1, 1)
@@ -41,6 +68,25 @@ transform = Transform3D(0.380828, -0.715354, 0.585865, 0, 0.63361, 0.773652, -0.
 light_color = Color(0.265324, 0.322527, 0.402729, 1)
 shadow_enabled = true
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="level/env"]
+transform = Transform3D(4.32294, 0, 0, 0, 2.7766, 0, 0, 0, 4.55488, -4.93701, 14.9058, 0)
+cast_shadow = 0
+amount = 2000
+lifetime = 14.45
+process_material = SubResource("ParticleProcessMaterial_kpugn")
+draw_pass_1 = SubResource("QuadMesh_o3hwl")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="level/env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.4665, 24.4576, 6.45178)
+light_energy = 9.387
+omni_range = 14.624
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="level/env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.35198, 27.7457, 6.61786)
+light_color = Color(0.715476, 0.0884042, 0.274805, 1)
+light_energy = 9.387
+omni_range = 8.764
+
 [node name="CSGBox3D" type="CSGBox3D" parent="level"]
 transform = Transform3D(2.60375, 0, 0, 0, 1, 0, 0, 0, 3.49192, 2, -1, 0.5)
 material_override = SubResource("StandardMaterial3D_43dyh")
@@ -49,31 +95,38 @@ size = Vector3(19, 1, 20)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="level"]
 
-[node name="oilrig" parent="level" instance=ExtResource("1_5ki25")]
+[node name="oilrig placeholder" parent="level" instance=ExtResource("1_5ki25")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.53807, -0.5, 1.35156)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="level/oilrig"]
+[node name="StaticBody3D" type="StaticBody3D" parent="level/oilrig placeholder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.3871, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
-transform = Transform3D(21.2997, 0, 0, 0, 0.999999, 0, 0, 0, 22.0655, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/oilrig placeholder/StaticBody3D"]
+transform = Transform3D(21.2997, 0, 0, 0, 0.999999, 0, 0, 0, 22.0655, 0, 0, 0.42558)
 shape = SubResource("BoxShape3D_pwqje")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="level/oilrig placeholder/StaticBody3D"]
 transform = Transform3D(21.2997, 0, 0, 0, 0.999999, 0, 0, 0, 22.0655, 0, -7.097, -0.807904)
 shape = SubResource("BoxShape3D_pwqje")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
-transform = Transform3D(0.919053, 0.394134, 0, -0.394134, 0.919053, 0, 0, 0, 1, -1.09605, 3.23003, 7.8989)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="level/oilrig placeholder/StaticBody3D"]
+transform = Transform3D(0.919053, 0.394134, 0, -0.394134, 0.919053, 0, 0, 0, 1, -0.565946, 2.8621, 7.8989)
 shape = SubResource("BoxShape3D_xc2fx")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="level/oilrig placeholder/StaticBody3D"]
 transform = Transform3D(0.847307, 0.531103, 0, -0.531103, 0.847307, 0, 0, 0, 1, -5.8873, -3.21524, -10.9107)
 shape = SubResource("BoxShape3D_xc2fx")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="level/oilrig/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="level/oilrig placeholder/StaticBody3D"]
 transform = Transform3D(13.8915, 0, 0, 0, 1, 0, 0, 0, 12.6838, -3.57176, 5.78996, 0.824295)
 shape = SubResource("BoxShape3D_30b6x")
 
 [node name="player" parent="." instance=ExtResource("1_h7t61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86946, 11.7472, 4.6436)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_73gos")
+volume_db = 1.0
+pitch_scale = 0.74
+autoplay = true
+parameters/looping = true
