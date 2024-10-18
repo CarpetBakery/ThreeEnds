@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c16udaowasbl5"]
+[gd_scene load_steps=4 format=3 uid="uid://c16udaowasbl5"]
 
 [ext_resource type="PackedScene" uid="uid://kwkes1spk64y" path="res://objects/ComputerObjects.tscn" id="1_0ltm0"]
 [ext_resource type="PackedScene" uid="uid://cc1fomjf362h5" path="res://shaders/flowerwall_postprocess/scenes/flowerwall_pp.tscn" id="2_kddru"]
+[ext_resource type="AudioStream" uid="uid://dquj7sl3ap2u8" path="res://assets/audio/sfx/computer/computerstartup.ogg" id="3_uvsa3"]
 
 [node name="MpComputerView" type="Node2D"]
 
@@ -57,3 +58,10 @@ viewport = NodePath("../..")
 cam = NodePath("..")
 
 [node name="flowerwall_pp" parent="CanvasLayer/SubViewportContainer2/SubViewport2" instance=ExtResource("2_kddru")]
+
+[node name="ComputerAmbience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_uvsa3")
+volume_db = -1.605
+autoplay = true
+bus = &"Sfx"
+parameters/looping = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://kwkes1spk64y"]
+[gd_scene load_steps=16 format=3 uid="uid://kwkes1spk64y"]
 
 [ext_resource type="Texture2D" uid="uid://bs7tls7un2b8t" path="res://assets/textures/computer/computer background.png" id="1_3sei2"]
 [ext_resource type="Script" path="res://scripts/ComputerManager.gd" id="1_r3phi"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://b8nkffo3vfrso" path="res://assets/textures/computer/cursor.png" id="3_y5wn1"]
 [ext_resource type="Texture2D" uid="uid://dy2nespmmae4m" path="res://assets/textures/computer/emailwindow.png" id="4_2oc2g"]
 [ext_resource type="Script" path="res://scripts/ComputerWindow.gd" id="5_b7anf"]
+[ext_resource type="AudioStream" uid="uid://cxh6k85btw650" path="res://assets/audio/sfx/computer/mouseclick.wav" id="7_vwj20"]
+[ext_resource type="AudioStream" uid="uid://dm13lidrqrlbt" path="res://assets/audio/sfx/computer/mouserelease.wav" id="8_ao0vx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbfkr"]
 size = Vector2(46, 56)
@@ -28,13 +30,15 @@ gradient = SubResource("Gradient_tferh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aurqi"]
 size = Vector2(1, 1)
 
-[node name="ComputerObjects" type="Node2D" node_paths=PackedStringArray("cursor", "cursorArea", "emailWindow", "emailIcon", "emailIconArea")]
+[node name="ComputerObjects" type="Node2D" node_paths=PackedStringArray("cursor", "cursorArea", "emailWindow", "emailIcon", "emailIconArea", "click", "release")]
 script = ExtResource("1_r3phi")
 cursor = NodePath("cursor")
 cursorArea = NodePath("cursor/CursorArea")
 emailWindow = NodePath("windows/emailwindow")
 emailIcon = NodePath("icons/EmailIcon")
 emailIconArea = NodePath("icons/EmailIcon/EmailIconArea")
+click = NodePath("audio/click")
+release = NodePath("audio/release")
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("1_3sei2")
@@ -104,3 +108,17 @@ centered = false
 [node name="cursorCollider" type="CollisionShape2D" parent="cursor/CursorArea"]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_aurqi")
+
+[node name="audio" type="Node" parent="."]
+
+[node name="click" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("7_vwj20")
+volume_db = -0.5
+max_polyphony = 5
+bus = &"Sfx"
+
+[node name="release" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("8_ao0vx")
+volume_db = -0.5
+max_polyphony = 5
+bus = &"Sfx"
