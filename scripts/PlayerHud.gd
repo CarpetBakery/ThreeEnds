@@ -1,10 +1,11 @@
-class_name Interactable extends Area3D
+class_name PlayerHud extends Control
 
-@export var meshInst: MeshInstance3D
-@export var interactionText: String
+@export var interactionText: Label
+#@export var interactionFunc: FuncRef
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	pass # Replace with function body.
 
 
@@ -12,6 +13,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func onInteract(player: PlayerFps):
-	print("Interacted!!")
-	pass
+## Get reference to interaction text label
+func getInteractionText() -> Label:
+	return interactionText

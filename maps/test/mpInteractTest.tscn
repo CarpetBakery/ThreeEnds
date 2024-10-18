@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dk67utygqsb1p"]
+[gd_scene load_steps=13 format=3 uid="uid://dk67utygqsb1p"]
 
 [ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_ujqab"]
 [ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_oksw5"]
@@ -26,6 +26,8 @@ billboard_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ldho3"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_m4x6n"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Level" type="Node3D" parent="."]
@@ -38,10 +40,11 @@ transform = Transform3D(27.0731, 0, 0, 0, 1, 0, 0, 0, 22.7298, 0, -0.924217, 0)
 material_override = SubResource("StandardMaterial3D_3svr0")
 use_collision = true
 
-[node name="Area3D" type="Area3D" parent="Level" node_paths=PackedStringArray("meshInstance")]
+[node name="Area3D" type="Area3D" parent="Level" node_paths=PackedStringArray("meshInst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11339, 1.26653, 0)
 script = ExtResource("3_ixfmc")
-meshInstance = NodePath("MeshInstance3D")
+meshInst = NodePath("MeshInstance3D")
+interactionText = "This is something"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Area3D"]
 material_override = SubResource("StandardMaterial3D_ptqns")
@@ -49,6 +52,21 @@ mesh = SubResource("QuadMesh_i8741")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Area3D"]
+transform = Transform3D(1.08522, 0, 0, 0, 1.08522, 0, 0, 0, 1.08522, 0, 0, 0)
+shape = SubResource("BoxShape3D_ldho3")
+
+[node name="Area3D2" type="Area3D" parent="Level" node_paths=PackedStringArray("meshInst")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11339, 1.26653, -4)
+script = ExtResource("3_ixfmc")
+meshInst = NodePath("MeshInstance3D")
+interactionText = "This is something else"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Area3D2"]
+material_override = SubResource("StandardMaterial3D_ptqns")
+mesh = SubResource("CapsuleMesh_m4x6n")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Area3D2"]
 transform = Transform3D(1.08522, 0, 0, 0, 1.08522, 0, 0, 0, 1.08522, 0, 0, 0)
 shape = SubResource("BoxShape3D_ldho3")
 

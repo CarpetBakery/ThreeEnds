@@ -1,18 +1,4 @@
-extends CharacterBody3D
-
-# -- Nodes --
-@onready var neck: Node3D = $Neck
-@onready var head: Node3D = $Neck/head
-@onready var eyes: Node3D = $Neck/head/Eyes
-@onready var camera: Camera3D = $HUD/SubViewport/camera
-
-@onready var standing_collision_shape = $standingCollisionShape
-@onready var crouching_collision_shape = $crouchingCollisionShape
-@onready var ray_cast_3d = $RayCast3D
-
-# -- Interaction --
-@onready var rayCastInteract: RayCast3D = $Neck/head/Eyes/RayCastInteract
-
+class_name PlayerFps extends CharacterBody3D
 
 # Player options
 # TODO: these do nothing
@@ -72,9 +58,33 @@ var freeLookRange: float = deg_to_rad(80.0)
 @export var sprintFov: float = 85.0
 
 
+# -- Nodes --
+@export_category("Don't touch these")
+@export var neck: Node3D
+@export var head: Node3D
+@export var eyes: Node3D
+@export var camera: Camera3D
+
+# Collision
+@export var standing_collision_shape: CollisionShape3D
+@export var crouching_collision_shape: CollisionShape3D
+@export var ray_cast_3d: RayCast3D
+
+# -- Interaction --
+@export var rayCastInteract: RayCast3D
+
+# -- HUD --
+@export var hud: Control
+@export var screenSurface: TextureRect
+
+# Reference to interaction text label
+var interactionText: Label 
+
+
+
+# -- Movement --
 var lerpSpd: float = 10.0
 var airLerpSpd: float = 3.0
-
 var direction: Vector3 = Vector3.ZERO
 
 # How much lower the camera will be relative to walking
@@ -89,7 +99,10 @@ var captureMouse: bool = true;
 const gravity: float = 9.9 * 1.6
 
 func _ready():
+	# Capture the mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Setup the hud
+	_setupHud()
 
 func _input(event):
 	# Look around using the mouse
@@ -125,6 +138,8 @@ func _input(event):
 			captureMouse = true
 
 func _process(delta: float) -> void:
+	# Process interaction
+	interactionText.text = ""
 	_processInteraction(delta)
 
 func _physics_process(delta):
@@ -255,10 +270,24 @@ func _physics_process(delta):
 	
 
 func _processInteraction(delta):
-	# Get all colliding areas
+	# Get the currently colliding area and run onInteract
 	if rayCastInteract.is_colliding():
 		var collider = rayCastInteract.get_collider()
-		print(collider)
-		
 		if collider is Interactable:
-			collider.onInteract()
+			# Set interaction text
+			setInteractionText(collider.interactionText)
+			if Input.is_action_just_pressed("interact"):
+				collider.onInteract(self)
+
+## Set up the HUD
+func _setupHud():
+	# Setup references
+	interactionText = hud.getInteractionText()
+	print(interactionText)
+	
+	# Make sure the main surfaces are visible
+	screenSurface.show()
+
+## Set the interaction text 
+func setInteractionText(string: String):
+	interactionText.text = string

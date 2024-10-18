@@ -122,11 +122,10 @@ transform = Transform3D(13.8915, 0, 0, 0, 1, 0, 0, 0, 12.6838, -3.57176, 5.78996
 shape = SubResource("BoxShape3D_30b6x")
 
 [node name="player" parent="." instance=ExtResource("1_h7t61")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86946, 11.7472, 4.6436)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.68881, 17.6228, 4.6436)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_73gos")
 volume_db = 1.0
 pitch_scale = 0.74
-autoplay = true
 parameters/looping = true
