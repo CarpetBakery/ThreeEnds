@@ -1,10 +1,12 @@
 class_name ComputerWindow extends Sprite2D
 
+@export_category("Collision Areas")
 @export var cursorArea: Area2D
 @export var dragArea: Area2D
 @export var closeArea: Area2D
 
 @onready var whiteFlash: Sprite2D = $WhiteFlash
+@onready var scrollContainer: ScrollContainer = $ScrollContainer
 
 # Hovering on close
 var mouseOnClose: bool = false
@@ -31,6 +33,17 @@ func _process(delta: float) -> void:
 	mouseOnClose = false
 	mouseOnDrag = false
 	
+	# Don't do anything here if the window isn't visible
+	if not visible:
+		return
+	
+	# Scroll container
+	var scrollSpd = 40
+	if Input.is_action_just_pressed("mouseWheelDown"):
+		scrollContainer.scroll_vertical += scrollSpd
+	if Input.is_action_just_pressed("mouseWheelUp"):
+		scrollContainer.scroll_vertical -= scrollSpd
+	
 	# Check mouse collisions
 	for i in cursorArea.get_overlapping_areas():
 		if i == dragArea:
@@ -38,6 +51,7 @@ func _process(delta: float) -> void:
 		if i == closeArea:
 			mouseOnClose = true
 	
+	# Player pressed left click
 	if Input.is_action_just_pressed("mouseLeft"):
 		if mouseOnDrag:
 			dragging = true
@@ -45,10 +59,11 @@ func _process(delta: float) -> void:
 		if mouseOnClose:
 			hideWindow()
 	
+	# Player released left click
 	if not Input.is_action_pressed("mouseLeft"):
 		dragging = false
 	
-	# Dragging behaviour
+	# -- Dragging behaviour --
 	if dragging:
 		position = mouseStartPos + get_viewport().get_mouse_position()
 	else:
@@ -65,6 +80,9 @@ func _process(delta: float) -> void:
 func showWindow():
 	if visible:
 		return
+	
+	# Scroll back to the top
+	scrollContainer.scroll_vertical = 0
 	
 	show()
 	whiteFlash.show()

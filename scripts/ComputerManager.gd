@@ -18,8 +18,6 @@ class_name ComputerManager extends Node
 @export var click: AudioStreamPlayer
 @export var release: AudioStreamPlayer
 
-
-
 func _ready() -> void:
 	#Engine.max_fps = 50
 	
