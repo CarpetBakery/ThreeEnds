@@ -2,6 +2,7 @@ class_name PlayerFps extends CharacterBody3D
 
 # Player options
 # TODO: these do nothing
+@export_group("Control flags")
 @export var canSprint: bool = true
 @export var canCrouch: bool = true
 @export var canSlide: bool = true
@@ -9,14 +10,14 @@ class_name PlayerFps extends CharacterBody3D
 
 # Speed vars
 var currentSpd: float = 5.0
-@export_category("Movement Speeds")
+@export_group("Movement Speeds")
 @export var walkSpd: float = 5.0
 @export var sprintSpd: float = 8.0
 @export var crouchSpd: float = 3.0
 
 # Mouse look sensitivity
 # NOTE: The sensitivity seems to change based on how big you set the viewport... wtf...
-@export_category("Mouse sensitivity")
+@export_group("Mouse sensitivity")
 @export var mouseSens: float = 0.17
 
 # States
@@ -33,7 +34,7 @@ var slideVec: Vector2 = Vector2.ZERO
 var slideSpd: float = 10.0
 
 # Headbobbing vars
-@export_category("Headbobbing")
+@export_group("Headbobbing")
 @export var headBobWalkSpd: float = 14.0
 @export var headBobSprintSpd: float = 18.0
 @export var headBobCrouchSpd: float = 10.0
@@ -52,14 +53,14 @@ var freeLookTiltAmt: float = -8.0
 var freeLookRange: float = deg_to_rad(80.0)
 
 # Fov values
-@export_category("Fov")
+@export_group("Fov")
 @export var targetFov: float = 80.0
 @export var walkFov: float = 80.0
 @export var sprintFov: float = 85.0
 
 
 # -- Nodes --
-@export_category("Don't touch these")
+@export_group("Don't touch these")
 @export var neck: Node3D
 @export var head: Node3D
 @export var eyes: Node3D
