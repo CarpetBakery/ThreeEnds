@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=14 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
 [ext_resource type="Texture2D" uid="uid://dsv66tl33pl8m" path="res://assets/textures/dev/grids/Dark/texture_01.png" id="1_pl5iy"]
 [ext_resource type="Script" path="res://scripts/Interactable.gd" id="2_086v0"]
+[ext_resource type="AudioStream" uid="uid://cqidkdg84jgsa" path="res://assets/audio/music/ambient3.ogg" id="4_sf2s4"]
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
@@ -183,3 +184,10 @@ mesh = SubResource("BoxMesh_ptdk3")
 
 [node name="player" parent="." instance=ExtResource("1_23sgh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.5249, 0.00916481, -3.76832)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sf2s4")
+volume_db = 1.0
+pitch_scale = 0.74
+autoplay = true
+parameters/looping = true

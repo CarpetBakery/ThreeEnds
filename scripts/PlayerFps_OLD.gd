@@ -1,5 +1,5 @@
 # Class definition can be done like this
-class_name PlayerFps
+class_name PlayerFpsOld
 # This class inherits from CharacterBody3D
 extends CharacterBody3D
 

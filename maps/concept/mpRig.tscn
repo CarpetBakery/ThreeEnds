@@ -127,5 +127,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.688
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_73gos")
 volume_db = 1.0
-pitch_scale = 0.74
+pitch_scale = 0.8
+autoplay = true
 parameters/looping = true
