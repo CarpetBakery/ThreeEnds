@@ -59,8 +59,9 @@ var freeLookRange: float = deg_to_rad(80.0)
 @export var sprintFov: float = 85.0
 
 
+
 # -- Nodes --
-@export_group("Don't touch these")
+@export_group("Components")
 @export var neck: Node3D
 @export var head: Node3D
 @export var eyes: Node3D
@@ -77,6 +78,10 @@ var freeLookRange: float = deg_to_rad(80.0)
 # -- HUD --
 @export var hud: Control
 @export var screenSurface: TextureRect
+
+# -- Audio --
+@export var footstepSpeaker: AudioStreamPlayer
+
 
 # Reference to interaction text label
 var interactionText: Label 
@@ -226,9 +231,15 @@ func _physics_process(delta):
 		targetFov = walkFov
 		
 	if is_on_floor() && !sliding && inputDir != Vector2.ZERO:
+		var signBefore = sign(headBobVec.y)
+		
 		headBobVec.y = sin(headBobIndex)
 		headBobVec.x = sin(headBobIndex/2) + 0.5
 		eyes.position.y = lerp(eyes.position.y,  headBobVec.y * (headBobCurrentIntensity / 2.0), delta * lerpSpd)
+		
+		# Handle footstep sounds
+		if signBefore == 1 and sign(headBobVec.y) != signBefore:
+			_playFootstep()
 		
 	else:
 		eyes.position.y = lerp(eyes.position.y,  0.0, delta * lerpSpd)
@@ -287,6 +298,13 @@ func _setupHud():
 	
 	# Make sure the main surfaces are visible
 	screenSurface.show()
+
+## Play footstep sound
+func _playFootstep():
+	## TODO Determine what material the ground is and play a sound
+	#footstepSpeaker.pitch_scale = randf_range(0.8, 1.2)
+	#footstepSpeaker.play()
+	pass
 
 ## Set the interaction text 
 func setInteractionText(string: String):

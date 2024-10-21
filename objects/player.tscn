@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkl5uauqwgryi"]
+[gd_scene load_steps=7 format=3 uid="uid://bkl5uauqwgryi"]
 
 [ext_resource type="Script" path="res://scripts/PlayerFps.gd" id="1_l6dy0"]
 [ext_resource type="PackedScene" uid="uid://c6nrrp6eh5i5m" path="res://objects/playerHUD.tscn" id="2_qbs1g"]
+[ext_resource type="AudioStream" uid="uid://cbvc8ji846nay" path="res://assets/audio/sfx/footstep_TEMP.wav" id="3_nj3ts"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aly1q"]
 
@@ -11,7 +12,7 @@ height = 1.2
 [sub_resource type="ViewportTexture" id="ViewportTexture_3083w"]
 viewport_path = NodePath("UI/SubViewport")
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "hud", "screenSurface")]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "hud", "screenSurface", "footstepSpeaker")]
 script = ExtResource("1_l6dy0")
 neck = NodePath("Neck")
 head = NodePath("Neck/head")
@@ -23,6 +24,7 @@ ray_cast_3d = NodePath("RayCast3D")
 rayCastInteract = NodePath("Neck/head/Eyes/RayCastInteract")
 hud = NodePath("UI/SubViewportContainer/HudViewport/PlayerHud")
 screenSurface = NodePath("UI/ScreenSurface")
+footstepSpeaker = NodePath("Audio/FootstepsTemp")
 
 [node name="Neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
@@ -112,3 +114,9 @@ offset_top = -240.0
 offset_right = 240.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="FootstepsTemp" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_nj3ts")
+max_polyphony = 5
