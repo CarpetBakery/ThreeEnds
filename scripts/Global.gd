@@ -5,6 +5,21 @@ extends Node
 # -- Constants --
 const DEBUG_MODE : bool = true
 
+# -- Global vars --
+## Current day enum
+enum Day
+{
+	ZERO,
+	ONE,
+	TWO,
+	THREE
+}
+## The current day
+var day: Day = Day.ZERO
+## Timer of the current day
+var dayTimer: float = 0
+
+
 func _ready():
 	# Limit framerate
 	Engine.max_fps = 60

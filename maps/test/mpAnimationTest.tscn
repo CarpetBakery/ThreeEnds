@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfhoxxatfow0c"]
+
+[ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_rx0rs"]
+[ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_fmm0h"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_g2xyr"]
+panorama = ExtResource("1_rx0rs")
+
+[sub_resource type="Sky" id="Sky_orijp"]
+sky_material = SubResource("PanoramaSkyMaterial_g2xyr")
+
+[sub_resource type="Environment" id="Environment_a1ub1"]
+background_mode = 2
+sky = SubResource("Sky_orijp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3svr0"]
+albedo_texture = ExtResource("2_fmm0h")
+texture_filter = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptqns"]
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_i8741"]
+
+[sub_resource type="Animation" id="Animation_wxim5"]
+resource_name = "AWESOMEanimation"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.64715, 3.6904, 0.966667, 1, 0, 1.33052, -1.43914)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.966667, 1, 0, -0.709847, 0, 0.704355)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_axlbo"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.64715, 3.6904)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fd48p"]
+_data = {
+"AWESOMEanimation": SubResource("Animation_wxim5"),
+"RESET": SubResource("Animation_axlbo")
+}
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
+environment = SubResource("Environment_a1ub1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(27.0731, 0, 0, 0, 1, 0, 0, 0, 22.7298, 0, -0.924217, 0)
+material_override = SubResource("StandardMaterial3D_3svr0")
+use_collision = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level"]
+material_override = SubResource("StandardMaterial3D_ptqns")
+mesh = SubResource("QuadMesh_i8741")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fd48p")
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.00776717, 0, -0.99997, 0, 1, 0, 0.99997, 0, -0.00776717, 0, 1.64715, 3.6904)
