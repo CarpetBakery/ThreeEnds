@@ -1,7 +1,7 @@
 class_name Interactable extends Area3D
 
 @export var meshInst: MeshInstance3D
-@export var interactionText: String
+@export_multiline var interactionText: String
 
 #const MP_ROOM = preload("res://maps/mpRoom.tscn")
 

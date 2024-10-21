@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dk67utygqsb1p"]
+[gd_scene load_steps=14 format=3 uid="uid://dk67utygqsb1p"]
 
 [ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_ujqab"]
 [ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_oksw5"]
@@ -26,7 +26,12 @@ billboard_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ldho3"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nreni"]
+albedo_color = Color(0.210192, 0.429211, 0.374167, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m4x6n"]
+material = SubResource("StandardMaterial3D_nreni")
+height = 1.0
 
 [node name="Node3D" type="Node3D"]
 
@@ -59,7 +64,7 @@ shape = SubResource("BoxShape3D_ldho3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11339, 1.26653, -4)
 script = ExtResource("3_ixfmc")
 meshInst = NodePath("MeshInstance3D")
-interactionText = "This is something else"
+interactionText = "Interaction text"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Area3D2"]
 material_override = SubResource("StandardMaterial3D_ptqns")

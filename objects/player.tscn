@@ -33,7 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="RayCastInteract" type="RayCast3D" parent="Neck/head/Eyes"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-target_position = Vector3(0, -2, 0)
+target_position = Vector3(0, -2.5, 0)
 collide_with_areas = true
 
 [node name="standingCollisionShape" type="CollisionShape3D" parent="."]
@@ -95,6 +95,7 @@ stretch = true
 stretch_shrink = 4
 
 [node name="HudViewport" type="SubViewport" parent="UI/SubViewportContainer"]
+disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(480, 270)
@@ -105,6 +106,9 @@ anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
-offset_right = 0.0
-offset_bottom = 0.0
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -240.0
+offset_right = 240.0
+grow_horizontal = 2
 grow_vertical = 0
