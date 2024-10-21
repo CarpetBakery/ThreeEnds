@@ -80,9 +80,11 @@ func _process(delta: float) -> void:
 func showWindow():
 	if visible:
 		return
-	
 	# Scroll back to the top
 	scrollContainer.scroll_vertical = 0
+	# Move to the center of the screen
+	position = viewSize / 2
+	position = floor(position)
 	
 	show()
 	whiteFlash.show()
