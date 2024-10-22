@@ -14,7 +14,7 @@ height = 1.2
 [sub_resource type="ViewportTexture" id="ViewportTexture_3083w"]
 viewport_path = NodePath("UI/SubViewport")
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "carrySocket", "hud", "screenSurface", "footstepSpeaker")]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "carrySocket", "carryBarrel", "hud", "screenSurface", "footstepSpeaker")]
 script = ExtResource("1_l6dy0")
 neck = NodePath("Neck")
 head = NodePath("Neck/head")
@@ -25,6 +25,7 @@ crouching_collision_shape = NodePath("crouchingCollisionShape")
 ray_cast_3d = NodePath("RayCast3D")
 rayCastInteract = NodePath("Neck/head/Eyes/RayCastInteract")
 carrySocket = NodePath("UI/SubViewport/CarrySocket")
+carryBarrel = NodePath("UI/SubViewport/CarrySocket/BarrelMesh")
 hud = NodePath("UI/SubViewportContainer/HudViewport/PlayerHud")
 screenSurface = NodePath("UI/ScreenSurface")
 footstepSpeaker = NodePath("Audio/FootstepsTemp")
@@ -84,6 +85,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="BarrelMesh" type="MeshInstance3D" parent="UI/SubViewport/CarrySocket"]
 transform = Transform3D(0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0, 1, 0, -1.3, -1.1)
+visible = false
 mesh = SubResource("CylinderMesh_1f8gl")
 
 [node name="ScreenSurface" type="TextureRect" parent="UI"]

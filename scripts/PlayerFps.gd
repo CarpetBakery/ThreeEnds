@@ -73,9 +73,12 @@ var freeLookRange: float = deg_to_rad(80.0)
 
 # Interaction nodes
 @export var rayCastInteract: RayCast3D
-@export var carrySocket: Node3D
 # Reference to interaction text label
 var interactionText: Label 
+
+# Carrying
+@export var carrySocket: Node3D
+@export var carryBarrel: MeshInstance3D
 
 # HUD nodes
 @export var hud: Control
@@ -83,6 +86,10 @@ var interactionText: Label
 
 # Audio nodes
 @export var footstepSpeaker: AudioStreamPlayer
+
+# -- Input vars --
+var interactPressed: bool = false
+var interactHeld: bool = false
 
 
 # -- Interaction system --
@@ -92,8 +99,13 @@ var canInteract: bool = true
 var focusedInteractables: Array[Interactable] = []
 
 # -- Carrying objects --
+## Types of objects that we can carry
+enum CarryType {
+	NONE,
+	BARREL
+}
 # Current object that we're carrying
-var carryObject: CarryObject = null
+var carryObject := CarryType.NONE
 
 # -- Movement --
 var lerpSpd: float = 10.0
@@ -116,6 +128,10 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Setup the hud
 	_setupHud()
+	
+	# -- Setup interaction and carrying --
+	# Hide barrel mesh
+	carryBarrel.hide()
 
 func _input(event):
 	# Look around using the mouse
@@ -152,6 +168,10 @@ func _input(event):
 
 
 func _physics_process(delta):
+	# Get input vars
+	interactPressed = Input.is_action_just_pressed("interact")
+	interactHeld = Input.is_action_pressed("interact")
+	
 	# Get movement inputs
 	var inputDir = Input.get_vector("left", "right", "forward", "backward")
 	
@@ -296,11 +316,8 @@ func _physics_process(delta):
 	# -- Process interaction --
 	interactionText.text = ""
 	
-	# Since I'm using the same input for both interaction and picking up/down, these should probably not run on the same frame...
-	if carryObject == null:
-		_processInteraction(delta)
-	else:
-		_processCarry(delta)
+	_processInteraction(delta)
+	_processCarry(delta)
 	
 
 func _processInteraction(delta):
@@ -340,7 +357,8 @@ func _processInteraction(delta):
 			currentNode.inFocus(self)
 			
 			# Interact with the object if 'interact' button is pressed
-			if Input.is_action_just_pressed("interact"):
+			if interactPressed:
+				interactPressed = false
 				currentNode.onInteract(self)
 	else:
 		# We aren't colliding with anything anymore, just clear focused list 
@@ -355,38 +373,33 @@ func _clearFocused():
 	# Clear focused array
 	focusedInteractables.clear()
 
-func addCarryObject(node: Node3D):
-	# TODO: Attach the object to the carry socket
-	# Might have to make a system so that each object has a custom local position that looks good in first person
-	node.reparent(carrySocket)
-	carryObject = node
-
-	# Call pickup func
-	carryObject.onPickup(self)
-	
-	# Stop the player from interacting with things
-	canInteract = false
-
-func dropCarryObject():
-	# Don't do anything if we're not carrying something...
-	if carryObject == null:
-		return
-	
-	## TODO: Drop object back into the world?
-	# I might make it so that you can't drop an object once you pick it up
-
-	# Call drop func
-	carryObject.onDrop(self)
-	# Reset carryObject
-	carryObject = null
-	
-	# Allow the player to interact with things again
-	canInteract = true
-
 func _processCarry(_delta):
-	if Input.is_action_just_pressed("interact"):
-		# Drop what we're holding
-		dropCarryObject()
+	if interactPressed:
+		interactPressed = false
+		dropObject()
+
+func pickupObject(type: CarryType):
+	# Set carry type
+	carryObject = type
+	
+	match carryObject:
+		CarryType.BARREL:
+			carryBarrel.show()
+	
+	# Stop player from interacting
+	canInteract = false
+	
+
+func dropObject():
+	## NOTE: Might not even both using this function...
+	match carryObject:
+		CarryType.BARREL:
+			carryBarrel.hide()
+	
+	# Reset carry type
+	carryObject = CarryType.NONE
+	# Allow player to interact again
+	canInteract = true
 
 ## Set up the HUD
 func _setupHud():
