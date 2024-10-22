@@ -173,10 +173,9 @@ transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 1.5, 2.5, 
 use_collision = true
 size = Vector3(0.25, 12, 2.75)
 
-[node name="Door" type="Area3D" parent="LevelBlockout" node_paths=PackedStringArray("meshInst")]
+[node name="Door" type="Area3D" parent="LevelBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.25, 0.75, -5.25)
 script = ExtResource("2_086v0")
-meshInst = NodePath("MeshInstance3D")
 interactionText = "Into room"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Door"]
@@ -270,108 +269,153 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.4886, 4.71741, 17.9464)
 use_collision = true
 size = Vector3(20, 0.15, 20)
 
-[node name="Ramp" type="Node3D" parent="LevelBlockout"]
+[node name="HelipadRamp" type="Node3D" parent="LevelBlockout"]
 
-[node name="Helipad Ramp" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="Helipad Ramp" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(0.866026, 0.5, 0, -0.5, 0.866026, 0, 0, 0, 1, -26.6035, 2.37244, 6.90174)
 snap = 1e-06
 use_collision = true
 size = Vector3(9.25, 0.15, 2.5)
 
-[node name="Helipad Ramp16" type="CSGBox3D" parent="LevelBlockout/Ramp"]
-transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -27.1062, 0.694195, 0.34074)
-snap = 1e-06
-use_collision = true
-size = Vector3(5.25, 0.15, 1.75)
-
-[node name="Helipad Ramp7" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="RampSupp8" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -25.3146, 0.896626, 8.03994)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.269445, 0.15, 0.0529961)
 
-[node name="Helipad Ramp2" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="RampSupp7" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -27.9612, 1.64005, 5.77267)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.573071, 0.15, 0.0529961)
 
-[node name="Helipad Ramp10" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="Railing" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -30.7917, 5.07847, 5.81155)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
-[node name="Helipad Ramp11" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="Railing2" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -31.678, 5.07846, 5.81155)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
-[node name="Helipad Ramp15" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="Railing3" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -31.2546, 5.5222, 5.81155)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.015, 2.07655, 0.029)
 
-[node name="Helipad Ramp12" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="Railing4" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -31.8316, 5.07847, 7.7034)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
-[node name="Helipad Ramp14" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="Railing5" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -31.8348, 5.53321, 6.81489)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.015, 0.15, 0.639)
 
-[node name="Helipad Ramp13" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="Railing6" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -31.8316, 5.07847, 6.72571)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
-[node name="Helipad Ramp9" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="RampSupp" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -27.9612, 1.64005, 8.02034)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.573071, 0.15, 0.0529961)
 
-[node name="Helipad Ramp4" type="CSGBox3D" parent="LevelBlockout/Ramp"]
-transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -26.6832, 1.22421, 5.77267)
+[node name="RampSupp2" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
+transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -26.6822, 1.33615, 5.77267)
 snap = 1e-06
 use_collision = true
-size = Vector3(0.403234, 0.15, 0.0529961)
+size = Vector3(0.448953, 0.15, 0.0529961)
 
-[node name="Helipad Ramp8" type="CSGBox3D" parent="LevelBlockout/Ramp"]
-transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -26.6832, 1.22421, 8.03481)
+[node name="RampSupp3" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
+transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -26.6824, 1.31996, 8.03481)
 snap = 1e-06
 use_collision = true
-size = Vector3(0.403234, 0.15, 0.0529961)
+size = Vector3(0.44234, 0.15, 0.0529961)
 
-[node name="Helipad Ramp3" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="RampSupp4" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -25.3146, 0.896626, 5.77267)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.269445, 0.15, 0.0529961)
 
-[node name="Helipad Ramp5" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="RampSupp5" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -24.2261, 0.614476, 5.77267)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.154211, 0.15, 0.0529961)
 
-[node name="Helipad Ramp6" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="RampSupp6" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(-0.0420563, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -24.2261, 0.614476, 8.02634)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.154211, 0.15, 0.0529961)
 
-[node name="HelipadTopRamp" type="CSGBox3D" parent="LevelBlockout/Ramp"]
+[node name="HelipadTopRamp" type="CSGBox3D" parent="LevelBlockout/HelipadRamp"]
 transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -31.1879, 4.71527, 6.90886)
 use_collision = true
 size = Vector3(1.19308, 0.15, 2.07129)
+
+[node name="Docks" type="CSGBox3D" parent="."]
+transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -5.12821, -10.6074, 40.3591)
+use_collision = true
+size = Vector3(2.47604, 0.15, 14.1115)
+
+[node name="DockRamp" type="CSGBox3D" parent="Docks"]
+transform = Transform3D(-8.25588e-08, 5.55732e-08, -1, -0.500001, 0.866027, 6.85454e-07, 0.866026, 0.5, -4.37114e-08, -0.0127954, 2.70958, -11.6536)
+snap = 1e-06
+use_collision = true
+size = Vector3(10.9897, 0.15, 2.5)
+
+[node name="2ndStoryRamp" type="CSGBox3D" parent="."]
+transform = Transform3D(0.866026, 0.5, 0, -0.5, 0.866026, 0, 0, 0, 1, -4.92503, -2.53321, 25.2064)
+snap = 1e-06
+use_collision = true
+size = Vector3(10.9897, 0.15, 2.5)
+
+[node name="2ndTopRamp" type="CSGBox3D" parent="2ndStoryRamp"]
+transform = Transform3D(0.866025, -0.499999, 0, 0.5, 0.866024, 0, 0, 0, 1, -5.95393, -0.271249, 0.0196629)
+use_collision = true
+size = Vector3(1.19308, 0.15, 2.44104)
+
+[node name="2ndBotRamp" type="CSGBox3D" parent="2ndStoryRamp"]
+transform = Transform3D(0.866025, -0.499999, 0, 0.5, 0.866024, 0, 0, 0, 1, 5.90271, 0.352491, -0.00589561)
+use_collision = true
+size = Vector3(1.4948, 0.15, 2.44104)
+
+[node name="Railing7" type="CSGBox3D" parent="2ndStoryRamp"]
+transform = Transform3D(2.41207, 0.532141, 0, -4.26194, 0.30117, 0, 0, 0, -3.28236, -6.70722, -0.265722, 1.15864)
+snap = 1e-06
+use_collision = true
+size = Vector3(0.167682, 0.15, 0.0293057)
+
+[node name="Railing8" type="CSGBox3D" parent="2ndStoryRamp"]
+transform = Transform3D(2.41207, 0.532141, 0, -4.26194, 0.30117, 0, 0, 0, -3.28236, -6.70722, -0.265722, 0.0266266)
+snap = 1e-06
+use_collision = true
+size = Vector3(0.167682, 0.15, 0.0293057)
+
+[node name="Railing9" type="CSGBox3D" parent="2ndStoryRamp"]
+transform = Transform3D(2.41207, 0.532141, 0, -4.26194, 0.30117, 0, 0, 0, -3.28236, -6.70722, -0.265722, -1.15054)
+snap = 1e-06
+use_collision = true
+size = Vector3(0.167682, 0.15, 0.0293057)
+
+[node name="Railing10" type="CSGBox3D" parent="2ndStoryRamp"]
+transform = Transform3D(-0.0456499, 0.529507, -1.64117, -0.00503892, 0.305734, 2.84259, -4.89694, -0.00524923, 0.0123742, -6.92605, 0.126763, 0.000793457)
+snap = 1e-06
+use_collision = true
+size = Vector3(0.48765, 0.15, 0.0293057)
 
 [node name="player" parent="." instance=ExtResource("1_23sgh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.5249, 0.00916481, -3.76832)
