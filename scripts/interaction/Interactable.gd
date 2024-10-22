@@ -12,6 +12,10 @@ class_name Interactable extends Area3D
 ## Whether or not this node is currently focused by the player
 var focused: bool
 
+## Set the collision mask to 2
+func _ready() -> void:
+	collision_layer = 2
+
 ## Called once when the object comes into focus
 func enterFocus(_player: PlayerFps):
 	pass
