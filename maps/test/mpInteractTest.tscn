@@ -110,6 +110,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1)
 
 [node name="Area3D" type="Area3D" parent="Barrel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 1)
+collision_layer = 2
 script = ExtResource("6_yfq7w")
 interactionText = "Pick up barrel with 'E'"
 
@@ -121,6 +122,7 @@ shape = SubResource("CylinderShape3D_vhubv")
 shape = SubResource("CylinderShape3D_vhubv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Barrel"]
+layers = 2
 mesh = SubResource("CylinderMesh_labal")
 
 [node name="BarrelReciever" type="Area3D" parent="."]
