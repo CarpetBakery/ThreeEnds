@@ -59,7 +59,6 @@ var freeLookRange: float = deg_to_rad(80.0)
 @export var sprintFov: float = 85.0
 
 
-
 # -- Nodes --
 @export_group("Components")
 @export var neck: Node3D
@@ -67,25 +66,27 @@ var freeLookRange: float = deg_to_rad(80.0)
 @export var eyes: Node3D
 @export var camera: Camera3D
 
-# Collision
+# Collision nodes
 @export var standing_collision_shape: CollisionShape3D
 @export var crouching_collision_shape: CollisionShape3D
 @export var ray_cast_3d: RayCast3D
 
-# -- Interaction --
+# Interaction nodes
 @export var rayCastInteract: RayCast3D
-
-# -- HUD --
-@export var hud: Control
-@export var screenSurface: TextureRect
-
-# -- Audio --
-@export var footstepSpeaker: AudioStreamPlayer
-
-
 # Reference to interaction text label
 var interactionText: Label 
 
+# HUD nodes
+@export var hud: Control
+@export var screenSurface: TextureRect
+
+# Audio nodes
+@export var footstepSpeaker: AudioStreamPlayer
+
+
+# -- Interaction system --
+# List of nodes that were previously in focus
+var focusedInteractables: Array[Interactable] = []
 
 
 # -- Movement --
@@ -283,13 +284,33 @@ func _physics_process(delta):
 
 func _processInteraction(delta):
 	# Get the currently colliding area and run onInteract
+	# NOTE: This currently only works for one object at a time...
+	# if we're colliding with more than one thing this might explode
+	
 	if rayCastInteract.is_colliding():
 		var collider = rayCastInteract.get_collider()
+		
 		if collider is Interactable:
-			# Set interaction text
-			setInteractionText(collider.interactionText)
+			# Add node to focused array and call inFocus
+			if collider not in focusedInteractables:
+				collider.enterFocus(self)
+				collider.focused = true
+				focusedInteractables.append(collider)
+			
+			# Call inFocus on Interactable
+			collider.inFocus(self)
+			
+			# Interact with the object if 'interact' button is pressed
 			if Input.is_action_just_pressed("interact"):
 				collider.onInteract(self)
+	else:
+		# We aren't colliding with anything on this frame
+		# Call lose focus on each node
+		for i in focusedInteractables:
+			i.focused = false
+			i.exitFocus(self)
+		# Clear focused array
+		focusedInteractables.clear()
 
 ## Set up the HUD
 func _setupHud():
@@ -301,7 +322,7 @@ func _setupHud():
 
 ## Play footstep sound
 func _playFootstep():
-	## TODO Determine what material the ground is and play a sound
+	## TODO: Determine what material the ground is and play a sound
 	#footstepSpeaker.pitch_scale = randf_range(0.8, 1.2)
 	#footstepSpeaker.play()
 	pass
