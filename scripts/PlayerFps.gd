@@ -155,7 +155,7 @@ func _input(event):
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("ui_cancel"):
 			if captureMouse:
-				# ALlow game to quit if escape is pressed again
+				# Allow game to quit if escape is pressed again
 				captureMouse = false
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			else:
@@ -176,7 +176,7 @@ func _physics_process(delta):
 	var inputDir = Input.get_vector("left", "right", "forward", "backward")
 	
 	# Crouching and sprinting
-	if Input.is_action_pressed("crouch") || sliding:
+	if (Input.is_action_pressed("crouch") || sliding) and canCrouch:
 		# Set head position
 		head.position.y = lerp(head.position.y, crouchingHeight, delta * lerpSpd)
 		
@@ -188,7 +188,7 @@ func _physics_process(delta):
 		currentSpd = lerp(currentSpd, crouchSpd, delta * lerpSpd)
 		
 		# Slide begin logic
-		if sprinting && inputDir != Vector2.ZERO:
+		if sprinting && inputDir != Vector2.ZERO and canSlide:
 			sliding = true
 			freeLooking = true
 			slideTimer = slideTimerMax
@@ -206,7 +206,7 @@ func _physics_process(delta):
 		# Reset head position
 		head.position.y = lerp(head.position.y, 0.0, delta * lerpSpd)
 		
-		if Input.is_action_pressed("sprint"):
+		if Input.is_action_pressed("sprint") and canSprint:
 			# Sprinting
 			currentSpd = lerp(currentSpd, sprintSpd, delta * lerpSpd)
 			
@@ -222,10 +222,12 @@ func _physics_process(delta):
 			crouching = false
 	
 	# Handle free looking
-	if Input.is_action_pressed("free_look") || sliding:
+	if (Input.is_action_pressed("free_look") || sliding):
 		freeLooking = true
 		if !sliding:
 			eyes.rotation.z = deg_to_rad(neck.rotation.y * freeLookTiltAmt)
+			if !canFreelook:
+				freeLooking = false
 	else:
 		# Reset the rotation of the eyes and neck with easing
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * lerpSpd)
