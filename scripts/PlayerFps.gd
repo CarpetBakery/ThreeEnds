@@ -144,10 +144,6 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			captureMouse = true
 
-func _process(delta: float) -> void:
-	# Process interaction
-	interactionText.text = ""
-	_processInteraction(delta)
 
 func _physics_process(delta):
 	# Get movement inputs
@@ -281,6 +277,10 @@ func _physics_process(delta):
 	camera.position = position + neck.position + head.position + eyes.position
 	camera.rotation = rotation + neck.rotation + head.rotation + eyes.rotation
 	
+	# -- Process interaction --
+	interactionText.text = ""
+	_processInteraction(delta)
+	
 
 func _processInteraction(delta):
 	# Get the currently colliding area and run onInteract
@@ -288,29 +288,46 @@ func _processInteraction(delta):
 	# if we're colliding with more than one thing this might explode
 	
 	if rayCastInteract.is_colliding():
-		var collider = rayCastInteract.get_collider()
+		var node = rayCastInteract.get_collider()
 		
-		if collider is Interactable:
-			# Add node to focused array and call inFocus
-			if collider not in focusedInteractables:
-				collider.enterFocus(self)
-				collider.focused = true
-				focusedInteractables.append(collider)
+		if node is Interactable:
+			if node not in focusedInteractables:
+				# Add node to focused array and call inFocus
+				node.enterFocus(self)
+				node.focused = true
+				focusedInteractables.insert(0, node)
+			#else:
+				## Currently colliding node *is* in the list already. Move it to the front
+				#var ind: int = focusedInteractables.find(node)
+				## Only move if this node isn't already at the front
+				#if ind != 0:
+					#focusedInteractables.remove_at(ind)
+					#focusedInteractables.insert(0, node)
 			
+			# This should NEVER happen
+			if focusedInteractables.is_empty():
+				print("Error: Interactable list is empty")
+				return
+			
+			# Temp var for convenience
+			var currentNode: Interactable = focusedInteractables[0]
 			# Call inFocus on Interactable
-			collider.inFocus(self)
+			currentNode.inFocus(self)
 			
 			# Interact with the object if 'interact' button is pressed
 			if Input.is_action_just_pressed("interact"):
-				collider.onInteract(self)
+				currentNode.onInteract(self)
 	else:
-		# We aren't colliding with anything on this frame
-		# Call lose focus on each node
-		for i in focusedInteractables:
-			i.focused = false
-			i.exitFocus(self)
-		# Clear focused array
-		focusedInteractables.clear()
+		# We aren't colliding with anything anymore, just clear focused list 
+		_clearFocused()
+
+func _clearFocused():
+	# Call exit focus on each node
+	for i in focusedInteractables:
+		i.focused = false
+		i.exitFocus(self)
+	# Clear focused array
+	focusedInteractables.clear()
 
 ## Set up the HUD
 func _setupHud():

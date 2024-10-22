@@ -1,5 +1,11 @@
 class_name Interactable extends Area3D
 
+"""
+* Inherit from this class to create interactable objects
+	- Derives from Area3D
+	- Requires a CollisionShape3D
+"""
+
 ## Text displayed when you're looking at an object
 @export_multiline var interactionText: String
 
