@@ -12,7 +12,7 @@ height = 1.2
 [sub_resource type="ViewportTexture" id="ViewportTexture_3083w"]
 viewport_path = NodePath("UI/SubViewport")
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "hud", "screenSurface", "footstepSpeaker")]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "carrySocket", "hud", "screenSurface", "footstepSpeaker")]
 script = ExtResource("1_l6dy0")
 neck = NodePath("Neck")
 head = NodePath("Neck/head")
@@ -22,6 +22,7 @@ standing_collision_shape = NodePath("standingCollisionShape")
 crouching_collision_shape = NodePath("crouchingCollisionShape")
 ray_cast_3d = NodePath("RayCast3D")
 rayCastInteract = NodePath("Neck/head/Eyes/RayCastInteract")
+carrySocket = NodePath("Neck/head/Eyes/CarrySocket")
 hud = NodePath("UI/SubViewportContainer/HudViewport/PlayerHud")
 screenSurface = NodePath("UI/ScreenSurface")
 footstepSpeaker = NodePath("Audio/FootstepsTemp")
@@ -37,6 +38,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -2.5, 0)
 collide_with_areas = true
+collide_with_bodies = false
+
+[node name="CarrySocket" type="Node3D" parent="Neck/head/Eyes"]
 
 [node name="standingCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

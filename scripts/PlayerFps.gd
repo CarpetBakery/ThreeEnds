@@ -73,6 +73,7 @@ var freeLookRange: float = deg_to_rad(80.0)
 
 # Interaction nodes
 @export var rayCastInteract: RayCast3D
+@export var carrySocket: Node3D
 # Reference to interaction text label
 var interactionText: Label 
 
@@ -85,9 +86,14 @@ var interactionText: Label
 
 
 # -- Interaction system --
+# Whether or not the player can interact with stuff
+var canInteract: bool = true
 # List of nodes that were previously in focus
 var focusedInteractables: Array[Interactable] = []
 
+# -- Carrying objects --
+# Current object that we're carrying
+var carryObject: CarryObject = null
 
 # -- Movement --
 var lerpSpd: float = 10.0
@@ -279,13 +285,22 @@ func _physics_process(delta):
 	
 	# -- Process interaction --
 	interactionText.text = ""
-	_processInteraction(delta)
+	
+	# Since I'm using the same input for both interaction and picking up/down, these should probably not run on the same frame...
+	if carryObject == null:
+		_processInteraction(delta)
+	else:
+		_processCarry(delta)
 	
 
 func _processInteraction(delta):
 	# Get the currently colliding area and run onInteract
 	# NOTE: This currently only works for one object at a time...
 	# if we're colliding with more than one thing this might explode
+	
+	if !canInteract:
+		_clearFocused()
+		return
 	
 	if rayCastInteract.is_colliding():
 		var node = rayCastInteract.get_collider()
@@ -321,6 +336,7 @@ func _processInteraction(delta):
 		# We aren't colliding with anything anymore, just clear focused list 
 		_clearFocused()
 
+## Clear focused interactables array
 func _clearFocused():
 	# Call exit focus on each node
 	for i in focusedInteractables:
@@ -328,6 +344,39 @@ func _clearFocused():
 		i.exitFocus(self)
 	# Clear focused array
 	focusedInteractables.clear()
+
+func addCarryObject(node: Node3D):
+	# TODO: Attach the object to the carry socket
+	# Might have to make a system so that each object has a custom local position that looks good in first person
+	node.reparent(carrySocket)
+	carryObject = node
+
+	# Call pickup func
+	carryObject.onPickup(self)
+	
+	# Stop the player from interacting with things
+	canInteract = false
+
+func dropCarryObject():
+	# Don't do anything if we're not carrying something...
+	if carryObject == null:
+		return
+	
+	## TODO: Drop object back into the world?
+	# I might make it so that you can't drop an object once you pick it up
+
+	# Call drop func
+	carryObject.onDrop(self)
+	# Reset carryObject
+	carryObject = null
+	
+	# Allow the player to interact with things again
+	canInteract = true
+
+func _processCarry(_delta):
+	if Input.is_action_just_pressed("interact"):
+		# Drop what we're holding
+		dropCarryObject()
 
 ## Set up the HUD
 func _setupHud():
