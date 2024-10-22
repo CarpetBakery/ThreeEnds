@@ -327,9 +327,9 @@ func _processInteraction(delta):
 	# NOTE: This currently only works for one object at a time...
 	# if we're colliding with more than one thing this might explode
 	
-	if !canInteract:
-		_clearFocused()
-		return
+	#if !canInteract:
+		#_clearFocused()
+		#return
 	
 	if rayCastInteract.is_colliding():
 		var node = rayCastInteract.get_collider()
@@ -366,6 +366,16 @@ func _processInteraction(delta):
 		# We aren't colliding with anything anymore, just clear focused list 
 		_clearFocused()
 
+func _processCarry(_delta):
+	# Don't do anything for now
+	return
+	
+	match carryObject:
+		CarryType.BARREL:
+			if interactPressed:
+				interactPressed = false
+				dropObject()
+
 ## Clear focused interactables array
 func _clearFocused():
 	# Call exit focus on each node
@@ -374,11 +384,6 @@ func _clearFocused():
 		i.exitFocus(self)
 	# Clear focused array
 	focusedInteractables.clear()
-
-func _processCarry(_delta):
-	if interactPressed:
-		interactPressed = false
-		dropObject()
 
 func pickupObject(type: CarryType):
 	# Set carry type
