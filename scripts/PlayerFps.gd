@@ -280,8 +280,18 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# Move the camera to be at the correct position and rotation
-	camera.position = position + neck.position + head.position + eyes.position
-	camera.rotation = rotation + neck.rotation + head.rotation + eyes.rotation
+	var eyePos: Vector3 = neck.position + head.position + eyes.position
+	var eyeRot: Vector3 = neck.rotation + head.rotation + eyes.rotation
+	camera.position = position + eyePos
+	camera.rotation = rotation + eyeRot
+	
+	# Lerp carrySocket for smooth movement
+	var carryLerpSpd = 0.4
+	carrySocket.position = position + eyePos
+	#carrySocket.position = lerp(carrySocket.position, position + eyePos, carryLerpSpd)
+	carrySocket.rotation.x = lerp_angle(carrySocket.rotation.x, rotation.x + eyeRot.x, carryLerpSpd)
+	carrySocket.rotation.y = lerp_angle(carrySocket.rotation.y, rotation.y + eyeRot.y, carryLerpSpd)
+	carrySocket.rotation.z = lerp_angle(carrySocket.rotation.z, rotation.z + eyeRot.z, carryLerpSpd)
 	
 	# -- Process interaction --
 	interactionText.text = ""
