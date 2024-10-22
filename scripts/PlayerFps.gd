@@ -3,10 +3,11 @@ class_name PlayerFps extends CharacterBody3D
 # Player options
 # TODO: these do nothing
 @export_group("Control flags")
+@export var canJump: bool = true
 @export var canSprint: bool = true
 @export var canCrouch: bool = true
-@export var canSlide: bool = true
-@export var canFreelook: bool = true
+@export var canSlide: bool = false
+@export var canFreelook: bool = false
 
 # Speed vars
 var currentSpd: float = 5.0
@@ -275,7 +276,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle jump
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if canJump and Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = jumpVelocity
 		sliding = false
 
