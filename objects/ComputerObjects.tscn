@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://kwkes1spk64y"]
+[gd_scene load_steps=18 format=3 uid="uid://kwkes1spk64y"]
 
 [ext_resource type="Texture2D" uid="uid://bs7tls7un2b8t" path="res://assets/textures/computer/computer background.png" id="1_3sei2"]
 [ext_resource type="Script" path="res://scripts/ComputerManager.gd" id="1_r3phi"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://bgre233a6cwx6" path="res://ui/thmWindows.tres" id="6_fk0mh"]
 [ext_resource type="AudioStream" uid="uid://cxh6k85btw650" path="res://assets/audio/sfx/computer/mouseclick.wav" id="7_vwj20"]
 [ext_resource type="AudioStream" uid="uid://dm13lidrqrlbt" path="res://assets/audio/sfx/computer/mouserelease.wav" id="8_ao0vx"]
+[ext_resource type="FontFile" uid="uid://du71miqja3wkn" path="res://ui/fonts/Perfect DOS VGA 437.ttf" id="8_mf634"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbfkr"]
 size = Vector2(46, 56)
@@ -92,7 +93,7 @@ layout_mode = 2
 theme = ExtResource("6_fk0mh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_bq52e")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 16
 text = "You're dead!
 eerqqworkqopwrkq
 w
@@ -121,6 +122,32 @@ centered = false
 [node name="cursorCollider" type="CollisionShape2D" parent="cursor/CursorArea"]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_aurqi")
+
+[node name="OtherUi" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="Label" type="Label" parent="OtherUi"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -24.0
+offset_right = 224.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_mf634")
+theme_override_font_sizes/font_size = 16
+text = "Press 'E' to get up."
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="audio" type="Node" parent="."]
 
