@@ -108,10 +108,11 @@ canJump = false
 [node name="Barrel" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1)
 
-[node name="Area3D" type="Area3D" parent="Barrel"]
+[node name="Area3D" type="Area3D" parent="Barrel" node_paths=PackedStringArray("playerRef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 1)
 collision_layer = 2
 script = ExtResource("6_yfq7w")
+playerRef = NodePath("../../player")
 interactionText = "Pick up barrel with 'E'"
 
 [node name="InteractHitbox" type="CollisionShape3D" parent="Barrel/Area3D"]

@@ -74,16 +74,16 @@ var freeLookRange: float = deg_to_rad(80.0)
 
 # Interaction nodes
 @export var rayCastInteract: RayCast3D
-# Reference to interaction text label
-var interactionText: Label 
 
 # Carrying
 @export var carrySocket: Node3D
 @export var carryBarrel: MeshInstance3D
 
 # HUD nodes
-@export var hud: Control
+@export var hud: PlayerHud
 @export var screenSurface: TextureRect
+var interactionText: Label 
+var progressBar: ProgressBar
 
 # Audio nodes
 @export var footstepSpeaker: AudioStreamPlayer
@@ -409,21 +409,28 @@ func dropObject():
 	# Allow player to interact again
 	canInteract = true
 
+# -- Hud functions --
 ## Set up the HUD
 func _setupHud():
 	# Setup references
 	interactionText = hud.getInteractionText()
+	progressBar = hud.getProgressBar()
 	
 	# Make sure the main surfaces are visible
 	screenSurface.show()
 
+## Set the interaction text 
+func setInteractionText(string: String):
+	interactionText.text = string
+
+## Return the hud component
+func getHud() -> PlayerHud:
+	return hud
+
+# -- Audio --
 ## Play footstep sound
 func _playFootstep():
 	## TODO: Determine what material the ground is and play a sound
 	#footstepSpeaker.pitch_scale = randf_range(0.8, 1.2)
 	#footstepSpeaker.play()
 	pass
-
-## Set the interaction text 
-func setInteractionText(string: String):
-	interactionText.text = string

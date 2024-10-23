@@ -1,5 +1,6 @@
-extends Interactable
+class_name IntBarrel extends HoldInteract
 
-func onInteract(_player: PlayerFps):
+func onSuccessfulInteract(_player: PlayerFps):
+	super(_player)
 	_player.pickupObject(PlayerFps.CarryType.BARREL)
-	hide()
+	# hide()
