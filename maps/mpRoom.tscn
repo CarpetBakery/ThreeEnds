@@ -7,39 +7,14 @@
 [node name="Rookm" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707069, 0, 1.7074)
 
-[node name="Floor" type="CSGBox3D" parent="Rookm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.41698, -0.0305772, -6.81454)
-use_collision = true
-size = Vector3(15, 0.5, 10)
-
-[node name="Roof" type="CSGBox3D" parent="Rookm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06253, 3.59499, -8.03689)
-use_collision = true
-size = Vector3(20, 0.25, 20)
-
 [node name="OmniLight3D" type="OmniLight3D" parent="Rookm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.98899, 2.13165, -6.35425)
 light_color = Color(0.909804, 0.498039, 0.14902, 1)
 omni_range = 13.3819
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Rookm"]
+[node name="Bed" type="CSGBox3D" parent="Rookm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.838235, 0.437948, -10.8166)
 size = Vector3(2.5, 0.5, 2)
-
-[node name="Wall" type="CSGBox3D" parent="Rookm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.41681, 1.75725, -4.94681)
-use_collision = true
-size = Vector3(15, 3.5, 0.5)
-
-[node name="wall3" type="CSGBox3D" parent="Rookm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.18695, 1.73686, -6.85638)
-use_collision = true
-size = Vector3(0.5, 3.5, 10)
-
-[node name="wall4" type="CSGBox3D" parent="Rookm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32993, 1.76318, -6.85779)
-use_collision = true
-size = Vector3(0.5, 3.5, 10)
 
 [node name="DoorPlaceholderf" type="CSGBox3D" parent="Rookm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.69812, 1.90324, -10.7945)
@@ -61,15 +36,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.04999, 0.679234, -5.81222)
 use_collision = true
 size = Vector3(2.63379, 1, 1.25)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Rookm"]
+[node name="Closet" type="CSGBox3D" parent="Rookm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60086, 1.43183, -6.54544)
 use_collision = true
 size = Vector3(0.671387, 2.51575, 2.59521)
 
-[node name="Wall2" type="CSGBox3D" parent="Rookm"]
+[node name="Walls" type="Node3D" parent="Rookm"]
+
+[node name="Wall" type="CSGBox3D" parent="Rookm/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.41681, 1.75725, -4.94681)
+use_collision = true
+size = Vector3(15, 3.5, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="Rookm/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.18695, 1.73686, -6.85638)
+use_collision = true
+size = Vector3(0.5, 3.5, 10)
+
+[node name="wall4" type="CSGBox3D" parent="Rookm/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32993, 1.76318, -6.85779)
+use_collision = true
+size = Vector3(0.5, 3.5, 10)
+
+[node name="Wall2" type="CSGBox3D" parent="Rookm/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.41681, 1.75725, -12.0679)
 use_collision = true
 size = Vector3(15, 3.5, 0.5)
+
+[node name="Roof" type="CSGBox3D" parent="Rookm/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06253, 3.59499, -8.03689)
+use_collision = true
+size = Vector3(20, 0.25, 20)
+
+[node name="Floor" type="CSGBox3D" parent="Rookm/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.41698, -0.0305772, -6.81454)
+use_collision = true
+size = Vector3(15, 0.5, 10)
 
 [node name="player" parent="." instance=ExtResource("1_jy0wc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.25, -7)
