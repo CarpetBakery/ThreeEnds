@@ -16,3 +16,4 @@ mono_crash.*.json
 
 # Godot temp files
 *.tmp
+/.vscode
