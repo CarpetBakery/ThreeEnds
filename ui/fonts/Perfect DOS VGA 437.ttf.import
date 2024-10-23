@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dd0gpkfra4vsm"
-path="res://.godot/imported/zeldadxt.ttf-5567dfb293657595525e6500f71ed292.fontdata"
+uid="uid://du71miqja3wkn"
+path="res://.godot/imported/Perfect DOS VGA 437.ttf-8c374a3fa4f579ea99f6a7fac7dc3dea.fontdata"
 
 [deps]
 
-source_file="res://ui/fonts/zeldadxt.ttf"
-dest_files=["res://.godot/imported/zeldadxt.ttf-5567dfb293657595525e6500f71ed292.fontdata"]
+source_file="res://ui/fonts/Perfect DOS VGA 437.ttf"
+dest_files=["res://.godot/imported/Perfect DOS VGA 437.ttf-8c374a3fa4f579ea99f6a7fac7dc3dea.fontdata"]
 
 [params]
 
@@ -21,19 +21,14 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
-hinting=1
-subpixel_positioning=1
+hinting=0
+subpixel_positioning=0
 oversampling=0.0
 Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0)
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}
