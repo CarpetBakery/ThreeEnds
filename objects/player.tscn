@@ -139,4 +139,4 @@ max_polyphony = 5
 
 [node name="DialogSounds" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("4_nedpt")
-max_polyphony = 20
+max_polyphony = 50

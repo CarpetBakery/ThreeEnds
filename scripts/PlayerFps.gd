@@ -122,6 +122,11 @@ const crouchingHeight: float = -0.8
 # Whether or not to capture mouse
 var captureMouse: bool = true;
 
+# -- Dialog system --
+var msg: Array[String]
+# Is the player in a dialog window?
+var inDialog: bool = false
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 const gravity: float = 9.9 * 1.6
@@ -442,6 +447,8 @@ func getHud() -> PlayerHud:
 # - Dialog -
 ## Show dialog on screen
 func showDialog(str: String, spd: float = 0.02) -> void:
+	
+	# -- OLD --
 	var playFreq = 2
 	
 	dialogText.text = str
@@ -464,9 +471,11 @@ func showDialog(str: String, spd: float = 0.02) -> void:
 		# Wait
 		await get_tree().create_timer(spd * randf_range(0.1, 2.3)).timeout
 	
-	await get_tree().create_timer(0.2).timeout
 	dialogText.text = ""
-	
+
+## Add dialog string
+func addDialog(str: String) -> void:
+	msg.push_back(str)
 
 
 # -- Audio --
