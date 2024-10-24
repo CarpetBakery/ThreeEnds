@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=33 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://jfstccbgbvbr" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://scripts/interaction/BarrelReceiver.gd" id="5_vkbhv"]
 [ext_resource type="Material" uid="uid://lnuojmwwix77" path="res://assets/materials/Pillars.tres" id="6_oidor"]
 [ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
+[ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="14_madnm"]
+[ext_resource type="PackedScene" uid="uid://bf5nwoclk7xkv" path="res://assets/meshes/crane.glb" id="15_s0whf"]
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
@@ -72,6 +74,7 @@ uv1_scale = Vector3(10, 10, 10)
 texture_filter = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwm78"]
+size = Vector3(2.22751, 1.99716, 2.19908)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4kr8y"]
 height = 1.28083
@@ -493,13 +496,13 @@ spot_angle = 15.4493
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 5.11664, -4.55319, 9.7302)
 
 [node name="Railing46" type="CSGBox3D" parent="LevelBlockout/catwalkLighting/RedLight3"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.45519e-11, 4.65661e-10, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -1.16415e-10, 2.32831e-10, -7.45058e-09, 1, 0, 1.39698e-09, 9.09495e-13, 1, -0.00551534, 5.14521, -4.76837e-07)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
 [node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight3"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
+transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, -0.0148737, 5.16975, 0.395119)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
 light_energy = 9.838
 light_volumetric_fog_energy = 13.343
@@ -511,13 +514,13 @@ spot_angle = 15.4493
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 5.11664, -4.55319, 7.2503)
 
 [node name="Railing46" type="CSGBox3D" parent="LevelBlockout/catwalkLighting/RedLight4"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.45519e-11, 4.65661e-10, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -1.16415e-10, 2.32831e-10, -7.45058e-09, 1, 0, 1.39698e-09, 9.09495e-13, 1, -0.00551534, 5.14521, -4.76837e-07)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
 [node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight4"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
+transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, -0.0148739, 5.16975, 0.395119)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
 light_energy = 9.838
 light_volumetric_fog_energy = 13.343
@@ -782,22 +785,22 @@ snap = 1e-06
 size = Vector3(0.167682, 0.15, 0.0293057)
 
 [node name="Railing10" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
-transform = Transform3D(-0.0420535, 0.611434, -6.60208e-07, 0.0184613, 1.96976e-05, 3.28236, -4.89694, -0.00524923, 0.0123742, -6.92109, 11.6363, -15.1377)
+transform = Transform3D(-0.0420535, 0.611434, -6.60208e-07, 0.0184613, 1.96976e-05, 3.28236, -4.89694, -0.00524923, 0.0123742, -6.92087, 11.6362, -15.1116)
 snap = 1e-06
 use_collision = true
-size = Vector3(0.497243, 0.20498, 0.0293057)
+size = Vector3(0.507899, 0.20498, 0.0293057)
 
 [node name="Railing13" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
-transform = Transform3D(-0.0420535, 0.611434, -6.60202e-07, 0.0184618, 1.96981e-05, 3.28243, -4.89694, -0.00524923, 0.0123742, -5.71855, 11.6296, -13.8613)
+transform = Transform3D(-0.0420535, 0.611434, -6.60202e-07, 0.0184618, 1.96981e-05, 3.28243, -4.89694, -0.00524923, 0.0123742, -5.71855, 11.6314, -13.8472)
 snap = 1e-06
 use_collision = true
-size = Vector3(0.0240984, 4.08915, 0.0293057)
+size = Vector3(0.0240984, 4.08915, 0.0303999)
 
 [node name="Railing22" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
-transform = Transform3D(-0.0273877, 0.531168, 1.62585, 0.0368693, -0.302843, 2.85152, -4.89694, -0.00524923, 0.0123742, 0.196769, 8.958, -13.9035)
+transform = Transform3D(-0.0273877, 0.531168, 1.62585, 0.0368695, -0.302845, 2.85153, -4.89694, -0.00524923, 0.0123742, 0.202791, 8.96178, -13.9036)
 snap = 1e-06
 use_collision = true
-size = Vector3(0.0240984, 17.6969, 0.0293057)
+size = Vector3(0.0240984, 17.6742, 0.0293057)
 
 [node name="Railing19" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420535, 0.611434, -6.60202e-07, 0.0184618, 1.96981e-05, 3.28243, -4.89694, -0.00524923, 0.0123742, 5.59854, 6.28356, -13.9482)
@@ -968,12 +971,162 @@ light_specular = 0.525
 spot_range = 1.8193
 spot_angle = 15.4493
 
-[node name="crate" parent="LevelBlockout" instance=ExtResource("7_yri5b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97991, 1.38622, 15.8641)
+[node name="DockCrates" type="Node3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94071e-08, 0, -6.85454e-07, 1, 0, 0, 0, 1, 5.12821, 10.6074, -40.3591)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/crate"]
+[node name="crate10" parent="LevelBlockout/Docks/DockCrates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -10.23, -8.53112, 51.6865)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/crate/StaticBody3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Docks/DockCrates/crate10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Docks/DockCrates/crate10/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate14" parent="LevelBlockout/Docks/DockCrates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -8.65539, -8.53112, 51.6865)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Docks/DockCrates/crate14"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Docks/DockCrates/crate14/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate13" parent="LevelBlockout/Docks/DockCrates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -10.23, -7.16846, 51.6865)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Docks/DockCrates/crate13"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Docks/DockCrates/crate13/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate11" parent="LevelBlockout/Docks/DockCrates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -10.23, -8.53112, 50.1387)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Docks/DockCrates/crate11"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Docks/DockCrates/crate11/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate12" parent="LevelBlockout/Docks/DockCrates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -10.23, -8.53112, 48.6405)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Docks/DockCrates/crate12"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Docks/DockCrates/crate12/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="Platform1 Crates" type="Node3D" parent="LevelBlockout"]
+
+[node name="crate" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 0.9311, 15.8641)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate15" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -1.32938, 0.9311, 15.8641)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate15"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate15/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate16" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -1.32938, 0.9311, 17.3564)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate16"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate16/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate17" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -1.32938, 2.27788, 17.3851)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate17"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate17/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate5" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 2.21014, 15.8641)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate5/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate2" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.65178, 0.9311, 15.8641)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate9" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.65178, 2.15911, 15.8641)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate9/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate6" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.65178, 0.9311, 14.2467)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate6/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate7" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.145317, 0.9311, 14.2467)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate7/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate8" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.145317, 2.15923, 14.2467)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate8/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate3" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.70057, 0.9311, 17.3879)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate4" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 0.9311, 17.3505)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
 shape = SubResource("BoxShape3D_rwm78")
 
 [node name="Interaction" type="Node3D" parent="."]
@@ -1041,3 +1194,38 @@ volume_db = 1.0
 pitch_scale = 0.74
 autoplay = true
 parameters/looping = true
+
+[node name="CommsTower" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.999374, 0, 0, 0, 0.5, -20.3252, 4.69592, -16.4098)
+
+[node name="commTower" parent="CommsTower" instance=ExtResource("14_madnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CommLight" type="SpotLight3D" parent="CommsTower"]
+transform = Transform3D(2, 0, 0, 0, -4.37388e-08, 1.00063, 0, -2, -8.74228e-08, -0.415546, 22.5118, -0.113621)
+light_color = Color(0.979388, 0.518187, 0.577516, 1)
+light_energy = 6.95
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="Crane" type="Node3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.07, 0.116133, 21.005)
+
+[node name="CraneLight" type="SpotLight3D" parent="Crane"]
+transform = Transform3D(-8.74228e-08, 2, 8.74228e-08, 0, -8.74228e-08, 2, 2, 8.74228e-08, 3.82137e-15, -62.0417, 86.2132, 0.158918)
+light_color = Color(0.979388, 0.518187, 0.577516, 1)
+light_energy = 6.95
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="CraneLight2" type="SpotLight3D" parent="Crane"]
+transform = Transform3D(-8.74228e-08, 2, 8.74228e-08, 0, -8.74228e-08, 2, 2, 8.74228e-08, 3.82137e-15, 0.0106773, 105.293, -0.00758582)
+light_color = Color(0.979388, 0.518187, 0.577516, 1)
+light_energy = 6.95
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="crane" parent="Crane" instance=ExtResource("15_s0whf")]
