@@ -1,11 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=31 format=3 uid="uid://min6rams7kgs"]
 
+[ext_resource type="Material" uid="uid://jfstccbgbvbr" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
 [ext_resource type="Texture2D" uid="uid://dsv66tl33pl8m" path="res://assets/textures/dev/grids/Dark/texture_01.png" id="1_pl5iy"]
 [ext_resource type="Script" path="res://scripts/interaction/Door.gd" id="2_s3teo"]
+[ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="3_gx7hh"]
 [ext_resource type="Script" path="res://scripts/interaction/IntBarrel.gd" id="4_e40u6"]
 [ext_resource type="AudioStream" uid="uid://cqidkdg84jgsa" path="res://assets/audio/music/ambient3.ogg" id="4_sf2s4"]
+[ext_resource type="Texture2D" uid="uid://cwxm5led3a5fp" path="res://assets/textures/128x128/Metal/Metal_11-128x128.png" id="4_tvqfm"]
+[ext_resource type="Texture2D" uid="uid://c3m8bl5r8j28m" path="res://assets/textures/128x128/Metal/Metal_03-128x128.png" id="5_6n78g"]
+[ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="5_jd2yi"]
 [ext_resource type="Script" path="res://scripts/interaction/BarrelReceiver.gd" id="5_vkbhv"]
+[ext_resource type="Material" uid="uid://lnuojmwwix77" path="res://assets/materials/Pillars.tres" id="6_oidor"]
+[ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
@@ -49,7 +56,25 @@ albedo_texture = ExtResource("1_pl5iy")
 uv1_scale = Vector3(12, 12, 12)
 texture_filter = 4
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eeqs4"]
+albedo_texture = ExtResource("4_tvqfm")
+uv1_scale = Vector3(15, 5, 15)
+texture_filter = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5s176"]
+albedo_texture = ExtResource("4_tvqfm")
+uv1_scale = Vector3(20, 5, 20)
+texture_filter = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwn6p"]
+albedo_texture = ExtResource("5_6n78g")
+uv1_scale = Vector3(10, 10, 10)
+texture_filter = 4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rwm78"]
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4kr8y"]
+height = 1.28083
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_p8rbu"]
 
@@ -149,7 +174,7 @@ spot_angle = 53.0594
 
 [node name="Platform1" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.125, -0.125)
-material_override = SubResource("StandardMaterial3D_oyd5q")
+material_override = ExtResource("1_4rrst")
 use_collision = true
 size = Vector3(57.25, 0.25, 48.25)
 
@@ -199,34 +224,40 @@ size = Vector3(1.84562, 0.25, 37.6847)
 
 [node name="Room" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.625, 2.625, -12.25)
+material_override = ExtResource("3_gx7hh")
 use_collision = true
 size = Vector3(19.25, 4.75, 13)
 
 [node name="Drill Floor" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.125, 5.25, 0.625001)
+material_override = ExtResource("1_4rrst")
 use_collision = true
 size = Vector3(19.25, 0.5, 39.75)
 
 [node name="Drill 1" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(11.0175, 0, 0, 0, 1, 0, 0, 0, 11.0175, 15.75, 53.875, -11)
+material_override = SubResource("StandardMaterial3D_eeqs4")
 use_collision = true
 size = Vector3(1, 107.25, 1)
 
 [node name="Drill 2" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(11.0175, 0, 0, 0, 1, 0, 0, 0, 11.0175, 15.75, 53.125, 12.5)
+material_override = SubResource("StandardMaterial3D_5s176")
 use_collision = true
 size = Vector3(1, 105.75, 1)
 
 [node name="Drill Ramp" type="CSGBox3D" parent="LevelBlockout"]
-transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, 1.5, 2.5, 0)
+transform = Transform3D(0.479274, 0.877665, 0, -0.877665, 0.479274, 0, 0, 0, 1, 1.53723, 2.63375, 0)
+material_override = ExtResource("1_4rrst")
 use_collision = true
-size = Vector3(0.25, 12, 2.75)
+size = Vector3(0.25, 11.459, 2.75)
 
 [node name="SuppPillars" type="Node3D" parent="LevelBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3925, -5.20883, -17.147)
 
 [node name="Pillar" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.8493, -2.00905, 17.4765)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 1.0
 height = 25.0
@@ -234,27 +265,31 @@ sides = 20
 
 [node name="Pillar3" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2523, -2.00104, -0.303177)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 1.0
 height = 25.0
 sides = 20
 
 [node name="Pillar4" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5736, -1.96492, -0.303177)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5676, -1.96492, -0.301832)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 1.0
 height = 25.0
 sides = 20
 
 [node name="Pillar5" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5736, -1.83823, 17.412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5736, -1.8368, 17.412)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 1.0
 height = 25.0
 sides = 20
 
 [node name="Pillar6" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5736, -1.76573, 36.3614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5738, -1.75811, 36.3569)
+material_override = SubResource("StandardMaterial3D_dwn6p")
 use_collision = true
 radius = 1.0
 height = 24.3634
@@ -262,6 +297,7 @@ sides = 20
 
 [node name="Pillar7" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75368, -2.63819, 39.7145)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 0.75
 height = 25.0
@@ -269,6 +305,7 @@ sides = 20
 
 [node name="Pillar8" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.786, -2.55706, 39.7133)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 0.75
 height = 25.0
@@ -276,6 +313,7 @@ sides = 20
 
 [node name="Pillar9" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.786, -2.57967, 27.2676)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 0.75
 height = 25.0
@@ -283,6 +321,7 @@ sides = 20
 
 [node name="Pillar10" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.91438, -2.6114, 27.2676)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 0.75
 height = 25.0
@@ -290,6 +329,7 @@ sides = 20
 
 [node name="Pillar11" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3558, -2.64551, 33.5353)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 0.75
 height = 25.0
@@ -297,6 +337,7 @@ sides = 20
 
 [node name="Pillar2" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.8493, -2.0581, 36.0663)
+material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 1.0
 height = 25.0
@@ -306,6 +347,7 @@ sides = 20
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.4886, 4.71741, 17.9464)
 
 [node name="Helipad FLoor" type="CSGBox3D" parent="LevelBlockout/Helipad"]
+material_override = ExtResource("1_4rrst")
 use_collision = true
 size = Vector3(20, 0.15, 20)
 
@@ -314,6 +356,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4886, -4.71741, -17.9464)
 
 [node name="Helipad Ramp" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
 transform = Transform3D(0.866026, 0.5, 0, -0.5, 0.866026, 0, 0, 0, 1, -26.6473, 2.39774, 6.90174)
+material_override = ExtResource("1_4rrst")
 snap = 1e-06
 use_collision = true
 size = Vector3(9.3512, 0.15, 2.5)
@@ -333,13 +376,11 @@ size = Vector3(0.573071, 0.15, 0.0529961)
 [node name="Railing" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -30.7917, 5.07847, 5.81155)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
 [node name="Railing2" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -31.678, 5.07846, 5.81155)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
 [node name="Railing3" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
@@ -351,7 +392,6 @@ size = Vector3(0.015, 2.07655, 0.029)
 [node name="Railing4" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -31.8316, 5.07847, 7.7034)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
 [node name="Railing5" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
@@ -363,7 +403,6 @@ size = Vector3(0.015, 0.15, 0.639)
 [node name="Railing6" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
 transform = Transform3D(-0.0420532, 0.611433, 0, -4.89698, -0.00524923, 0, 0, 0, -3.28236, -31.8316, 5.07847, 6.72571)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
 [node name="RampSupp" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
@@ -403,9 +442,10 @@ use_collision = true
 size = Vector3(0.154211, 0.15, 0.0529961)
 
 [node name="HelipadTopRamp" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
-transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -31.222, 4.71527, 6.90886)
+transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -31.222, 4.71527, 6.80266)
+material_override = ExtResource("1_4rrst")
 use_collision = true
-size = Vector3(1.12486, 0.15, 2.07129)
+size = Vector3(1.12486, 0.15, 2.28369)
 
 [node name="BoatCrane" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3638, -3.67343, -15.0971)
@@ -634,126 +674,111 @@ transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -5
 
 [node name="2ndStoryRamp" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(0.866026, 0.5, 0, -0.500001, 0.866027, 0, 0, 0, 1, 0.203181, 8.0742, -15.1527)
+material_override = ExtResource("1_4rrst")
 snap = 1e-06
 use_collision = true
 size = Vector3(10.9897, 0.15, 2.5)
 
 [node name="2ndTopRamp" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(1, -5.96046e-08, 0, -1.49011e-07, 1, 0, 0, 0, 1, -5.6918, 10.8163, -15.133)
+material_override = ExtResource("1_4rrst")
 use_collision = true
 size = Vector3(2.39927, 0.15, 2.44104)
 
 [node name="2ndBotRamp" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(1, -5.96046e-08, 0, -1.49011e-07, 1, 0, 0, 0, 1, 5.49133, 5.4281, -15.1586)
+material_override = ExtResource("1_4rrst")
 use_collision = true
 size = Vector3(1.4948, 0.15, 2.44104)
 
 [node name="Railing7" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89691, -0.00524977, 0.0197076, -0.0294, -3.14661e-05, -3.2823, -6.91041, 11.1977, -13.9725)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
 [node name="Railing11" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89694, -0.00524981, 0.0197076, -0.0294, -3.14661e-05, -3.2823, -5.76396, 11.1855, -13.8571)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.176126, 0.15, 0.0293057)
 
 [node name="Railing12" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89694, -0.0052498, 0.0197076, -0.0294, -3.14661e-05, -3.2823, -4.53226, 11.1843, -13.8614)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.175638, 0.15, 0.0293057)
 
 [node name="Railing21" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89698, -0.00524984, 0.0197076, -0.0294, -3.14661e-05, -3.2823, -3.57434, 10.6571, -13.8612)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.189381, 0.15, 0.0293057)
 
 [node name="Railing23" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89698, -0.00524984, 0.0197076, -0.0294, -3.14661e-05, -3.2823, -2.49398, 10.0128, -13.8612)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.189381, 0.15, 0.0293057)
 
 [node name="Railing24" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89698, -0.00524984, 0.0197076, -0.0294, -3.14661e-05, -3.2823, -1.46687, 9.42582, -13.8612)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.189381, 0.15, 0.0293057)
 
 [node name="Railing25" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89698, -0.00524984, 0.0197076, -0.0294, -3.14661e-05, -3.2823, -0.485873, 8.86159, -13.8612)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.189381, 0.15, 0.0293057)
 
 [node name="Railing26" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89698, -0.00524984, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 0.431281, 8.37518, -13.8612)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.189381, 0.15, 0.0293057)
 
 [node name="Railing27" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89698, -0.00524985, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 1.52975, 7.73084, -13.8612)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.189381, 0.15, 0.0293057)
 
 [node name="Railing28" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89699, -0.00524986, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 2.55896, 7.13675, -13.8611)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.196253, 0.15, 0.0293057)
 
 [node name="Railing29" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.897, -0.00524986, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 3.71683, 6.47155, -13.8638)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.196253, 0.15, 0.0293057)
 
 [node name="Railing14" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89695, -0.00524981, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 6.18914, 5.81349, -13.9563)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.175638, 0.15, 0.0293057)
 
 [node name="Railing16" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89695, -0.00524981, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 6.29103, 5.81349, -14.0114)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.175638, 0.15, 0.0293057)
 
 [node name="Railing17" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89695, -0.00524981, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 6.29103, 5.81349, -15.1857)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.175638, 0.15, 0.0293057)
 
 [node name="Railing18" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
-transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89695, -0.00524981, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 6.29103, 5.81349, -16.3022)
+transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89696, -0.00524982, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 6.27464, 5.82682, -16.292)
 snap = 1e-06
-use_collision = true
-size = Vector3(0.175638, 0.15, 0.0293057)
+size = Vector3(0.181081, 0.15, 0.0293057)
 
 [node name="Railing15" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420541, 0.611433, -1.2954e-08, -4.89696, -0.00524982, 0.0197076, -0.0294, -3.14661e-05, -3.2823, 4.92598, 5.84355, -13.945)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.187917, 0.15, 0.0293057)
 
 [node name="Railing8" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420549, 0.611433, 0, -4.89699, -0.00524987, 0, 0, 0, -3.28236, -6.93398, 11.1977, -15.1261)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
 [node name="Railing9" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(-0.0420549, 0.611433, 0, -4.89699, -0.00524987, 0, 0, 0, -3.28236, -6.93979, 11.1977, -16.3032)
 snap = 1e-06
-use_collision = true
 size = Vector3(0.167682, 0.15, 0.0293057)
 
 [node name="Railing10" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
@@ -791,12 +816,14 @@ transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -5
 
 [node name="DockRamp" type="CSGBox3D" parent="LevelBlockout/Docks"]
 transform = Transform3D(-8.25588e-08, 5.55739e-08, -1, -0.500001, 0.866035, 6.85461e-07, 0.866026, 0.5, -4.37114e-08, -0.012795, 3.39509, -12.8409)
+material_override = ExtResource("1_4rrst")
 snap = 1e-06
 use_collision = true
 size = Vector3(8.24767, 0.15, 2.5)
 
 [node name="DockBase" type="CSGBox3D" parent="LevelBlockout/Docks"]
 transform = Transform3D(1, 1.74794e-12, 0, 0, 1, 0, 0, 0, 1, -2.43695, 1.33221, 1.62867)
+material_override = ExtResource("1_4rrst")
 use_collision = true
 size = Vector3(7.43249, 0.15, 21.8559)
 
@@ -825,16 +852,16 @@ use_collision = true
 size = Vector3(0.0203617, 0.173467, 0.338013)
 
 [node name="Railing31" type="CSGBox3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(-0.0420535, 0.611434, -6.60188e-07, 0.0184631, 1.96993e-05, 3.28259, -4.89694, -0.00524923, 0.0123742, -1.33214, 5.21724, -15.1658)
+transform = Transform3D(-0.0420535, 0.611434, -6.60188e-07, 0.0184631, 1.96993e-05, 3.28259, -4.89694, -0.00524923, 0.0123742, -1.33214, 5.18939, -15.1659)
 snap = 1e-06
 use_collision = true
-size = Vector3(0.0203617, 0.1692, 0.334473)
+size = Vector3(0.0203617, 0.1692, 0.317505)
 
 [node name="Railing38" type="CSGBox3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(-0.0420535, 0.611434, -6.60187e-07, 0.0184632, 1.96994e-05, 3.2826, -4.89694, -0.00524923, 0.0123742, 1.27451, 5.1946, -15.1659)
+transform = Transform3D(-0.0420535, 0.611434, -6.60186e-07, 0.0184632, 1.96994e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 1.24863, 5.1946, -15.1659)
 snap = 1e-06
 use_collision = true
-size = Vector3(0.0203617, 0.1692, 0.320679)
+size = Vector3(0.0203617, 0.155035, 0.320679)
 
 [node name="Railing32" type="CSGBox3D" parent="LevelBlockout/Docks"]
 transform = Transform3D(-0.0420535, 0.611434, -6.60188e-07, 0.0184631, 1.96994e-05, 3.28259, -4.89694, -0.00524923, 0.0123742, -1.33214, 4.53415, -14.0449)
@@ -941,13 +968,21 @@ light_specular = 0.525
 spot_range = 1.8193
 spot_angle = 15.4493
 
+[node name="crate" parent="LevelBlockout" instance=ExtResource("7_yri5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97991, 1.38622, 15.8641)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/crate"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/crate/StaticBody3D"]
+shape = SubResource("BoxShape3D_rwm78")
+
 [node name="Interaction" type="Node3D" parent="."]
 
 [node name="Barrel" type="RigidBody3D" parent="Interaction"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, -8, 32.588)
 
 [node name="Area3D" type="Area3D" parent="Interaction/Barrel" node_paths=PackedStringArray("parent", "playerRef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 1)
+transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
 collision_layer = 2
 script = ExtResource("4_e40u6")
 parent = NodePath("..")
@@ -955,13 +990,17 @@ playerRef = NodePath("../../../player")
 interactionText = "Pick up barrel with 'E'"
 
 [node name="InteractHitbox" type="CollisionShape3D" parent="Interaction/Barrel/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.162552)
 shape = SubResource("CylinderShape3D_4kr8y")
+
+[node name="barrel" parent="Interaction/Barrel/Area3D" instance=ExtResource("5_jd2yi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.115166, 0, -0.130447)
 
 [node name="PhysicsHitbox" type="CollisionShape3D" parent="Interaction/Barrel"]
 shape = SubResource("CylinderShape3D_4kr8y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/Barrel"]
+transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
 layers = 2
 mesh = SubResource("CylinderMesh_p8rbu")
 
