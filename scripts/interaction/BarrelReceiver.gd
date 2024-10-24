@@ -25,6 +25,9 @@ func onSuccessfulInteract(_player: PlayerFps):
 		addBarrel()
 		
 		playerRef.addDialog("That's barrel #" + str(barrelCount) + ", hell yeah!")
+		playerRef.addDialog("WOOOOOO YEAH!!!!!!!!!!!!! \nQIOWRJOIQWR JQOWITJ QWOITJOIQWJT OQWTJ ")
+		playerRef.addDialog("qrijqwoijqwiot jqwotijqwoitjq owtijqwotj qopitjq owtpij  ")
+		playerRef.addDialog("LOREM IPSUM")
 		playerRef.startDialog()
 
 func addBarrel():
