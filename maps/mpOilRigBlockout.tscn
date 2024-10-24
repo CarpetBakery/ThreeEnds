@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=37 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://jfstccbgbvbr" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
 [ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="14_madnm"]
 [ext_resource type="PackedScene" uid="uid://bf5nwoclk7xkv" path="res://assets/meshes/crane.glb" id="15_s0whf"]
+[ext_resource type="PackedScene" uid="uid://coux3afea14q7" path="res://assets/meshes/catwalk.glb" id="16_jrguc"]
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
@@ -92,6 +93,15 @@ size = Vector3(2.5, 2, 2.5)
 albedo_color = Color(0.600783, 0.411336, 0.323149, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ptdk3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1jumv"]
+size = Vector3(4.65768, 30.1682, 4.70421)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1320"]
+size = Vector3(4.00525, 0.743042, 19.8657)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lailt"]
+size = Vector3(0.264404, 2.92471, 19.6851)
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0248675, -0.00916481, 0.0183249)
@@ -185,39 +195,33 @@ size = Vector3(57.25, 0.25, 48.25)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.589739, -5.20883, 23.0251)
 
 [node name="Catwalk" type="CSGBox3D" parent="LevelBlockout/Platform2"]
-material_override = SubResource("StandardMaterial3D_oyd5q")
+material_override = ExtResource("1_4rrst")
 use_collision = true
 size = Vector3(11.642, 0.25, 1.94977)
 
 [node name="Catwalk3" type="CSGBox3D" parent="LevelBlockout/Platform2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62493, 0, -41.781)
-material_override = SubResource("StandardMaterial3D_oyd5q")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.574668, 0, -41.6296)
+material_override = ExtResource("1_4rrst")
 use_collision = true
-size = Vector3(11.1991, 0.25, 1.94977)
+size = Vector3(13.2996, 0.25, 2.25264)
 
 [node name="Catwalk7" type="CSGBox3D" parent="LevelBlockout/Platform2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8028, 0, -40.1721)
-material_override = SubResource("StandardMaterial3D_oyd5q")
+material_override = ExtResource("1_4rrst")
 use_collision = true
 size = Vector3(11.1991, 0.25, 5.16744)
 
 [node name="Catwalk4" type="CSGBox3D" parent="LevelBlockout/Platform2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62493, 0, -32.163)
-material_override = SubResource("StandardMaterial3D_oyd5q")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.648277, 0, -31.8706)
+material_override = ExtResource("1_4rrst")
 use_collision = true
-size = Vector3(11.1991, 0.25, 1.94977)
+size = Vector3(13.1524, 0.25, 2.57924)
 
 [node name="Catwalk5" type="CSGBox3D" parent="LevelBlockout/Platform2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4341, 0, -14.6019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4341, 0, -31.8655)
 material_override = SubResource("StandardMaterial3D_oyd5q")
 use_collision = true
-size = Vector3(9.22366, 0.25, 1.94977)
-
-[node name="Catwalk2" type="CSGBox3D" parent="LevelBlockout/Platform2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.89819, 0, -21.8271)
-material_override = SubResource("StandardMaterial3D_oyd5q")
-use_collision = true
-size = Vector3(1.84562, 0.25, 41.8094)
+size = Vector3(9.22366, 0.25, 2.53041)
 
 [node name="Catwalk6" type="CSGBox3D" parent="LevelBlockout/Platform2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9583, 0, -23.2282)
@@ -496,13 +500,13 @@ spot_angle = 15.4493
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 5.11664, -4.55319, 9.7302)
 
 [node name="Railing46" type="CSGBox3D" parent="LevelBlockout/catwalkLighting/RedLight3"]
-transform = Transform3D(1, -1.16415e-10, 2.32831e-10, -7.45058e-09, 1, 0, 1.39698e-09, 9.09495e-13, 1, -0.00551534, 5.14521, -4.76837e-07)
+transform = Transform3D(1, -2.32831e-10, 2.32831e-10, -2.98023e-08, 1, -4.36557e-11, 4.19095e-09, 2.72848e-12, 1, 3.53443, 5.38868, -0.0199126)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
 [node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight3"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, -0.0148737, 5.16975, 0.395119)
+transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247763, 9.11998e-07, -0.00550699, 0.304584, 3.54778, 5.41478, 0.375079)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
 light_energy = 9.838
 light_volumetric_fog_energy = 13.343
@@ -514,13 +518,13 @@ spot_angle = 15.4493
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 5.11664, -4.55319, 7.2503)
 
 [node name="Railing46" type="CSGBox3D" parent="LevelBlockout/catwalkLighting/RedLight4"]
-transform = Transform3D(1, -1.16415e-10, 2.32831e-10, -7.45058e-09, 1, 0, 1.39698e-09, 9.09495e-13, 1, -0.00551534, 5.14521, -4.76837e-07)
+transform = Transform3D(1, -2.32831e-10, 2.32831e-10, -2.98023e-08, 1, -4.36557e-11, 4.19095e-09, 2.72848e-12, 1, 3.53443, 5.38868, -0.0199125)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
 [node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight4"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, -0.0148739, 5.16975, 0.395119)
+transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247763, 9.11998e-07, -0.00550699, 0.304584, 3.54777, 5.41478, 0.375079)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
 light_energy = 9.838
 light_volumetric_fog_energy = 13.343
@@ -532,7 +536,7 @@ spot_angle = 15.4493
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 3.45623, -4.55319, -8.11948)
 
 [node name="Railing46" type="CSGBox3D" parent="LevelBlockout/catwalkLighting/RedLight7"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.45519e-11, 4.65661e-10, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -1.16415e-10, 2.32831e-10, -7.45058e-09, 1, 0, 1.39698e-09, 9.09495e-13, 1, -0.0964346, -0.0066328, 0.000542521)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
@@ -640,13 +644,13 @@ spot_angle = 15.4493
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 16.1804, -4.55319, 7.2503)
 
 [node name="Railing46" type="CSGBox3D" parent="LevelBlockout/catwalkLighting/RedLight5"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.45519e-11, 4.65661e-10, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -2.32831e-10, 2.32831e-10, -1.49012e-08, 1, -2.91038e-11, 2.32831e-09, 2.27374e-12, 1, 3.52861, 0.242689, -0.0198483)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
 [node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight5"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
+transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, 3.52059, 0.26733, 0.375264)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
 light_energy = 9.838
 light_volumetric_fog_energy = 13.343
@@ -658,13 +662,13 @@ spot_angle = 15.4493
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 16.1804, -4.55319, 9.55585)
 
 [node name="Railing46" type="CSGBox3D" parent="LevelBlockout/catwalkLighting/RedLight6"]
-transform = Transform3D(1, 0, 0, 0, 1, 1.45519e-11, 4.65661e-10, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -2.32831e-10, 2.32831e-10, -1.49012e-08, 1, -2.91038e-11, 2.32831e-09, 2.27374e-12, 1, 3.52861, 0.242691, -0.0198483)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
 [node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight6"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
+transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, 3.52059, 0.267332, 0.375264)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
 light_energy = 9.838
 light_volumetric_fog_energy = 13.343
@@ -1199,7 +1203,6 @@ parameters/looping = true
 transform = Transform3D(0.5, 0, 0, 0, 0.999374, 0, 0, 0, 0.5, -20.3252, 4.69592, -16.4098)
 
 [node name="commTower" parent="CommsTower" instance=ExtResource("14_madnm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CommLight" type="SpotLight3D" parent="CommsTower"]
 transform = Transform3D(2, 0, 0, 0, -4.37388e-08, 1.00063, 0, -2, -8.74228e-08, -0.415546, 22.5118, -0.113621)
@@ -1229,3 +1232,79 @@ spot_range = 7.5
 spot_angle = 63.8724
 
 [node name="crane" parent="Crane" instance=ExtResource("15_s0whf")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Crane"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crane/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0174675, 14.5841, -0.0198136)
+shape = SubResource("BoxShape3D_1jumv")
+
+[node name="Catwalks" type="Node3D" parent="."]
+
+[node name="catwalk" parent="Catwalks" instance=ExtResource("16_jrguc")]
+transform = Transform3D(0.477379, 0, 0, 0, 0.541638, 0, 0, 0, 0.497591, 4.27586, -5.26811, 17.0764)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Catwalks/catwalk"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalks/catwalk/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00372028, -0.128479, 0.0553055)
+shape = SubResource("BoxShape3D_w1320")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalks/catwalk/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85173, 0.962357, 0.0277061)
+shape = SubResource("BoxShape3D_lailt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalks/catwalk/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74752, 0.962357, 0.0277061)
+shape = SubResource("BoxShape3D_lailt")
+
+[node name="catwalk2" parent="Catwalks" instance=ExtResource("16_jrguc")]
+transform = Transform3D(0.477379, 0, 0, 0, 0.541638, 0, 0, 0, 0.497591, 4.27586, -5.26811, 7.18605)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Catwalks/catwalk2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalks/catwalk2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00372028, -0.128479, 0.0553055)
+shape = SubResource("BoxShape3D_w1320")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalks/catwalk2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85173, 0.962357, 0.0277061)
+shape = SubResource("BoxShape3D_lailt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalks/catwalk2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74752, 0.962357, 0.0277061)
+shape = SubResource("BoxShape3D_lailt")
+
+[node name="catwalk3" parent="Catwalks" instance=ExtResource("16_jrguc")]
+transform = Transform3D(0.477379, 0, 0, 0, 0.541638, 0, 0, 0, 0.497591, 4.27586, -5.26811, -2.70526)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Catwalks/catwalk3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalks/catwalk3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00372028, -0.128479, 0.0553055)
+shape = SubResource("BoxShape3D_w1320")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalks/catwalk3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85173, 0.962357, 0.0277061)
+shape = SubResource("BoxShape3D_lailt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalks/catwalk3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74752, 0.962357, 0.0277061)
+shape = SubResource("BoxShape3D_lailt")
+
+[node name="catwalk4" parent="Catwalks" instance=ExtResource("16_jrguc")]
+transform = Transform3D(0.477379, 0, 0, 0, 0.541638, 0, 0, 0, 0.369122, 4.27586, -5.26811, -13.7903)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Catwalks/catwalk4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalks/catwalk4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00372028, -0.128479, 0.0553055)
+shape = SubResource("BoxShape3D_w1320")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalks/catwalk4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85173, 0.962357, 0.0277061)
+shape = SubResource("BoxShape3D_lailt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalks/catwalk4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74752, 0.962357, 0.0277061)
+shape = SubResource("BoxShape3D_lailt")
