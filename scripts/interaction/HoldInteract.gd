@@ -5,7 +5,7 @@ Interactable that you have to press and hold to interact with
 """
 
 ## How long (in seconds) you have to hold for
-@export var holdTime: float = 5
+@export var holdTime: float = 0.4
 # Reference to the player object
 @export var playerRef: PlayerFps = null
 
@@ -16,6 +16,9 @@ var holding: bool = false
 
 
 func _ready() -> void:
+	# Set collision layer to '2'
+	super()
+	
 	# If player reference is null, crash the game
 	assert(playerRef != null)
 	
@@ -33,6 +36,8 @@ func _process(_delta: float) -> void:
 		
 		# Update the progress bar in the player's HUD
 		var pBar: ProgressBar = playerRef.getHud().getProgressBar()
+		# Show progress bar
+		pBar.show()
 		pBar.value = 100 - (tScale * 100)
 		
 		# If we aren't holding the interaction button anymore then stop
@@ -43,13 +48,15 @@ func _process(_delta: float) -> void:
 
 
 func onInteract(_player: PlayerFps):
-	# Get reference to player
-	playerRef = _player
-	timer.start(holdTime)
-	holding = true
-	
+	startHold(_player)
+
+
+## Start the hold routine
+func startHold(_player: PlayerFps):
 	# Stop the player from being able to look
 	# TODO
+	timer.start(holdTime)
+	holding = true
 
 
 ## Callback func when the timer times out
@@ -59,6 +66,6 @@ func _onTimeout():
 
 
 ## Called when the hold interaction is successful
+## Override this for functionality on success
 func onSuccessfulInteract(_player: PlayerFps):
-	print("Interaction success")
 	pass

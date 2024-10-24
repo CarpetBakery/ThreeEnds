@@ -10,7 +10,12 @@ class_name Interactable extends Area3D
 @export_multiline var interactionText: String
 
 ## Whether or not this node is currently focused by the player
-var focused: bool
+var focused: bool = false
+## Can we interact with this object?
+var canInteract: bool = true
+## Can the player focus on this object?
+var canFocus: bool = true
+
 
 ## Set the collision mask to 2
 func _ready() -> void:

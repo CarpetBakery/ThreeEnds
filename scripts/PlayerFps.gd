@@ -317,7 +317,10 @@ func _physics_process(delta):
 	carrySocket.rotation.z = lerp_angle(carrySocket.rotation.z, rotation.z + eyeRot.z, carryLerpSpd)
 	
 	# -- Process interaction --
+	# Reset interaction text
 	interactionText.text = ""
+	# Hide progressbar
+	progressBar.hide()
 	
 	_processInteraction(delta)
 	_processCarry(delta)
@@ -336,7 +339,7 @@ func _processInteraction(delta):
 		var node = rayCastInteract.get_collider()
 		
 		if node is Interactable:
-			if node not in focusedInteractables:
+			if node not in focusedInteractables and node.canFocus:
 				# Add node to focused array and call inFocus
 				node.enterFocus(self)
 				node.focused = true
@@ -360,7 +363,7 @@ func _processInteraction(delta):
 			currentNode.inFocus(self)
 			
 			# Interact with the object if 'interact' button is pressed
-			if interactPressed:
+			if interactPressed and currentNode.canInteract:
 				interactPressed = false
 				currentNode.onInteract(self)
 	else:
