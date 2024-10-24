@@ -456,6 +456,8 @@ func _setupHud():
 	# Dialog
 	dialogText = hud.dialogText
 	
+	hud.animationPlayer.play("fadeFromBlack")
+	
 	# Make sure the main surfaces are visible
 	screenSurface.show()
 
@@ -499,7 +501,7 @@ func _dialogTypeChar() -> void:
 			
 			dialogSpeaker.pitch_scale = randf_range(0.96, 1.04) * 1.3 
 			#dialogSpeaker.volume_db = randf_range(-10, -2) * sndOffset * 40
-			dialogSpeaker.volume_db = (sndOffsetMax - sndOffset) * 40
+			dialogSpeaker.volume_db = ((sndOffsetMax - sndOffset) * 40) * 0.3
 			dialogSpeaker.play(sndOffset)
 		
 		# Restart the timer
@@ -522,6 +524,12 @@ func startDialog() -> void:
 	# Show dialog UI
 	dialogText.show()
 	hud.toggleCinemaBars(true)
+	# Play animation
+	hud.animationPlayer.play("barsIn")
+	var scaleBefore = hud.animationPlayer.speed_scale
+	hud.animationPlayer.speed_scale = 5
+	await hud.animationPlayer.animation_finished
+	hud.animationPlayer.speed_scale = scaleBefore
 	
 	# Set text to first message
 	dialogText.text = msg.front()
@@ -537,13 +545,20 @@ func closeDialog() -> void:
 	msg.clear()
 	dialogText.visible_characters = 0
 
-	# Hide dialog UI
-	dialogText.hide()
-	hud.toggleCinemaBars(false)
-	
 	# Unfreeze player
 	inDialog = false
 	freezeMovement = false
+	
+	# Hide dialog UI
+	dialogText.hide()
+	hud.animationPlayer.play("barsOut")
+	var scaleBefore = hud.animationPlayer.speed_scale
+	hud.animationPlayer.speed_scale = 5
+	await hud.animationPlayer.animation_finished
+	hud.animationPlayer.speed_scale = scaleBefore
+	
+	hud.toggleCinemaBars(false)
+	
 
 
 ## Add dialog string
