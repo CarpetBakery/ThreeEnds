@@ -1,0 +1,56 @@
+[gd_scene load_steps=13 format=3 uid="uid://dvdhgcp4nqbwa"]
+
+[ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_fc38h"]
+[ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_85rlk"]
+[ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="5_2ieo0"]
+[ext_resource type="PackedScene" uid="uid://s3egqwgoi1pv" path="res://assets/meshes/closet.glb" id="5_8opt8"]
+[ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="5_f51p0"]
+[ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="6_cfrd0"]
+[ext_resource type="PackedScene" uid="uid://ci1h230g3olg7" path="res://assets/meshes/room/desk.glb" id="7_k0fpd"]
+[ext_resource type="PackedScene" uid="uid://n528w5bd0lde" path="res://assets/meshes/room/bed.glb" id="8_a2u6a"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_g2xyr"]
+panorama = ExtResource("1_fc38h")
+
+[sub_resource type="Sky" id="Sky_orijp"]
+sky_material = SubResource("PanoramaSkyMaterial_g2xyr")
+
+[sub_resource type="Environment" id="Environment_a1ub1"]
+background_mode = 2
+sky = SubResource("Sky_orijp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3svr0"]
+albedo_texture = ExtResource("2_85rlk")
+texture_filter = 4
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
+environment = SubResource("Environment_a1ub1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(27.0731, 0, 0, 0, 1, 0, 0, 0, 22.7298, 0, -0.924217, 0)
+material_override = SubResource("StandardMaterial3D_3svr0")
+use_collision = true
+size = Vector3(1.84595, 1, 2.20215)
+
+[node name="player" parent="." instance=ExtResource("5_2ieo0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.873555, 0, 3.86476)
+canJump = false
+
+[node name="crate" parent="." instance=ExtResource("5_f51p0")]
+transform = Transform3D(0.554967, 0, 0, 0, 0.554967, 0, 0, 0, 0.554967, -9.54768, 0.138881, 5.25248)
+
+[node name="closet" parent="." instance=ExtResource("5_8opt8")]
+transform = Transform3D(0.4953, 0, 0, 0, 0.4953, 0, 0, 0, 0.4953, -9.51435, -0.424217, 7.6509)
+
+[node name="barrel" parent="." instance=ExtResource("6_cfrd0")]
+transform = Transform3D(0.455417, 0, 0, 0, 0.455417, 0, 0, 0, 0.455417, -8.25696, -0.424217, 9.08297)
+
+[node name="desk" parent="." instance=ExtResource("7_k0fpd")]
+transform = Transform3D(0.202382, 0, 0, 0, 0.202382, 0, 0, 0, 0.202382, -10.1498, -0.424216, 3.19213)
+
+[node name="bed" parent="." instance=ExtResource("8_a2u6a")]
+transform = Transform3D(0.166569, 0, 0, 0, 0.166569, 0, 0, 0, 0.166569, -7.49541, -0.424216, -1.60663)
