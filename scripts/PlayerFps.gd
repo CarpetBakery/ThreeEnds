@@ -123,9 +123,15 @@ const crouchingHeight: float = -0.8
 var captureMouse: bool = true;
 
 # -- Dialog system --
+# Array of strings to display
 var msg: Array[String]
 # Is the player in a dialog window?
 var inDialog: bool = false
+# Timer for drawing text
+var dialogTimer: Timer = Timer.new()
+# How quickly the dialog displays
+var dialogSpd: float = 0.02
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -136,6 +142,11 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Setup the hud
 	_setupHud()
+
+	# Dialog setup
+	add_child(dialogTimer)
+	dialogTimer.one_shot = true
+	dialogTimer.timeout.connect(_dialogTypeChar)
 	
 	# -- Setup interaction and carrying --
 	# Hide barrel mesh
@@ -340,13 +351,7 @@ func _physics_process(delta):
 		_processInteraction(delta)
 		_processCarry(delta)
 	else:
-		if interactPressed:
-			if dialogText.visible_ratio < 1:
-				# Skip typing dialog 
-				dialogText.visible_characters = -1
-			else:
-				# Go to next string
-				_nextDialogString()
+		_processDialog(delta)
 	
 
 func _processInteraction(delta):
@@ -447,8 +452,9 @@ func dropObject():
 func _setupHud():
 	# Setup references
 	interactionText = hud.interactionText
-	dialogText = hud.dialogText
 	progressBar = hud.progressBar
+	# Dialog
+	dialogText = hud.dialogText
 	
 	# Make sure the main surfaces are visible
 	screenSurface.show()
@@ -490,6 +496,45 @@ func showDialog(string: String, spd: float = 0.02) -> void:
 	dialogText.text = ""
 
 
+func _processDialog(_delta: float) -> void:
+	# Handle interaction button input
+	if interactPressed:
+		if dialogText.visible_ratio < 1:
+			# Pressed while dialog is still typing- display all of it 
+			dialogTimer.stop()
+			dialogText.visible_characters = dialogText.get_total_character_count()
+		else:
+			# Pressed while dialog is finished drawing- go to next string
+			_nextDialogString()
+		
+		# Clear input var
+		interactPressed = false
+
+
+## Type a single character in the current dialog string
+func _dialogTypeChar() -> void:
+	# How frequently to play the dialog noises
+	var playFreq = 2
+
+	if dialogText.visible_ratio < 1:
+		dialogText.visible_characters += 1
+		
+		# Play audio
+		if dialogText.visible_characters % playFreq == 0:
+			var sndOffset = randf_range(0, 0.0025 * 40) * 1.5
+			var sndOffsetMax = 0.0025 * 40 * 1.5
+			
+			dialogSpeaker.pitch_scale = randf_range(0.96, 1.04) * 1.3 
+			#dialogSpeaker.volume_db = randf_range(-10, -2) * sndOffset * 40
+			dialogSpeaker.volume_db = (sndOffsetMax - sndOffset) * 40
+			dialogSpeaker.play(sndOffset)
+		
+		# Restart the timer
+		dialogTimer.start(dialogSpd * randf_range(0.1, 2.3))
+	else:
+		dialogTimer.stop()
+
+
 ## Start the dialog
 func startDialog() -> void:
 	if len(msg) <= 0:
@@ -498,10 +543,18 @@ func startDialog() -> void:
 	
 	# Freeze player
 	inDialog = true
+	freezeMovement = true
 
-	# TODO: some UI stuff like cinema bars etc.
 	# Show dialog UI
 	dialogText.show()
+	hud.toggleCinemaBars(true)
+	
+	# Set text to first message
+	dialogText.text = msg.front()
+	dialogText.visible_characters = 0
+
+	# Kick off dialog drawing
+	_dialogTypeChar()
 
 
 ## Close the dialog window
@@ -510,13 +563,18 @@ func closeDialog() -> void:
 	msg.clear()
 	dialogText.visible_characters = 0
 
-	# Hide the dialog text
+	# Hide dialog UI
 	dialogText.hide()
-
-	# TODO: Hide UI stuff
+	hud.toggleCinemaBars(false)
 	
 	# Unfreeze player
 	inDialog = false
+	freezeMovement = false
+
+
+## Add dialog string
+func addDialog(string: String) -> void:
+	msg.push_back(string)
 
 
 ## Move to the next dialog string
@@ -527,14 +585,12 @@ func _nextDialogString() -> void:
 		# Reset text for next string
 		dialogText.visible_characters = 0
 		dialogText.text = msg.front()
+		
+		# Kickstart drawing process
+		_dialogTypeChar()
 	else:
 		# That was the last message; close dialog box		
 		closeDialog()
-	
-
-## Add dialog string
-func addDialog(string: String) -> void:
-	msg.push_back(string)
 
 
 # -- Audio --

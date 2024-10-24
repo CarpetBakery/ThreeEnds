@@ -3,15 +3,16 @@
 [ext_resource type="Script" path="res://scripts/PlayerHud.gd" id="1_o71xv"]
 [ext_resource type="FontFile" uid="uid://du71miqja3wkn" path="res://ui/fonts/Perfect DOS VGA 437.ttf" id="2_30hb3"]
 
-[node name="PlayerHud" type="Control" node_paths=PackedStringArray("crosshair", "interactionText", "dialogText", "progressBar")]
+[node name="PlayerHud" type="Control" node_paths=PackedStringArray("crosshair", "interactionText", "progressBar", "dialogText", "cinemaBars")]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_o71xv")
 crosshair = NodePath("Crosshair")
 interactionText = NodePath("InteractionText")
-dialogText = NodePath("Dialog/DialogText")
 progressBar = NodePath("ProgressBar")
+dialogText = NodePath("Dialog/DialogText")
+cinemaBars = [NodePath("Dialog/CinemaBar1"), NodePath("Dialog/CinemaBar2")]
 
 [node name="Crosshair" type="ColorRect" parent="."]
 layout_mode = 1
@@ -67,6 +68,31 @@ anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 
+[node name="CinemaBar1" type="ColorRect" parent="Dialog"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_right = 240.0
+offset_bottom = 40.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CinemaBar2" type="ColorRect" parent="Dialog"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -40.0
+offset_right = 240.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
 [node name="DialogText" type="Label" parent="Dialog"]
 layout_mode = 1
 anchors_preset = 7
@@ -75,7 +101,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -224.0
-offset_top = -18.0
+offset_top = -39.0
 offset_right = 224.0
 grow_horizontal = 2
 grow_vertical = 0
