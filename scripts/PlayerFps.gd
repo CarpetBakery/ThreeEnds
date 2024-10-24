@@ -168,6 +168,7 @@ func _input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			else:
 				get_tree().quit()
+
 	# Capture mouse
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and !captureMouse:
@@ -176,6 +177,10 @@ func _input(event):
 
 
 func _physics_process(delta):
+	# If we're in a dialog window, don't get any input
+	if inDialog:
+		freezeMovement = true
+	
 	# Get input vars
 	interactPressed = Input.is_action_just_pressed("interact")
 	interactHeld = Input.is_action_pressed("interact")
@@ -326,13 +331,22 @@ func _physics_process(delta):
 	carrySocket.rotation.z = lerp_angle(carrySocket.rotation.z, rotation.z + eyeRot.z, carryLerpSpd)
 	
 	# -- Process interaction --
-	# Reset interaction text
-	interactionText.text = ""
-	# Hide progressbar
-	progressBar.hide()
-	
-	_processInteraction(delta)
-	_processCarry(delta)
+	if not inDialog:
+		# Reset interaction text
+		interactionText.text = ""
+		# Hide progressbar
+		progressBar.hide()
+		
+		_processInteraction(delta)
+		_processCarry(delta)
+	else:
+		if interactPressed:
+			if dialogText.visible_ratio < 1:
+				# Skip typing dialog 
+				dialogText.visible_characters = -1
+			else:
+				# Go to next string
+				_nextDialogString()
 	
 
 func _processInteraction(delta):
@@ -381,6 +395,7 @@ func _processInteraction(delta):
 		# We aren't colliding with anything anymore, just clear focused list 
 		_clearFocused()
 
+
 func _processCarry(_delta):
 	# Don't do anything for now
 	return
@@ -391,6 +406,7 @@ func _processCarry(_delta):
 				interactPressed = false
 				dropObject()
 
+
 ## Clear focused interactables array
 func _clearFocused():
 	# Call exit focus on each node
@@ -400,6 +416,7 @@ func _clearFocused():
 			i.exitFocus(self)
 	# Clear focused array
 	focusedInteractables.clear()
+
 
 func pickupObject(type: CarryType):
 	# Set carry type
@@ -429,9 +446,9 @@ func dropObject():
 ## Set up the HUD
 func _setupHud():
 	# Setup references
-	interactionText = hud.getInteractionText()
-	dialogText = hud.getDialogText()
-	progressBar = hud.getProgressBar()
+	interactionText = hud.interactionText
+	dialogText = hud.dialogText
+	progressBar = hud.progressBar
 	
 	# Make sure the main surfaces are visible
 	screenSurface.show()
@@ -444,14 +461,13 @@ func setInteractionText(string: String) -> void:
 func getHud() -> PlayerHud:
 	return hud
 
+
 # - Dialog -
 ## Show dialog on screen
-func showDialog(str: String, spd: float = 0.02) -> void:
-	
-	# -- OLD --
+func showDialog(string: String, spd: float = 0.02) -> void:
 	var playFreq = 2
 	
-	dialogText.text = str
+	dialogText.text = string
 	dialogText.visible_characters = 0
 	
 	# Display characters
@@ -473,9 +489,52 @@ func showDialog(str: String, spd: float = 0.02) -> void:
 	
 	dialogText.text = ""
 
+
+## Start the dialog
+func startDialog() -> void:
+	if len(msg) <= 0:
+		# There are no messages to show
+		return
+	
+	# Freeze player
+	inDialog = true
+
+	# TODO: some UI stuff like cinema bars etc.
+	# Show dialog UI
+	dialogText.show()
+
+
+## Close the dialog window
+func closeDialog() -> void:
+	# Clean up text and msg array
+	msg.clear()
+	dialogText.visible_characters = 0
+
+	# Hide the dialog text
+	dialogText.hide()
+
+	# TODO: Hide UI stuff
+	
+	# Unfreeze player
+	inDialog = false
+
+
+## Move to the next dialog string
+func _nextDialogString() -> void:
+	if len(msg) > 1:
+		# Pop message off the front
+		msg.pop_front()
+		# Reset text for next string
+		dialogText.visible_characters = 0
+		dialogText.text = msg.front()
+	else:
+		# That was the last message; close dialog box		
+		closeDialog()
+	
+
 ## Add dialog string
-func addDialog(str: String) -> void:
-	msg.push_back(str)
+func addDialog(string: String) -> void:
+	msg.push_back(string)
 
 
 # -- Audio --

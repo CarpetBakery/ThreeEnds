@@ -10,7 +10,7 @@ anchors_preset = 0
 script = ExtResource("1_o71xv")
 crosshair = NodePath("Crosshair")
 interactionText = NodePath("InteractionText")
-dialogText = NodePath("DialogText")
+dialogText = NodePath("Dialog/DialogText")
 progressBar = NodePath("ProgressBar")
 
 [node name="Crosshair" type="ColorRect" parent="."]
@@ -46,7 +46,28 @@ text = "Interaction text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DialogText" type="Label" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = -33.0
+offset_right = 176.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+show_percentage = false
+
+[node name="Dialog" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="DialogText" type="Label" parent="Dialog"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -63,19 +84,3 @@ theme_override_font_sizes/font_size = 16
 text = "Dialog Text"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -176.0
-offset_top = -33.0
-offset_right = 176.0
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 0
-show_percentage = false

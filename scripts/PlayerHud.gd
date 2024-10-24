@@ -14,17 +14,3 @@ func _ready() -> void:
 	
 	dialogText.text = ""
 	
-
-func _process(delta: float) -> void:
-	pass
-
-# -- Getters/setters --
-func getInteractionText() -> Label:
-	return interactionText
-
-func getDialogText() -> Label:
-	return dialogText
-
-func getProgressBar() -> ProgressBar:
-	return progressBar
-	
