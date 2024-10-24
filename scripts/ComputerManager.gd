@@ -10,6 +10,7 @@ class_name ComputerManager extends Node
 @export var cursor: Sprite2D
 @export var cursorArea: Area2D
 @export var emailWindow: ComputerWindow
+@export var notifIcon: Sprite2D
 
 @export_category("Clickables")
 @export var emailIcon: Sprite2D
@@ -24,18 +25,48 @@ class_name ComputerManager extends Node
 @export_category("Other UI")
 @export var animPlayer: AnimationPlayer
 @export var black: ColorRect
+@export var uiParent: Control
+
+## Whether or not the player can interact with the computer
+var canInteract: bool = true
+
+## Skip intro
+var skipIntro: bool = false
 
 func _ready() -> void:
+	# -- Do intro --
+	canInteract = false
+	
 	# Hide the native mouse cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	# Hide windows
 	emailWindow.hide()
 	
+	# Show ui parent
+	uiParent.show()
 	# Hide black rectangle
 	black.hide()
+	# Hide notification
+	notifIcon.hide()
+	
+	# Play intro animation
+	animPlayer.play("intro")
+
+
+func finishIntro():
+	canInteract = true
+
 
 func _process(delta: float) -> void:
+	# Quit game in debug mode
+	if Global.DEBUG_MODE:
+		if Input.is_action_just_pressed("ui_cancel"):
+			get_tree().quit()
+	
+	if not canInteract:
+		return
+	
 	# Set the cursor to the mouse position
 	cursor.position = floor(viewport.get_mouse_position())
 	# Clamp cursor position inside screen
@@ -61,21 +92,20 @@ func _process(delta: float) -> void:
 	# Get up from the desk
 	if Input.is_action_just_pressed("interact"):
 		getUp()
-	
-	# Quit game in debug mode
-	if Global.DEBUG_MODE:
-		if Input.is_action_just_pressed("ui_cancel"):
-			get_tree().quit()
 
 
 ## Get up from the computer
 func getUp() -> void:
 	# TODO: Change master volume for this instaed, so the mouse clicks are also faded out
 	
+	# Stop player from interacting
+	canInteract = false
+	
+	# Play fadeout animation
 	animPlayer.play("fadeOut")
 	black.color.a = 0
 	black.show()
-	
+	# Wait till animation is done
 	await animPlayer.animation_finished
-	
+	# Go to other scene
 	get_tree().change_scene_to_file("res://maps/mpOilRigBlockout.tscn")

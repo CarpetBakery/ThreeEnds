@@ -5,8 +5,10 @@ class_name ComputerWindow extends Sprite2D
 @export var dragArea: Area2D
 @export var closeArea: Area2D
 
-@onready var whiteFlash: Sprite2D = $WhiteFlash
-@onready var scrollContainer: ScrollContainer = $ScrollContainer
+@export_category("Nodes")
+@export var parent: ComputerManager
+@export var whiteFlash: Sprite2D
+@export var scrollContainer: ScrollContainer
 
 # Hovering on close
 var mouseOnClose: bool = false
@@ -34,7 +36,7 @@ func _process(delta: float) -> void:
 	mouseOnDrag = false
 	
 	# Don't do anything here if the window isn't visible
-	if not visible:
+	if not visible or not parent.canInteract:
 		return
 	
 	# Scroll container

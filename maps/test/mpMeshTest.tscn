@@ -50,7 +50,7 @@ transform = Transform3D(0.4953, 0, 0, 0, 0.4953, 0, 0, 0, 0.4953, -9.51435, -0.4
 transform = Transform3D(-0.322028, 0, -0.322028, 0, 0.455417, 0, 0.322028, 0, -0.322028, -8.25696, -0.424217, 9.08297)
 
 [node name="desk" parent="." instance=ExtResource("7_k0fpd")]
-transform = Transform3D(0.202382, 0, 0, 0, 0.202382, 0, 0, 0, 0.202382, -10.1498, -0.424216, 3.19213)
+transform = Transform3D(0.13721, 0, 0, 0, 0.202382, 0, 0, 0, 0.157906, -10.1498, -0.424216, 3.19213)
 
 [node name="bed" parent="." instance=ExtResource("8_a2u6a")]
 transform = Transform3D(0.166569, 0, 0, 0, 0.166569, 0, 0, 0, 0.166569, -7.49541, -0.424216, -1.60663)

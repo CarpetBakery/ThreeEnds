@@ -1,3 +1,3 @@
-class_name ManagerOutside extends Node
+class_name ManagerOutside extends DayManager
 
 # Class for managing state in the map outside
