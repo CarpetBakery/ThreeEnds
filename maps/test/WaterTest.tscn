@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://0dfw8mwjctuu"]
+
+[ext_resource type="Material" uid="uid://cvf3kiuk45des" path="res://shaders/new_shader_material.tres" id="1_5vkiq"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_3hyem"]
+size = Vector2(10, 10)
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
+
+[node name="WaterTest" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0335748, 0.237133, -0.00148571)
+mesh = SubResource("QuadMesh_3hyem")
+surface_material_override/0 = ExtResource("1_5vkiq")

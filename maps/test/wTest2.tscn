@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://diegaob6i03yu"]
+
+[ext_resource type="PackedScene" uid="uid://0dfw8mwjctuu" path="res://maps/test/WaterTest.tscn" id="1_xfwle"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hax27"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WaterTest" parent="." instance=ExtResource("1_xfwle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04753, 0.151491, -0.853063)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.143831, -1.35944)
+mesh = SubResource("CapsuleMesh_hax27")
