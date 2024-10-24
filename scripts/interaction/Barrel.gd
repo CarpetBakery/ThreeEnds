@@ -1,4 +1,4 @@
-class_name IntBarrel extends HoldInteract
+class_name Barrel extends HoldInteract
 
 ## Parent node
 @export var parent: RigidBody3D

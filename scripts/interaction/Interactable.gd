@@ -6,12 +6,14 @@ class_name Interactable extends Area3D
 	- Requires a CollisionShape3D
 """
 
+## Text displayed when you're looking at an object
+@export_multiline var interactionText: String
+
+@export_category("Interaction flags")
 ## Can we interact with this object?
 @export var canInteract: bool = true
 ## Can the player focus on this object?
 @export var canFocus: bool = true
-## Text displayed when you're looking at an object
-@export_multiline var interactionText: String
 
 
 ## Whether or not this node is currently focused by the player

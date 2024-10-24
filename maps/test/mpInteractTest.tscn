@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="3_gutj5"]
 [ext_resource type="Script" path="res://scripts/interaction/Interactable.gd" id="3_ixfmc"]
 [ext_resource type="Script" path="res://scripts/interaction/test/IntTest1.gd" id="4_pfnsk"]
-[ext_resource type="Script" path="res://scripts/interaction/IntBarrel.gd" id="6_yfq7w"]
+[ext_resource type="Script" path="res://scripts/interaction/Barrel.gd" id="6_yfq7w"]
 [ext_resource type="Script" path="res://scripts/interaction/BarrelReceiver.gd" id="7_0twfd"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_g2xyr"]

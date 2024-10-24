@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhfec7nodvgih"]
+[gd_scene load_steps=14 format=3 uid="uid://bhfec7nodvgih"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_85g6y"]
 [ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="1_egfkl"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://n528w5bd0lde" path="res://assets/meshes/room/bed.glb" id="3_eaxmy"]
 [ext_resource type="Texture2D" uid="uid://cwgw4uwt1ajaq" path="res://assets/textures/128x128/Dirt/Dirt_16-128x128.png" id="3_i0iox"]
 [ext_resource type="PackedScene" uid="uid://ci1h230g3olg7" path="res://assets/meshes/room/desk.glb" id="4_avqrk"]
+[ext_resource type="Script" path="res://scripts/interaction/DialogInteractable.gd" id="6_8y0vs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hif05"]
 albedo_texture = ExtResource("3_i0iox")
@@ -18,6 +19,9 @@ size = Vector3(9.38095, 5.89209, 16.6364)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwtki"]
 size = Vector3(1.51453, 6.56085, 2.86838)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yk3p3"]
+size = Vector3(1.99902, 6.6582, 2.9834)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xf8c"]
 size = Vector3(9.18594, 5.63222, 15.33)
@@ -98,6 +102,15 @@ transform = Transform3D(-0.49999, 0, -0.00310671, 0, 0.5, 0, 0.00310671, 0, -0.4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="closet/StaticBody3D"]
 transform = Transform3D(1, 0, 1.89058e-07, 0, 1, 0, -1.89058e-07, 0, 1, 0.257263, 2.78043, 0.0469208)
 shape = SubResource("BoxShape3D_rwtki")
+
+[node name="Area3D" type="Area3D" parent="closet"]
+script = ExtResource("6_8y0vs")
+dialogLines = Array[String](["This is my CLOSET."])
+interactionText = "Closet"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="closet/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8291, 0)
+shape = SubResource("BoxShape3D_yk3p3")
 
 [node name="desk" parent="." instance=ExtResource("4_avqrk")]
 transform = Transform3D(-6.92097e-09, 0, 0.250261, 0, 0.189292, 0, -0.158333, 0, -1.09392e-08, -2.95987, 0.219423, -4.31399)
