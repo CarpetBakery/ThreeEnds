@@ -45,6 +45,9 @@ func _process(_delta: float) -> void:
 			# Reset timer (hopefully this doesn't make it fire)
 			holding = false
 			timer.stop()
+			
+			# Allow player to look again
+			playerRef.freezeMovement = false
 
 
 func onInteract(_player: PlayerFps):
@@ -53,15 +56,21 @@ func onInteract(_player: PlayerFps):
 
 ## Start the hold routine
 func startHold(_player: PlayerFps):
-	# Stop the player from being able to look
-	# TODO
+	# Start the timer
 	timer.start(holdTime)
 	holding = true
+	
+	# Stop the player from being able to look
+	_player.freezeMovement = true
 
 
 ## Callback func when the timer times out
 func _onTimeout():
 	holding = false
+	
+	# Allow player to look again
+	playerRef.freezeMovement = false
+	
 	onSuccessfulInteract(playerRef)
 
 

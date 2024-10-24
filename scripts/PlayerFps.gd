@@ -1,13 +1,13 @@
 class_name PlayerFps extends CharacterBody3D
 
 # Player options
-# TODO: these do nothing
 @export_group("Control flags")
 @export var canJump: bool = true
 @export var canSprint: bool = true
 @export var canCrouch: bool = true
 @export var canSlide: bool = false
 @export var canFreelook: bool = false
+@export var freezeMovement: bool = false
 
 # Speed vars
 var currentSpd: float = 5.0
@@ -136,7 +136,7 @@ func _ready():
 
 func _input(event):
 	# Look around using the mouse
-	if event is InputEventMouseMotion and captureMouse:
+	if event is InputEventMouseMotion and captureMouse and not freezeMovement:
 		# Make sure to take screen scale into account
 		var viewportBaseSize: Vector2 = get_viewport().size
 		var viewportOverrideSize: Vector2 = get_tree().root.content_scale_size
@@ -174,7 +174,9 @@ func _physics_process(delta):
 	interactHeld = Input.is_action_pressed("interact")
 	
 	# Get movement inputs
-	var inputDir = Input.get_vector("left", "right", "forward", "backward")
+	var inputDir: Vector2
+	if not freezeMovement:
+		inputDir = Input.get_vector("left", "right", "forward", "backward")
 	
 	# Crouching and sprinting
 	if (Input.is_action_pressed("crouch") || sliding) and canCrouch:
@@ -415,6 +417,7 @@ func dropObject():
 	# Allow player to interact again
 	canInteract = true
 
+
 # -- Hud functions --
 ## Set up the HUD
 func _setupHud():
@@ -432,6 +435,7 @@ func setInteractionText(string: String):
 ## Return the hud component
 func getHud() -> PlayerHud:
 	return hud
+
 
 # -- Audio --
 ## Play footstep sound
