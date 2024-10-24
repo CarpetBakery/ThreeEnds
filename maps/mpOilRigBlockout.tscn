@@ -941,9 +941,6 @@ light_specular = 0.525
 spot_range = 1.8193
 spot_angle = 15.4493
 
-[node name="player" parent="." instance=ExtResource("1_23sgh")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.5249, 0.00916481, -3.76832)
-
 [node name="Interaction" type="Node3D" parent="."]
 
 [node name="Barrel" type="RigidBody3D" parent="Interaction"]
@@ -995,6 +992,9 @@ shape = SubResource("BoxShape3D_dcgqm")
 transform = Transform3D(3.36, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
 material_override = SubResource("StandardMaterial3D_otcsb")
 mesh = SubResource("BoxMesh_ptdk3")
+
+[node name="player" parent="." instance=ExtResource("1_23sgh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.5249, 0.00916481, -3.76832)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sf2s4")

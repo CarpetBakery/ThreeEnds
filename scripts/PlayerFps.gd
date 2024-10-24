@@ -524,12 +524,13 @@ func startDialog() -> void:
 	# Reset interaction text
 	interactionText.text = ""
 	
-	# Play animation
-	#hud.animationPlayer.play("barsIn")
-	#var scaleBefore = hud.animationPlayer.speed_scale
-	#hud.animationPlayer.speed_scale = 5
-	#await hud.animationPlayer.animation_finished
-	#hud.animationPlayer.speed_scale = scaleBefore
+	if hud.playAnimations:
+		# Play animation
+		hud.animationPlayer.play("barsIn")
+		var scaleBefore = hud.animationPlayer.speed_scale
+		hud.animationPlayer.speed_scale = 5
+		await hud.animationPlayer.animation_finished
+		hud.animationPlayer.speed_scale = scaleBefore
 	
 	# Set text to first message
 	dialogText.text = msg.front()
@@ -552,12 +553,13 @@ func closeDialog() -> void:
 	# Hide dialog UI
 	dialogText.hide()
 	
-	# Play animation
-	#hud.animationPlayer.play("barsOut")
-	#var scaleBefore = hud.animationPlayer.speed_scale
-	#hud.animationPlayer.speed_scale = 5
-	#await hud.animationPlayer.animation_finished
-	#hud.animationPlayer.speed_scale = scaleBefore
+	if hud.playAnimations:
+		# Play animation
+		hud.animationPlayer.play("barsOut")
+		var scaleBefore = hud.animationPlayer.speed_scale
+		hud.animationPlayer.speed_scale = 5
+		await hud.animationPlayer.animation_finished
+		hud.animationPlayer.speed_scale = scaleBefore
 	
 	hud.toggleCinemaBars(false)
 	

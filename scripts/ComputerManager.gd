@@ -70,7 +70,10 @@ func _process(delta: float) -> void:
 
 ## Get up from the computer
 func getUp() -> void:
+	# TODO: Change master volume for this instaed, so the mouse clicks are also faded out
+	
 	animPlayer.play("fadeOut")
+	black.color.a = 0
 	black.show()
 	
 	await animPlayer.animation_finished
