@@ -21,41 +21,65 @@ class_name ComputerManager extends Node
 @export var click: AudioStreamPlayer
 @export var release: AudioStreamPlayer
 @export var computerAmbience: AudioStreamPlayer
+@export var notifSound: AudioStreamPlayer
+@export var pcOn: AudioStreamPlayer
+@export var pcOff: AudioStreamPlayer
 
 @export_category("Other UI")
 @export var animPlayer: AnimationPlayer
+@export var notifAnimPlayer: AnimationPlayer
 @export var black: ColorRect
 @export var uiParent: Control
+@export var getUpLabel: Label
+
+# -- Intro --
+@export_category("Intro")
+@export var introText: Label
+
 
 ## Whether or not the player can interact with the computer
 var canInteract: bool = true
+## Can interact with the email icon
+var canInteractEmail: bool = false
 
 ## Skip intro
 var skipIntro: bool = false
 
 func _ready() -> void:
 	# -- Do intro --
-	canInteract = false
-	
 	# Hide the native mouse cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	# Hide windows
 	emailWindow.hide()
 	
-	# Show ui parent
 	uiParent.show()
-	# Hide black rectangle
 	black.hide()
-	# Hide notification
 	notifIcon.hide()
+	getUpLabel.hide()
 	
-	# Play intro animation
-	animPlayer.play("intro")
+	if skipIntro:
+		finishIntro()
+	else:
+		# Play intro animation
+		canInteract = false
+		animPlayer.play("intro")
 
 
 func finishIntro():
+	# Hide intro text
+	introText.hide()
+	
+	# Allow the player to interact
 	canInteract = true
+	
+	# Wait 4 seconds
+	await get_tree().create_timer(4).timeout
+	
+	# Email notification
+	canInteractEmail = true
+	notifAnimPlayer.play("blink")
+	notifSound.play()
 
 
 func _process(delta: float) -> void:
@@ -81,7 +105,12 @@ func _process(delta: float) -> void:
 		click.play(randf_range(0, sndOffset))
 		
 		for i in cursorArea.get_overlapping_areas():
-			if i == emailIconArea:
+			# Click on email icon
+			if i == emailIconArea and canInteractEmail:
+				# Stop playing animation 
+				if notifAnimPlayer.is_playing():
+					notifAnimPlayer.play("RESET")
+				
 				emailWindow.showWindow()
 	
 	if Input.is_action_just_released("mouseLeft"):

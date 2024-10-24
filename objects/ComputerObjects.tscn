@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://kwkes1spk64y"]
+[gd_scene load_steps=30 format=3 uid="uid://kwkes1spk64y"]
 
 [ext_resource type="Texture2D" uid="uid://bs7tls7un2b8t" path="res://assets/textures/computer/computer background.png" id="1_3sei2"]
 [ext_resource type="Script" path="res://scripts/ComputerManager.gd" id="1_r3phi"]
@@ -12,9 +12,50 @@
 [ext_resource type="AudioStream" uid="uid://dm13lidrqrlbt" path="res://assets/audio/sfx/computer/mouserelease.wav" id="8_ao0vx"]
 [ext_resource type="FontFile" uid="uid://du71miqja3wkn" path="res://ui/fonts/Perfect DOS VGA 437.ttf" id="8_mf634"]
 [ext_resource type="AudioStream" uid="uid://dquj7sl3ap2u8" path="res://assets/audio/sfx/computer/computerstartup.ogg" id="11_fv06n"]
+[ext_resource type="AudioStream" uid="uid://dokhi4chvvv5" path="res://assets/audio/sfx/computer/windowsnotif.wav" id="13_y63xj"]
+[ext_resource type="AudioStream" uid="uid://c12gwqnajssth" path="res://assets/audio/sfx/stolen/pc_on.wav" id="14_ek1nm"]
+[ext_resource type="AudioStream" uid="uid://cgqtogcdkr1ge" path="res://assets/audio/sfx/stolen/pc_off.wav" id="15_w5eed"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbfkr"]
 size = Vector2(46, 56)
+
+[sub_resource type="Animation" id="Animation_hy2oi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Notif:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qh2sw"]
+resource_name = "blink"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Notif:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7d4fx"]
+_data = {
+"RESET": SubResource("Animation_hy2oi"),
+"blink": SubResource("Animation_qh2sw")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdq5h"]
 size = Vector2(472, 24)
@@ -96,6 +137,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("icons/EmailIcon/Notif:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("audio/PcOn:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_gxyc5"]
 resource_name = "fadeFromBlack"
@@ -127,7 +192,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_tegcl"]
 resource_name = "Intro"
-length = 6.0
+length = 7.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -135,7 +200,7 @@ tracks/0/path = NodePath("OtherUi/Black:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5.5, 5.53333),
+"times": PackedFloat32Array(0, 5.5, 5.96667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
@@ -171,7 +236,7 @@ tracks/3/path = NodePath("OtherUi/IntroText:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.36667, 5.5, 5.53333),
+"times": PackedFloat32Array(0, 1.4, 5.5, 5.53333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
@@ -183,12 +248,36 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(5.53333),
+"times": PackedFloat32Array(5.95),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"finishIntro"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("audio/ComputerAmbience:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.1, 1.83333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [9.851, -7.434]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("audio/PcOn:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5.86667, 5.93333, 5.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yltgh"]
@@ -198,7 +287,7 @@ _data = {
 "intro": SubResource("Animation_tegcl")
 }
 
-[node name="ComputerObjects" type="Node2D" node_paths=PackedStringArray("cursor", "cursorArea", "emailWindow", "notifIcon", "emailIcon", "emailIconArea", "click", "release", "computerAmbience", "animPlayer", "black", "uiParent")]
+[node name="ComputerObjects" type="Node2D" node_paths=PackedStringArray("cursor", "cursorArea", "emailWindow", "notifIcon", "emailIcon", "emailIconArea", "click", "release", "computerAmbience", "notifSound", "pcOn", "pcOff", "animPlayer", "notifAnimPlayer", "black", "uiParent", "getUpLabel", "introText")]
 script = ExtResource("1_r3phi")
 cursor = NodePath("cursor")
 cursorArea = NodePath("cursor/CursorArea")
@@ -209,28 +298,76 @@ emailIconArea = NodePath("icons/EmailIcon/EmailIconArea")
 click = NodePath("audio/click")
 release = NodePath("audio/release")
 computerAmbience = NodePath("audio/ComputerAmbience")
+notifSound = NodePath("audio/NotifSound")
+pcOn = NodePath("audio/PcOn")
+pcOff = NodePath("audio/PcOff")
 animPlayer = NodePath("AnimationPlayer")
+notifAnimPlayer = NodePath("icons/EmailIcon/NotifAnimation")
 black = NodePath("OtherUi/Black")
 uiParent = NodePath("OtherUi")
+getUpLabel = NodePath("OtherUi/GetUpLabel")
+introText = NodePath("OtherUi/IntroText")
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("1_3sei2")
 centered = false
 
+[node name="Label" type="Label" parent="background"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -40.0
+offset_right = 186.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.315426, 0.43279, 0.575574, 1)
+theme_override_font_sizes/font_size = 46
+text = "MacroSoft Blimbels"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="background"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -2.0
+offset_right = 186.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.315426, 0.43279, 0.575574, 1)
+theme_override_font_sizes/font_size = 21
+text = "It's Huge!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="icons" type="Node2D" parent="."]
 
 [node name="EmailIcon" type="Sprite2D" parent="icons"]
-position = Vector2(507, 74)
+position = Vector2(41, 48)
 texture = ExtResource("3_3aylg")
 
 [node name="Notif" type="Sprite2D" parent="icons/EmailIcon"]
-position = Vector2(17, -21)
+position = Vector2(17, -22)
+scale = Vector2(2.28571, 2.28571)
 texture = ExtResource("4_gy8w1")
 
 [node name="EmailIconArea" type="Area2D" parent="icons/EmailIcon"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="icons/EmailIcon/EmailIconArea"]
 shape = SubResource("RectangleShape2D_bbfkr")
+
+[node name="NotifAnimation" type="AnimationPlayer" parent="icons/EmailIcon"]
+libraries = {
+"": SubResource("AnimationLibrary_7d4fx")
+}
 
 [node name="windows" type="Node2D" parent="."]
 
@@ -308,7 +445,7 @@ anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
 
-[node name="Label" type="Label" parent="OtherUi"]
+[node name="GetUpLabel" type="Label" parent="OtherUi"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -338,6 +475,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="White" type="ColorRect" parent="OtherUi"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="IntroText" type="Label" parent="OtherUi"]
 layout_mode = 1
 anchors_preset = 8
@@ -353,7 +499,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("8_mf634")
 theme_override_font_sizes/font_size = 32
-text = "THE RIG"
+text = "DAY 99999999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -373,6 +519,16 @@ max_polyphony = 5
 stream = ExtResource("11_fv06n")
 volume_db = -10.22
 parameters/looping = true
+
+[node name="NotifSound" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("13_y63xj")
+
+[node name="PcOn" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("14_ek1nm")
+volume_db = -3.749
+
+[node name="PcOff" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("15_w5eed")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
