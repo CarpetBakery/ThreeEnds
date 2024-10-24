@@ -3,6 +3,7 @@ class_name IntBarrel extends HoldInteract
 ## Parent node
 @export var parent: RigidBody3D
 
+
 func onInteract(_player: PlayerFps):
 	if (_player.carryObject == _player.CarryType.NONE):
 		startHold(_player)
