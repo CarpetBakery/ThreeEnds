@@ -42,36 +42,32 @@ tracks/2/keys = {
 "values": [Vector2(0, 230)]
 }
 
-[sub_resource type="Animation" id="Animation_3o6w1"]
-resource_name = "fadeToBlack"
-length = 0.4
+[sub_resource type="Animation" id="Animation_vi7vd"]
+resource_name = "barsIn"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Black:color")
+tracks/0/path = NodePath("Dialog/CinemaBar1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+"values": [Vector2(0, -40), Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_7eusj"]
-resource_name = "fadeToBlack"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Black:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dialog/CinemaBar2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Vector2(0, 270), Vector2(0, 230)]
 }
 
 [sub_resource type="Animation" id="Animation_70y2s"]
@@ -102,32 +98,36 @@ tracks/1/keys = {
 "values": [Vector2(0, 230), Vector2(0, 270)]
 }
 
-[sub_resource type="Animation" id="Animation_vi7vd"]
-resource_name = "barsIn"
-length = 0.2
+[sub_resource type="Animation" id="Animation_3o6w1"]
+resource_name = "fadeToBlack"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Dialog/CinemaBar1:position")
+tracks/0/path = NodePath("Black:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -40), Vector2(0, 0)]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Dialog/CinemaBar2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
+
+[sub_resource type="Animation" id="Animation_7eusj"]
+resource_name = "fadeToBlack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 270), Vector2(0, 230)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tmrbl"]

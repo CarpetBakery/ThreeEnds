@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://cvf3kiuk45des"]
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://bjqf8hwkty34x"]
 
 [ext_resource type="Shader" path="res://shaders/Water.gdshader" id="1_d64q5"]
 
@@ -38,9 +38,9 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.0
 shader_parameter/wave_direction = Vector2(2, 0)
 shader_parameter/wave_direction2 = Vector2(0, 1)
-shader_parameter/time_scale = 0.025
-shader_parameter/noise_scale = 100.0
-shader_parameter/height_scale = 0.5
+shader_parameter/time_scale = 0.045
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.51
 shader_parameter/color_deep = Color(0.105882, 0.294118, 0.329412, 1)
 shader_parameter/color_shallow = Color(0, 0.552941, 0.65098, 1)
 shader_parameter/beers_law = 2.0

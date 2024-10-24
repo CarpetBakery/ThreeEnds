@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bhfec7nodvgih"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_85g6y"]
-[ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="1_egfkl"]
+[ext_resource type="Material" path="res://assets/materials/InsideWalls.tres" id="1_egfkl"]
 [ext_resource type="Material" uid="uid://dj4022ne2tnx6" path="res://assets/materials/BedWood.tres" id="1_jr3nr"]
 [ext_resource type="PackedScene" uid="uid://s3egqwgoi1pv" path="res://assets/meshes/closet.glb" id="3_7mib7"]
 [ext_resource type="PackedScene" uid="uid://n528w5bd0lde" path="res://assets/meshes/room/bed.glb" id="3_eaxmy"]
