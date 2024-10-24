@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bhfec7nodvgih"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_85g6y"]
-[ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="1_egfkl"]
+[ext_resource type="Material" path="res://assets/materials/InsideWalls.tres" id="1_egfkl"]
 [ext_resource type="Material" uid="uid://dj4022ne2tnx6" path="res://assets/materials/BedWood.tres" id="1_jr3nr"]
 [ext_resource type="PackedScene" uid="uid://s3egqwgoi1pv" path="res://assets/meshes/closet.glb" id="3_7mib7"]
 [ext_resource type="PackedScene" uid="uid://n528w5bd0lde" path="res://assets/meshes/room/bed.glb" id="3_eaxmy"]
@@ -81,9 +81,6 @@ material_override = SubResource("StandardMaterial3D_hif05")
 use_collision = true
 size = Vector3(9.17627, 0.5, 6.81726)
 
-[node name="player" parent="." instance=ExtResource("1_85g6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.25, -7)
-
 [node name="bed" parent="." instance=ExtResource("3_eaxmy")]
 transform = Transform3D(-6.73896e-09, 0, -0.154169, 0, 0.154169, 0, 0.154169, 0, -6.73896e-09, 2.66588, 0.109154, -9.26095)
 
@@ -110,3 +107,6 @@ transform = Transform3D(-6.92097e-09, 0, 0.250261, 0, 0.189292, 0, -0.158333, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="desk/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.52767e-13, 0, 1, -0.0277252, 2.71973, -6.93219)
 shape = SubResource("BoxShape3D_0xf8c")
+
+[node name="player" parent="." instance=ExtResource("1_85g6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.25, -7)

@@ -26,8 +26,7 @@ func _day0(_player: PlayerFps):
 	await _player.hud.animationPlayer.animation_finished
 	
 	await get_tree().create_timer(1.3).timeout
-	
-	get_tree().change_scene_to_packed(preload("res://maps/mpComputer.tscn"))
+	TransitionManager.gotoScene("res://maps/mpRoomBlockout.tscn")
 
 func _day1(_player: PlayerFps):
 	_player.addDialog("I need to turn off the DRILLS.")

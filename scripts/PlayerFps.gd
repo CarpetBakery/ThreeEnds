@@ -155,9 +155,30 @@ func _ready():
 	# Hide barrel mesh
 	carryBarrel.hide()
 	
-	# If previous scene was a transition, handle that
-	if Global.transition:
-		Global.transition = false
+	# Transition in
+	
+	# Have to call this, otherwise the camera will be at the world origin for one frame
+	updateCamPos()
+	
+	if TransitionManager.transition:
+		addDialog("Well... that was a transition")
+		startDialog()
+
+
+func updateCamPos():
+	var eyePos: Vector3 = neck.position + head.position + eyes.position
+	var eyeRot: Vector3 = neck.rotation + head.rotation + eyes.rotation
+	camera.position = position + eyePos
+	camera.rotation = rotation + eyeRot
+	
+	# Lerp carrySocket for smooth movement
+	var carryLerpSpd = 0.4
+	carrySocket.position = position + eyePos
+	#carrySocket.position = lerp(carrySocket.position, position + eyePos, carryLerpSpd)
+	carrySocket.rotation.x = lerp_angle(carrySocket.rotation.x, rotation.x + eyeRot.x, carryLerpSpd)
+	carrySocket.rotation.y = lerp_angle(carrySocket.rotation.y, rotation.y + eyeRot.y, carryLerpSpd)
+	carrySocket.rotation.z = lerp_angle(carrySocket.rotation.z, rotation.z + eyeRot.z, carryLerpSpd)
+
 
 func _input(event):
 	# Look around using the mouse
@@ -335,18 +356,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# Move the camera to be at the correct position and rotation
-	var eyePos: Vector3 = neck.position + head.position + eyes.position
-	var eyeRot: Vector3 = neck.rotation + head.rotation + eyes.rotation
-	camera.position = position + eyePos
-	camera.rotation = rotation + eyeRot
-	
-	# Lerp carrySocket for smooth movement
-	var carryLerpSpd = 0.4
-	carrySocket.position = position + eyePos
-	#carrySocket.position = lerp(carrySocket.position, position + eyePos, carryLerpSpd)
-	carrySocket.rotation.x = lerp_angle(carrySocket.rotation.x, rotation.x + eyeRot.x, carryLerpSpd)
-	carrySocket.rotation.y = lerp_angle(carrySocket.rotation.y, rotation.y + eyeRot.y, carryLerpSpd)
-	carrySocket.rotation.z = lerp_angle(carrySocket.rotation.z, rotation.z + eyeRot.z, carryLerpSpd)
+	updateCamPos()
 	
 	# -- Process interaction --
 	if not inDialog:
@@ -454,6 +464,7 @@ func dropObject():
 func _setupHud():
 	# Setup references
 	interactionText = hud.interactionText
+	interactionText.text = ""
 	progressBar = hud.progressBar
 	# Dialog
 	dialogText = hud.dialogText
