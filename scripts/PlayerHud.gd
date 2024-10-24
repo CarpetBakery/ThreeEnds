@@ -5,15 +5,19 @@ class_name PlayerHud extends Control
 @export var progressBar: ProgressBar
 
 @export_category("Dialog")
+@export var dialogParent: Control
 @export var dialogText: Label
 @export var cinemaBars: Array[ColorRect]
 
 func _ready() -> void:
 	# Hide/show everything
 	crosshair.show()
-	interactionText.hide()
-	dialogText.show()
+	interactionText.show()
 	progressBar.hide()
+	
+	dialogParent.show()
+	dialogText.show()
+	toggleCinemaBars(true)
 	
 	# Set up dialog
 	dialogText.text = ""

@@ -503,7 +503,8 @@ func _dialogTypeChar() -> void:
 			dialogSpeaker.play(sndOffset)
 		
 		# Restart the timer
-		dialogTimer.start(dialogSpd * randf_range(0.1, 2.3))
+		#dialogTimer.start(dialogSpd * randf_range(0.1, 2.3) * get_process_delta_time() / 0.01666)
+		dialogTimer.start(dialogSpd * randf_range(0.1, 2.3) * 0.95)
 	else:
 		dialogTimer.stop()
 
