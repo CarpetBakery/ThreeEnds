@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
 [ext_resource type="Texture2D" uid="uid://dsv66tl33pl8m" path="res://assets/textures/dev/grids/Dark/texture_01.png" id="1_pl5iy"]
 [ext_resource type="Script" path="res://scripts/interaction/Door.gd" id="2_s3teo"]
-[ext_resource type="Material" path="res://assets/materials/InsideWalls.tres" id="3_gx7hh"]
+[ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="3_gx7hh"]
 [ext_resource type="Script" path="res://scripts/interaction/IntBarrel.gd" id="4_e40u6"]
 [ext_resource type="AudioStream" uid="uid://cqidkdg84jgsa" path="res://assets/audio/music/ambient3.ogg" id="4_sf2s4"]
 [ext_resource type="Texture2D" uid="uid://cwxm5led3a5fp" path="res://assets/textures/128x128/Metal/Metal_11-128x128.png" id="4_tvqfm"]
 [ext_resource type="Texture2D" uid="uid://c3m8bl5r8j28m" path="res://assets/textures/128x128/Metal/Metal_03-128x128.png" id="5_6n78g"]
 [ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="5_jd2yi"]
 [ext_resource type="Script" path="res://scripts/interaction/BarrelReceiver.gd" id="5_vkbhv"]
-[ext_resource type="Material" path="res://assets/materials/Pillars.tres" id="6_oidor"]
+[ext_resource type="Material" uid="uid://lnuojmwwix77" path="res://assets/materials/Pillars.tres" id="6_oidor"]
 [ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
 [ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="14_madnm"]
 [ext_resource type="PackedScene" uid="uid://bf5nwoclk7xkv" path="res://assets/meshes/crane.glb" id="15_s0whf"]
@@ -71,7 +71,7 @@ texture_filter = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwn6p"]
 albedo_texture = ExtResource("5_6n78g")
-uv1_scale = Vector3(10, 10, 10)
+uv1_scale = Vector3(9.31, 9.31, 9.31)
 texture_filter = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwm78"]
@@ -304,6 +304,30 @@ sides = 20
 
 [node name="Pillar7" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75368, -2.63819, 39.7145)
+material_override = ExtResource("6_oidor")
+use_collision = true
+radius = 0.75
+height = 25.0
+sides = 20
+
+[node name="Pillar12" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5634, -7.26163, 3.23777)
+material_override = ExtResource("6_oidor")
+use_collision = true
+radius = 0.75
+height = 25.0
+sides = 20
+
+[node name="Pillar13" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5634, -7.26163, 34.9573)
+material_override = ExtResource("6_oidor")
+use_collision = true
+radius = 0.75
+height = 25.0
+sides = 20
+
+[node name="Pillar14" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.14452, -12.6205, 40.2235)
 material_override = ExtResource("6_oidor")
 use_collision = true
 radius = 0.75
@@ -1130,6 +1154,114 @@ transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 0.9311, 17
 [node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate4"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate10" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 0.9311, -11.4653)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate10/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate18" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -1.32938, 0.9311, -11.4653)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate18"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate18/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate19" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -1.32938, 0.9311, -9.97298)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate19"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate19/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate20" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -1.32938, 2.27788, -9.94428)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate20"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate20/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate11" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 2.21014, -11.4653)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate11"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate11/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate12" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.65178, 0.9311, -11.4653)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate12"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate12/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate13" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.65178, 2.15911, -11.4653)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate13"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate13/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate14" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.65178, 0.9311, -13.0827)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate14"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate14/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate21" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.145317, 0.9311, -13.0827)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate21"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate21/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate22" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.145317, 2.15923, -13.0827)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate22"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate22/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate23" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.70057, 0.9311, -9.94148)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate23"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate23/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
+shape = SubResource("BoxShape3D_rwm78")
+
+[node name="crate24" parent="LevelBlockout/Platform1 Crates" instance=ExtResource("7_yri5b")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 0.9311, -9.97888)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Platform1 Crates/crate24"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Platform1 Crates/crate24/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
 shape = SubResource("BoxShape3D_rwm78")
 
