@@ -257,7 +257,7 @@ sides = 20
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5736, -1.76573, 36.3614)
 use_collision = true
 radius = 1.0
-height = 25.0
+height = 24.3634
 sides = 20
 
 [node name="Pillar7" type="CSGCylinder3D" parent="LevelBlockout/SuppPillars"]
@@ -585,12 +585,12 @@ use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
 [node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight12"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
+transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, -0.00801182, 0.102571, 0.5632)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
+light_energy = 16.0
 light_volumetric_fog_energy = 13.343
 light_specular = 0.525
-spot_range = 1.8193
+spot_range = 2.91791
 spot_angle = 15.4493
 
 [node name="RedLight5" type="Node3D" parent="LevelBlockout/catwalkLighting"]
