@@ -101,6 +101,9 @@ var canInteract: bool = true
 # List of nodes that were previously in focus
 var focusedInteractables: Array[Interactable] = []
 
+# Signal triggered when the player closes a dialog box
+signal dialogFinished
+
 # -- Carrying objects --
 ## Types of objects that we can carry
 enum CarryType {
@@ -359,9 +362,9 @@ func _processInteraction(delta):
 	# NOTE: This currently only works for one object at a time...
 	# if we're colliding with more than one thing this might explode
 	
-	#if !canInteract:
-		#_clearFocused()
-		#return
+	if !canInteract:
+		_clearFocused()
+		return
 	
 	if rayCastInteract.is_colliding():
 		var node = rayCastInteract.get_collider()
@@ -431,9 +434,6 @@ func pickupObject(type: CarryType):
 		CarryType.BARREL:
 			carryBarrel.show()
 	
-	# Stop player from interacting
-	canInteract = false
-	
 
 func dropObject():
 	## NOTE: Might not even both using this function...
@@ -443,8 +443,6 @@ func dropObject():
 	
 	# Reset carry type
 	carryObject = CarryType.NONE
-	# Allow player to interact again
-	canInteract = true
 
 
 # -- Hud functions --
@@ -455,8 +453,6 @@ func _setupHud():
 	progressBar = hud.progressBar
 	# Dialog
 	dialogText = hud.dialogText
-	
-	hud.animationPlayer.play("fadeFromBlack")
 	
 	# Make sure the main surfaces are visible
 	screenSurface.show()
@@ -524,12 +520,16 @@ func startDialog() -> void:
 	# Show dialog UI
 	dialogText.show()
 	hud.toggleCinemaBars(true)
+	
+	# Reset interaction text
+	interactionText.text = ""
+	
 	# Play animation
-	hud.animationPlayer.play("barsIn")
-	var scaleBefore = hud.animationPlayer.speed_scale
-	hud.animationPlayer.speed_scale = 5
-	await hud.animationPlayer.animation_finished
-	hud.animationPlayer.speed_scale = scaleBefore
+	#hud.animationPlayer.play("barsIn")
+	#var scaleBefore = hud.animationPlayer.speed_scale
+	#hud.animationPlayer.speed_scale = 5
+	#await hud.animationPlayer.animation_finished
+	#hud.animationPlayer.speed_scale = scaleBefore
 	
 	# Set text to first message
 	dialogText.text = msg.front()
@@ -551,13 +551,18 @@ func closeDialog() -> void:
 	
 	# Hide dialog UI
 	dialogText.hide()
-	hud.animationPlayer.play("barsOut")
-	var scaleBefore = hud.animationPlayer.speed_scale
-	hud.animationPlayer.speed_scale = 5
-	await hud.animationPlayer.animation_finished
-	hud.animationPlayer.speed_scale = scaleBefore
+	
+	# Play animation
+	#hud.animationPlayer.play("barsOut")
+	#var scaleBefore = hud.animationPlayer.speed_scale
+	#hud.animationPlayer.speed_scale = 5
+	#await hud.animationPlayer.animation_finished
+	#hud.animationPlayer.speed_scale = scaleBefore
 	
 	hud.toggleCinemaBars(false)
+	
+	# Emit signal
+	dialogFinished.emit()
 	
 
 

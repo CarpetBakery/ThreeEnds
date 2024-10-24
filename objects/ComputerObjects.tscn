@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://kwkes1spk64y"]
+[gd_scene load_steps=22 format=3 uid="uid://kwkes1spk64y"]
 
 [ext_resource type="Texture2D" uid="uid://bs7tls7un2b8t" path="res://assets/textures/computer/computer background.png" id="1_3sei2"]
 [ext_resource type="Script" path="res://scripts/ComputerManager.gd" id="1_r3phi"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cxh6k85btw650" path="res://assets/audio/sfx/computer/mouseclick.wav" id="7_vwj20"]
 [ext_resource type="AudioStream" uid="uid://dm13lidrqrlbt" path="res://assets/audio/sfx/computer/mouserelease.wav" id="8_ao0vx"]
 [ext_resource type="FontFile" uid="uid://du71miqja3wkn" path="res://ui/fonts/Perfect DOS VGA 437.ttf" id="8_mf634"]
+[ext_resource type="AudioStream" uid="uid://dquj7sl3ap2u8" path="res://assets/audio/sfx/computer/computerstartup.ogg" id="11_fv06n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbfkr"]
 size = Vector2(46, 56)
@@ -32,7 +33,68 @@ gradient = SubResource("Gradient_tferh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aurqi"]
 size = Vector2(1, 1)
 
-[node name="ComputerObjects" type="Node2D" node_paths=PackedStringArray("cursor", "cursorArea", "emailWindow", "emailIcon", "emailIconArea", "click", "release")]
+[sub_resource type="Animation" id="Animation_gxyc5"]
+resource_name = "fadeFromBlack"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OtherUi/Black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("audio/ComputerAmbience:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-10.22, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_imh30"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OtherUi/Black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("audio/ComputerAmbience:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-10.22]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yltgh"]
+_data = {
+"RESET": SubResource("Animation_imh30"),
+"fadeOut": SubResource("Animation_gxyc5")
+}
+
+[node name="ComputerObjects" type="Node2D" node_paths=PackedStringArray("cursor", "cursorArea", "emailWindow", "emailIcon", "emailIconArea", "click", "release", "computerAmbience", "animPlayer", "black")]
 script = ExtResource("1_r3phi")
 cursor = NodePath("cursor")
 cursorArea = NodePath("cursor/CursorArea")
@@ -41,6 +103,9 @@ emailIcon = NodePath("icons/EmailIcon")
 emailIconArea = NodePath("icons/EmailIcon/EmailIconArea")
 click = NodePath("audio/click")
 release = NodePath("audio/release")
+computerAmbience = NodePath("audio/ComputerAmbience")
+animPlayer = NodePath("AnimationPlayer")
+black = NodePath("OtherUi/Black")
 
 [node name="background" type="Sprite2D" parent="."]
 texture = ExtResource("1_3sei2")
@@ -149,6 +214,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="Black" type="ColorRect" parent="OtherUi"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="audio" type="Node" parent="."]
 
 [node name="click" type="AudioStreamPlayer" parent="audio"]
@@ -160,3 +234,14 @@ max_polyphony = 5
 stream = ExtResource("8_ao0vx")
 volume_db = -0.5
 max_polyphony = 5
+
+[node name="ComputerAmbience" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("11_fv06n")
+volume_db = -10.22
+autoplay = true
+parameters/looping = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yltgh")
+}

@@ -16,6 +16,7 @@ func _ready() -> void:
 	crosshair.show()
 	interactionText.show()
 	progressBar.hide()
+	black.hide()
 	
 	dialogParent.show()
 	dialogText.show()
@@ -30,3 +31,14 @@ func _ready() -> void:
 func toggleCinemaBars(on: bool):
 	for i in cinemaBars:
 		i.visible = on
+
+
+# Make sure to set speed_scale back to 1 after calling this function
+func fade(fadeIn: bool, spd: float = 1) -> void:
+	black.show()
+	animationPlayer.speed_scale = spd
+	if fadeIn:
+		animationPlayer.play("fadeFromBlack")
+	else:
+		animationPlayer.play("fadeToBlack")
+	

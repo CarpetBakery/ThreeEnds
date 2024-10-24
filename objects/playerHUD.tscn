@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6nrrp6eh5i5m"]
+[gd_scene load_steps=9 format=3 uid="uid://c6nrrp6eh5i5m"]
 
 [ext_resource type="Script" path="res://scripts/PlayerHud.gd" id="1_o71xv"]
 [ext_resource type="FontFile" uid="uid://du71miqja3wkn" path="res://ui/fonts/Perfect DOS VGA 437.ttf" id="2_30hb3"]
@@ -114,12 +114,29 @@ tracks/1/keys = {
 "values": [Vector2(0, 230), Vector2(0, 270)]
 }
 
+[sub_resource type="Animation" id="Animation_7eusj"]
+resource_name = "fadeToBlack"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Black:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tmrbl"]
 _data = {
 "RESET": SubResource("Animation_hrmrk"),
 "barsIn": SubResource("Animation_vi7vd"),
 "barsOut": SubResource("Animation_70y2s"),
-"fadeFromBlack": SubResource("Animation_3o6w1")
+"fadeFromBlack": SubResource("Animation_3o6w1"),
+"fadeToBlack": SubResource("Animation_7eusj")
 }
 
 [node name="PlayerHud" type="Control" node_paths=PackedStringArray("crosshair", "interactionText", "progressBar", "black", "animationPlayer", "dialogParent", "dialogText", "cinemaBars")]

@@ -1,6 +1,7 @@
 class_name ComputerManager extends Node
 
 # Nodes
+@export_category("Assigned Outside")
 @export var viewport: SubViewport
 @export var cam: Camera2D
 
@@ -15,17 +16,24 @@ class_name ComputerManager extends Node
 @export var emailIconArea: Area2D
 
 # Audio nodes
+@export_category("Audio")
 @export var click: AudioStreamPlayer
 @export var release: AudioStreamPlayer
+@export var computerAmbience: AudioStreamPlayer
+
+@export_category("Other UI")
+@export var animPlayer: AnimationPlayer
+@export var black: ColorRect
 
 func _ready() -> void:
-	#Engine.max_fps = 50
-	
 	# Hide the native mouse cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	# Hide windows
 	emailWindow.hide()
+	
+	# Hide black rectangle
+	black.hide()
 
 func _process(delta: float) -> void:
 	# Set the cursor to the mouse position
@@ -50,7 +58,21 @@ func _process(delta: float) -> void:
 		release.pitch_scale = randf_range(0.95, 1.05)
 		release.play(randf_range(0, sndOffset))
 	
+	# Get up from the desk
+	if Input.is_action_just_pressed("interact"):
+		getUp()
+	
 	# Quit game in debug mode
 	if Global.DEBUG_MODE:
 		if Input.is_action_just_pressed("ui_cancel"):
 			get_tree().quit()
+
+
+## Get up from the computer
+func getUp() -> void:
+	animPlayer.play("fadeOut")
+	black.show()
+	
+	await animPlayer.animation_finished
+	
+	get_tree().change_scene_to_file("res://maps/mpOilRigBlockout.tscn")
