@@ -1,17 +1,17 @@
 [gd_scene load_steps=37 format=3 uid="uid://min6rams7kgs"]
 
-[ext_resource type="Material" uid="uid://jfstccbgbvbr" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
+[ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
 [ext_resource type="Texture2D" uid="uid://dsv66tl33pl8m" path="res://assets/textures/dev/grids/Dark/texture_01.png" id="1_pl5iy"]
 [ext_resource type="Script" path="res://scripts/interaction/Door.gd" id="2_s3teo"]
-[ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="3_gx7hh"]
+[ext_resource type="Material" path="res://assets/materials/InsideWalls.tres" id="3_gx7hh"]
 [ext_resource type="Script" path="res://scripts/interaction/IntBarrel.gd" id="4_e40u6"]
 [ext_resource type="AudioStream" uid="uid://cqidkdg84jgsa" path="res://assets/audio/music/ambient3.ogg" id="4_sf2s4"]
 [ext_resource type="Texture2D" uid="uid://cwxm5led3a5fp" path="res://assets/textures/128x128/Metal/Metal_11-128x128.png" id="4_tvqfm"]
 [ext_resource type="Texture2D" uid="uid://c3m8bl5r8j28m" path="res://assets/textures/128x128/Metal/Metal_03-128x128.png" id="5_6n78g"]
 [ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="5_jd2yi"]
 [ext_resource type="Script" path="res://scripts/interaction/BarrelReceiver.gd" id="5_vkbhv"]
-[ext_resource type="Material" uid="uid://lnuojmwwix77" path="res://assets/materials/Pillars.tres" id="6_oidor"]
+[ext_resource type="Material" path="res://assets/materials/Pillars.tres" id="6_oidor"]
 [ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
 [ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="14_madnm"]
 [ext_resource type="PackedScene" uid="uid://bf5nwoclk7xkv" path="res://assets/meshes/crane.glb" id="15_s0whf"]
@@ -61,7 +61,7 @@ texture_filter = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eeqs4"]
 albedo_texture = ExtResource("4_tvqfm")
-uv1_scale = Vector3(15, 5, 15)
+uv1_scale = Vector3(23.755, 2.583, 7.75)
 texture_filter = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5s176"]

@@ -125,7 +125,8 @@ func _process(delta: float) -> void:
 					notifAnimPlayer.play("RESET")
 					getUpAppearTimer.start(timeTilGetUp)
 				
-				windowsClick.play()
+				if not emailWindow.visible:
+					windowsClick.play()
 				emailWindow.showWindow()
 	
 	if Input.is_action_just_released("mouseLeft"):
@@ -164,7 +165,7 @@ func getUp() -> void:
 	# Wait till animation is done
 	await animPlayer.animation_finished
 	# Go to other scene
-	get_tree().change_scene_to_file("res://maps/mpOilRigBlockout.tscn")
+	get_tree().change_scene_to_file("res://maps/mpRoomBlockout.tscn")
 
 
 func playAmbience():

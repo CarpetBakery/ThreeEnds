@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://kwkes1spk64y"]
+[gd_scene load_steps=34 format=3 uid="uid://kwkes1spk64y"]
 
 [ext_resource type="Texture2D" uid="uid://bs7tls7un2b8t" path="res://assets/textures/computer/computer background.png" id="1_3sei2"]
 [ext_resource type="Script" path="res://scripts/ComputerManager.gd" id="1_r3phi"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://dokhi4chvvv5" path="res://assets/audio/sfx/computer/windowsnotif.wav" id="13_y63xj"]
 [ext_resource type="AudioStream" uid="uid://c12gwqnajssth" path="res://assets/audio/sfx/stolen/pc_on.wav" id="14_ek1nm"]
 [ext_resource type="AudioStream" uid="uid://cgqtogcdkr1ge" path="res://assets/audio/sfx/stolen/pc_off.wav" id="15_w5eed"]
+[ext_resource type="AudioStream" uid="uid://c1l12eqivfs3e" path="res://assets/audio/sfx/computer/windowsclick.wav" id="16_6emwh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbfkr"]
 size = Vector2(46, 56)
@@ -75,6 +76,33 @@ gradient = SubResource("Gradient_tferh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aurqi"]
 size = Vector2(1, 1)
 
+[sub_resource type="Animation" id="Animation_ag3v5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GetUpLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IntroText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_56lnw"]
 resource_name = "appear"
 length = 2.0
@@ -101,33 +129,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_ag3v5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GetUpLabel:theme_override_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("IntroText:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e4qki"]
@@ -604,7 +605,7 @@ stream = ExtResource("15_w5eed")
 volume_db = -3.749
 
 [node name="WindowsClick" type="AudioStreamPlayer" parent="audio"]
-volume_db = -4.643
+stream = ExtResource("16_6emwh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

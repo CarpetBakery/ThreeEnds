@@ -154,6 +154,10 @@ func _ready():
 	# -- Setup interaction and carrying --
 	# Hide barrel mesh
 	carryBarrel.hide()
+	
+	# If previous scene was a transition, handle that
+	if Global.transition:
+		Global.transition = false
 
 func _input(event):
 	# Look around using the mouse

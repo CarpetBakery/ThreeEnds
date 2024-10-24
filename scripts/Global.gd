@@ -20,6 +20,10 @@ var day: Day = Day.ZERO
 var dayTimer: float = 0
 
 
+# -- Scene transition --
+var transition: bool = false
+
+
 func _ready():
 	# Limit framerate
 	Engine.max_fps = 60
