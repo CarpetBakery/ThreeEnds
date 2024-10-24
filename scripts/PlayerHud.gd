@@ -5,6 +5,7 @@ class_name PlayerHud extends Control
 @export var progressBar: ProgressBar
 @export var black: ColorRect
 @export var animationPlayer: AnimationPlayer
+@export var barsAnimation: AnimationPlayer
 
 @export_category("Dialog")
 @export var dialogParent: Control

@@ -110,3 +110,6 @@ shape = SubResource("BoxShape3D_0xf8c")
 
 [node name="player" parent="." instance=ExtResource("1_85g6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.25, -7)
+canJump = false
+walkFov = 65.0
+sprintFov = 70.0

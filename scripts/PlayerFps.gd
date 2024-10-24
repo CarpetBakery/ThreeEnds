@@ -55,9 +55,9 @@ var freeLookRange: float = deg_to_rad(80.0)
 
 # Fov values
 @export_group("Fov")
-@export var targetFov: float = 80.0
 @export var walkFov: float = 80.0
 @export var sprintFov: float = 85.0
+var targetFov: float = walkFov
 
 
 # -- Nodes --
@@ -155,13 +155,25 @@ func _ready():
 	# Hide barrel mesh
 	carryBarrel.hide()
 	
-	# Transition in
-	
 	# Have to call this, otherwise the camera will be at the world origin for one frame
 	updateCamPos()
+	# Stop camera from doing little zoom every time we load
+	camera.fov = walkFov
 	
+	# Transition in
 	if TransitionManager.transition:
-		addDialog("Well... that was a transition")
+		_transitionStart()
+
+
+func _transitionStart():
+	hud.fade(true)
+	await hud.animationPlayer.animation_finished
+	
+	var scene = get_tree().current_scene.name
+	
+	if scene == "mpRoomBlockout":
+		addDialog("That was a transition")
+		addDialog("did you notice the single gray frame")
 		startDialog()
 
 
@@ -541,11 +553,13 @@ func startDialog() -> void:
 	
 	if hud.playAnimations:
 		# Play animation
-		hud.animationPlayer.play("barsIn")
-		var scaleBefore = hud.animationPlayer.speed_scale
-		hud.animationPlayer.speed_scale = 5
-		await hud.animationPlayer.animation_finished
-		hud.animationPlayer.speed_scale = scaleBefore
+		hud.barsAnimation.play("RESET")
+		
+		hud.barsAnimation.play("barsIn")
+		var scaleBefore = hud.barsAnimation.speed_scale
+		hud.barsAnimation.speed_scale = 5
+		await hud.barsAnimation.animation_finished
+		hud.barsAnimation.speed_scale = scaleBefore
 	
 	# Set text to first message
 	dialogText.text = msg.front()
@@ -570,11 +584,11 @@ func closeDialog() -> void:
 	
 	if hud.playAnimations:
 		# Play animation
-		hud.animationPlayer.play("barsOut")
-		var scaleBefore = hud.animationPlayer.speed_scale
-		hud.animationPlayer.speed_scale = 5
-		await hud.animationPlayer.animation_finished
-		hud.animationPlayer.speed_scale = scaleBefore
+		hud.barsAnimation.play("barsOut")
+		var scaleBefore = hud.barsAnimation.speed_scale
+		hud.barsAnimation.speed_scale = 5
+		await hud.barsAnimation.animation_finished
+		hud.barsAnimation.speed_scale = scaleBefore
 	
 	hud.toggleCinemaBars(false)
 	
