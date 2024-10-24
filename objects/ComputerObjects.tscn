@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://kwkes1spk64y"]
+[gd_scene load_steps=33 format=3 uid="uid://kwkes1spk64y"]
 
 [ext_resource type="Texture2D" uid="uid://bs7tls7un2b8t" path="res://assets/textures/computer/computer background.png" id="1_3sei2"]
 [ext_resource type="Script" path="res://scripts/ComputerManager.gd" id="1_r3phi"]
@@ -75,6 +75,67 @@ gradient = SubResource("Gradient_tferh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aurqi"]
 size = Vector2(1, 1)
 
+[sub_resource type="Animation" id="Animation_56lnw"]
+resource_name = "appear"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GetUpLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IntroText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ag3v5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GetUpLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IntroText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e4qki"]
+_data = {
+"RESET": SubResource("Animation_ag3v5"),
+"appear": SubResource("Animation_56lnw")
+}
+
 [sub_resource type="Animation" id="Animation_imh30"]
 length = 0.001
 tracks/0/type = "value"
@@ -116,19 +177,19 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("audio/ComputerAmbience:playing")
+tracks/3/path = NodePath("OtherUi/IntroText:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("OtherUi/IntroText:visible")
+tracks/4/path = NodePath("icons/EmailIcon/Notif:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -140,26 +201,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("icons/EmailIcon/Notif:visible")
+tracks/5/path = NodePath("audio/PcOn:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("audio/PcOn:playing")
+tracks/6/path = NodePath("OtherUi/White:color")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_gxyc5"]
@@ -192,7 +253,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_tegcl"]
 resource_name = "Intro"
-length = 7.0
+length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -200,7 +261,7 @@ tracks/0/path = NodePath("OtherUi/Black:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5.5, 5.96667),
+"times": PackedFloat32Array(0, 5.5, 7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
@@ -220,64 +281,67 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("audio/ComputerAmbience:playing")
+tracks/2/path = NodePath("OtherUi/IntroText:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.1, 1.13333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("OtherUi/IntroText:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 1.4, 5.5, 5.53333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, true, false]
 }
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(5.95),
-"transitions": PackedFloat32Array(1),
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.1, 6.98333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"playAmbience"
+}, {
 "args": [],
 "method": &"finishIntro"
 }]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("audio/ComputerAmbience:volume_db")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("audio/ComputerAmbience:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(1.1, 1.83333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [9.851, -7.434]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("audio/PcOn:playing")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(5.86667, 5.93333, 5.96667),
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("audio/PcOn:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(6.9, 6.96666, 7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("OtherUi/White:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 6.96666, 7, 7.26666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.313726), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yltgh"]
@@ -287,7 +351,7 @@ _data = {
 "intro": SubResource("Animation_tegcl")
 }
 
-[node name="ComputerObjects" type="Node2D" node_paths=PackedStringArray("cursor", "cursorArea", "emailWindow", "notifIcon", "emailIcon", "emailIconArea", "click", "release", "computerAmbience", "notifSound", "pcOn", "pcOff", "animPlayer", "notifAnimPlayer", "black", "uiParent", "getUpLabel", "introText")]
+[node name="ComputerObjects" type="Node2D" node_paths=PackedStringArray("cursor", "cursorArea", "emailWindow", "notifIcon", "emailIcon", "emailIconArea", "click", "release", "computerAmbience", "notifSound", "pcOn", "pcOff", "windowsClick", "animPlayer", "notifAnimPlayer", "getUpLabelAnim", "black", "uiParent", "getUpLabel", "introText")]
 script = ExtResource("1_r3phi")
 cursor = NodePath("cursor")
 cursorArea = NodePath("cursor/CursorArea")
@@ -301,8 +365,10 @@ computerAmbience = NodePath("audio/ComputerAmbience")
 notifSound = NodePath("audio/NotifSound")
 pcOn = NodePath("audio/PcOn")
 pcOff = NodePath("audio/PcOff")
+windowsClick = NodePath("audio/WindowsClick")
 animPlayer = NodePath("AnimationPlayer")
 notifAnimPlayer = NodePath("icons/EmailIcon/NotifAnimation")
+getUpLabelAnim = NodePath("OtherUi/GetUpLabelAnim")
 black = NodePath("OtherUi/Black")
 uiParent = NodePath("OtherUi")
 getUpLabel = NodePath("OtherUi/GetUpLabel")
@@ -455,11 +521,12 @@ anchor_bottom = 1.0
 offset_left = -224.0
 offset_top = -24.0
 offset_right = 224.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_mf634")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 25
 text = "Press 'E' to get up."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -476,13 +543,13 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="White" type="ColorRect" parent="OtherUi"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="IntroText" type="Label" parent="OtherUi"]
 layout_mode = 1
@@ -502,6 +569,11 @@ theme_override_font_sizes/font_size = 32
 text = "DAY 99999999"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GetUpLabelAnim" type="AnimationPlayer" parent="OtherUi"]
+libraries = {
+"": SubResource("AnimationLibrary_e4qki")
+}
 
 [node name="audio" type="Node" parent="."]
 
@@ -529,6 +601,10 @@ volume_db = -3.749
 
 [node name="PcOff" type="AudioStreamPlayer" parent="audio"]
 stream = ExtResource("15_w5eed")
+volume_db = -3.749
+
+[node name="WindowsClick" type="AudioStreamPlayer" parent="audio"]
+volume_db = -4.643
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

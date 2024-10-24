@@ -24,10 +24,13 @@ class_name ComputerManager extends Node
 @export var notifSound: AudioStreamPlayer
 @export var pcOn: AudioStreamPlayer
 @export var pcOff: AudioStreamPlayer
+@export var windowsClick: AudioStreamPlayer
 
 @export_category("Other UI")
 @export var animPlayer: AnimationPlayer
 @export var notifAnimPlayer: AnimationPlayer
+@export var getUpLabelAnim: AnimationPlayer
+var getUpAppearTimer: Timer = Timer.new()
 @export var black: ColorRect
 @export var uiParent: Control
 @export var getUpLabel: Label
@@ -37,10 +40,14 @@ class_name ComputerManager extends Node
 @export var introText: Label
 
 
+# -- Scene flow --
 ## Whether or not the player can interact with the computer
 var canInteract: bool = true
 ## Can interact with the email icon
 var canInteractEmail: bool = false
+## Can we get up?
+var canGetUp: bool = false
+var timeTilGetUp: float = 4
 
 ## Skip intro
 var skipIntro: bool = false
@@ -50,6 +57,11 @@ func _ready() -> void:
 	# Hide the native mouse cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
+	# Attach timer
+	add_child(getUpAppearTimer)
+	getUpAppearTimer.one_shot = true
+	getUpAppearTimer.timeout.connect(_showGetUpText)
+	
 	# Hide windows
 	emailWindow.hide()
 	
@@ -58,7 +70,7 @@ func _ready() -> void:
 	notifIcon.hide()
 	getUpLabel.hide()
 	
-	if skipIntro:
+	if skipIntro and Global.DEBUG_MODE:
 		finishIntro()
 	else:
 		# Play intro animation
@@ -69,6 +81,7 @@ func _ready() -> void:
 func finishIntro():
 	# Hide intro text
 	introText.hide()
+	introText.text = ""
 	
 	# Allow the player to interact
 	canInteract = true
@@ -110,7 +123,9 @@ func _process(delta: float) -> void:
 				# Stop playing animation 
 				if notifAnimPlayer.is_playing():
 					notifAnimPlayer.play("RESET")
+					getUpAppearTimer.start(timeTilGetUp)
 				
+				windowsClick.play()
 				emailWindow.showWindow()
 	
 	if Input.is_action_just_released("mouseLeft"):
@@ -120,7 +135,19 @@ func _process(delta: float) -> void:
 	
 	# Get up from the desk
 	if Input.is_action_just_pressed("interact"):
-		getUp()
+		if canGetUp:
+			pcOff.play()
+			getUp()
+
+
+func _showGetUpText() -> void:
+	print("Played")
+	getUpLabelAnim.play("appear")
+	canGetUp = true
+	
+	await get_tree().create_timer(0.05).timeout
+	getUpLabel.show()
+	
 
 
 ## Get up from the computer
@@ -138,3 +165,7 @@ func getUp() -> void:
 	await animPlayer.animation_finished
 	# Go to other scene
 	get_tree().change_scene_to_file("res://maps/mpOilRigBlockout.tscn")
+
+
+func playAmbience():
+	computerAmbience.play()
