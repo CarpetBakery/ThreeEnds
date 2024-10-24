@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkl5uauqwgryi"]
+[gd_scene load_steps=9 format=3 uid="uid://bkl5uauqwgryi"]
 
 [ext_resource type="Script" path="res://scripts/PlayerFps.gd" id="1_l6dy0"]
 [ext_resource type="PackedScene" uid="uid://c6nrrp6eh5i5m" path="res://objects/playerHUD.tscn" id="2_qbs1g"]
 [ext_resource type="AudioStream" uid="uid://cbvc8ji846nay" path="res://assets/audio/sfx/footstep_TEMP.wav" id="3_nj3ts"]
+[ext_resource type="AudioStream" uid="uid://dwtnkx5nkgp3u" path="res://assets/audio/sfx/keytap_lowquality.wav" id="4_nedpt"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1f8gl"]
 
@@ -14,7 +15,7 @@ height = 1.2
 [sub_resource type="ViewportTexture" id="ViewportTexture_3083w"]
 viewport_path = NodePath("MainViewport")
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "carrySocket", "carryBarrel", "hud", "screenSurface", "footstepSpeaker")]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "carrySocket", "carryBarrel", "hud", "screenSurface", "footstepSpeaker", "dialogSpeaker")]
 script = ExtResource("1_l6dy0")
 neck = NodePath("Neck")
 head = NodePath("Neck/head")
@@ -29,6 +30,7 @@ carryBarrel = NodePath("MainViewport/CarrySocket/BarrelMesh")
 hud = NodePath("UI/SubViewportContainer/HudViewport/PlayerHud")
 screenSurface = NodePath("UI/ScreenSurface")
 footstepSpeaker = NodePath("Audio/FootstepsTemp")
+dialogSpeaker = NodePath("Audio/DialogSounds")
 
 [node name="MainViewport" type="SubViewport" parent="."]
 handle_input_locally = false
@@ -134,3 +136,7 @@ grow_vertical = 0
 [node name="FootstepsTemp" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("3_nj3ts")
 max_polyphony = 5
+
+[node name="DialogSounds" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_nedpt")
+max_polyphony = 20

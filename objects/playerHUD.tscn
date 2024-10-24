@@ -3,12 +3,14 @@
 [ext_resource type="Script" path="res://scripts/PlayerHud.gd" id="1_o71xv"]
 [ext_resource type="FontFile" uid="uid://du71miqja3wkn" path="res://ui/fonts/Perfect DOS VGA 437.ttf" id="2_30hb3"]
 
-[node name="PlayerHud" type="Control" node_paths=PackedStringArray("interactionText", "progressBar")]
+[node name="PlayerHud" type="Control" node_paths=PackedStringArray("crosshair", "interactionText", "dialogText", "progressBar")]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_o71xv")
+crosshair = NodePath("Crosshair")
 interactionText = NodePath("InteractionText")
+dialogText = NodePath("DialogText")
 progressBar = NodePath("ProgressBar")
 
 [node name="Crosshair" type="ColorRect" parent="."]
@@ -26,6 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InteractionText" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -43,7 +46,26 @@ text = "Interaction text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DialogText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -18.0
+offset_right = 224.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_30hb3")
+theme_override_font_sizes/font_size = 16
+text = "Dialog Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

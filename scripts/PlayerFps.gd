@@ -83,10 +83,12 @@ var freeLookRange: float = deg_to_rad(80.0)
 @export var hud: PlayerHud
 @export var screenSurface: TextureRect
 var interactionText: Label 
+var dialogText: Label
 var progressBar: ProgressBar
 
 # Audio nodes
 @export var footstepSpeaker: AudioStreamPlayer
+@export var dialogSpeaker: AudioStreamPlayer
 
 # -- Input vars --
 var interactPressed: bool = false
@@ -423,23 +425,53 @@ func dropObject():
 func _setupHud():
 	# Setup references
 	interactionText = hud.getInteractionText()
+	dialogText = hud.getDialogText()
 	progressBar = hud.getProgressBar()
 	
 	# Make sure the main surfaces are visible
 	screenSurface.show()
 
 ## Set the interaction text 
-func setInteractionText(string: String):
+func setInteractionText(string: String) -> void:
 	interactionText.text = string
 
 ## Return the hud component
 func getHud() -> PlayerHud:
 	return hud
 
+# - Dialog -
+## Show dialog on screen
+func showDialog(str: String, spd: float = 0.02) -> void:
+	var playFreq = 2
+	
+	dialogText.text = str
+	dialogText.visible_characters = 0
+	
+	# Display characters
+	while dialogText.visible_ratio < 1:
+		dialogText.visible_characters += 1
+		
+		# Play audio
+		if dialogText.visible_characters % playFreq == 0:
+			var sndOffset = randf_range(0, 0.0025 * 40) * 1.5
+			var sndOffsetMax = 0.0025 * 40 * 1.5
+			
+			dialogSpeaker.pitch_scale = randf_range(0.96, 1.04) * 1.3 
+			#dialogSpeaker.volume_db = randf_range(-10, -2) * sndOffset * 40
+			dialogSpeaker.volume_db = (sndOffsetMax - sndOffset) * 40
+			dialogSpeaker.play(sndOffset)
+		
+		# Wait
+		await get_tree().create_timer(spd * randf_range(0.1, 2.3)).timeout
+	
+	await get_tree().create_timer(0.2).timeout
+	dialogText.text = ""
+	
+
 
 # -- Audio --
 ## Play footstep sound
-func _playFootstep():
+func _playFootstep() -> void:
 	## TODO: Determine what material the ground is and play a sound
 	#footstepSpeaker.pitch_scale = randf_range(0.8, 1.2)
 	#footstepSpeaker.play()
