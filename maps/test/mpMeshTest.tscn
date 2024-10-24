@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvdhgcp4nqbwa"]
+[gd_scene load_steps=17 format=3 uid="uid://dvdhgcp4nqbwa"]
 
 [ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_fc38h"]
 [ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_85rlk"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="6_cfrd0"]
 [ext_resource type="PackedScene" uid="uid://ci1h230g3olg7" path="res://assets/meshes/room/desk.glb" id="7_k0fpd"]
 [ext_resource type="PackedScene" uid="uid://n528w5bd0lde" path="res://assets/meshes/room/bed.glb" id="8_a2u6a"]
+[ext_resource type="PackedScene" uid="uid://coux3afea14q7" path="res://assets/meshes/catwalk.glb" id="9_qcvbl"]
+[ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="10_3pq0s"]
+[ext_resource type="PackedScene" uid="uid://bf5nwoclk7xkv" path="res://assets/meshes/crane.glb" id="11_d6cl1"]
+[ext_resource type="PackedScene" uid="uid://dw7qjumplaf1x" path="res://assets/meshes/wallLight.glb" id="12_ehkbi"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_g2xyr"]
 panorama = ExtResource("1_fc38h")
@@ -54,3 +58,15 @@ transform = Transform3D(0.13721, 0, 0, 0, 0.202382, 0, 0, 0, 0.157906, -10.1498,
 
 [node name="bed" parent="." instance=ExtResource("8_a2u6a")]
 transform = Transform3D(0.166569, 0, 0, 0, 0.166569, 0, 0, 0, 0.166569, -7.49541, -0.424216, -1.60663)
+
+[node name="catwalk" parent="." instance=ExtResource("9_qcvbl")]
+transform = Transform3D(0.3103, 0, 0, 0, 0.3103, 0, 0, 0, 0.3103, -4.489, -0.424217, 13.5823)
+
+[node name="commTower" parent="." instance=ExtResource("10_3pq0s")]
+transform = Transform3D(0.344913, 0, 0, 0, 0.344913, 0, 0, 0, 0.344913, -0.925263, -0.424217, 15.6704)
+
+[node name="crane" parent="." instance=ExtResource("11_d6cl1")]
+transform = Transform3D(0.524369, 0, 0, 0, 0.524369, 0, 0, 0, 0.524369, -8.60259, -0.424217, 13.7096)
+
+[node name="wallLight" parent="." instance=ExtResource("12_ehkbi")]
+transform = Transform3D(-4.71899e-09, 0, 0.107958, 0, 0.107958, 0, -0.107958, 0, -4.71899e-09, -2.83956, -0.424217, 6.58571)
