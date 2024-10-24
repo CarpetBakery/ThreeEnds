@@ -13,8 +13,6 @@ func onInteract(_player: PlayerFps):
 	if _player.carryObject == _player.CarryType.BARREL:
 		startHold(_player)
 	else:
-		# playerRef.showDialog("It's a barrel reciever thing...")
-		
 		playerRef.addDialog("It's a barrel reciever thing...")
 		playerRef.addDialog("Not sure what to do with this")
 		playerRef.startDialog()
@@ -26,7 +24,8 @@ func onSuccessfulInteract(_player: PlayerFps):
 		_player.dropObject()
 		addBarrel()
 		
-		playerRef.showDialog("That's barrel #" + str(barrelCount) + ", fuck yeah!")
+		playerRef.addDialog("That's barrel #" + str(barrelCount) + ", hell yeah!")
+		playerRef.startDialog()
 
 func addBarrel():
 	barrelCount += 1

@@ -469,33 +469,6 @@ func getHud() -> PlayerHud:
 
 
 # - Dialog -
-## Show dialog on screen
-func showDialog(string: String, spd: float = 0.02) -> void:
-	var playFreq = 2
-	
-	dialogText.text = string
-	dialogText.visible_characters = 0
-	
-	# Display characters
-	while dialogText.visible_ratio < 1:
-		dialogText.visible_characters += 1
-		
-		# Play audio
-		if dialogText.visible_characters % playFreq == 0:
-			var sndOffset = randf_range(0, 0.0025 * 40) * 1.5
-			var sndOffsetMax = 0.0025 * 40 * 1.5
-			
-			dialogSpeaker.pitch_scale = randf_range(0.96, 1.04) * 1.3 
-			#dialogSpeaker.volume_db = randf_range(-10, -2) * sndOffset * 40
-			dialogSpeaker.volume_db = (sndOffsetMax - sndOffset) * 40
-			dialogSpeaker.play(sndOffset)
-		
-		# Wait
-		await get_tree().create_timer(spd * randf_range(0.1, 2.3)).timeout
-	
-	dialogText.text = ""
-
-
 func _processDialog(_delta: float) -> void:
 	# Handle interaction button input
 	if interactPressed:
@@ -515,7 +488,7 @@ func _processDialog(_delta: float) -> void:
 func _dialogTypeChar() -> void:
 	# How frequently to play the dialog noises
 	var playFreq = 2
-
+	
 	if dialogText.visible_ratio < 1:
 		dialogText.visible_characters += 1
 		

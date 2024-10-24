@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 		var tScale = timer.time_left / max(holdTime, 0)
 		
 		# Update the progress bar in the player's HUD
-		var pBar: ProgressBar = playerRef.getHud().getProgressBar()
+		var pBar: ProgressBar = playerRef.getHud().progressBar
 		# Show progress bar
 		pBar.show()
 		pBar.value = 100 - (tScale * 100)
