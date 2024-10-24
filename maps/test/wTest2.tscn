@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://0dfw8mwjctuu" path="res://maps/test/WaterTest.tscn" id="1_xfwle"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hax27"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_jg8ol"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -10,5 +10,5 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04753, 0.151491, -0.853063)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.143831, -1.35944)
-mesh = SubResource("CapsuleMesh_hax27")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.742026, -2.66219)
+mesh = SubResource("CylinderMesh_jg8ol")

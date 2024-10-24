@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://cvf3kiuk45des" path="res://shaders/new_shader_material.tres" id="1_5vkiq"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_3hyem"]
-size = Vector2(10, 10)
+size = Vector2(100, 100)
 subdivide_width = 200
 subdivide_depth = 200
 orientation = 1
