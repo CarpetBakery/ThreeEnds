@@ -1,3 +1,5 @@
+## -- UNUSED --
+
 class_name DialogManager extends Node
 
 # Components

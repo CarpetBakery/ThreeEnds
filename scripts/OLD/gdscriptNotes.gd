@@ -1,4 +1,4 @@
-## this is just me learning how gdscript works- it's not used anywhere in the game
+## -- UNUSED --
 
 # Class name can be defined like this
 class_name GdScriptNotes
