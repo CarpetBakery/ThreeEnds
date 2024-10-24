@@ -7,10 +7,13 @@ func onInteract(_player: PlayerFps):
 	if (_player.carryObject == _player.CarryType.NONE):
 		startHold(_player)
 	else:
-		print("You're already holding something!")
+		_player.addDialog("You're already holding something.")
+		_player.startDialog() 
 
 func onSuccessfulInteract(_player: PlayerFps):
 	_player.pickupObject(PlayerFps.CarryType.BARREL)
+	
+	_player.startDialog()
 	
 	# NOTE: doesn't get rid of collision
 	#parent.hide()

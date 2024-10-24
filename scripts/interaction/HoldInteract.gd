@@ -71,6 +71,9 @@ func _onTimeout():
 	# Allow player to look again
 	playerRef.freezeMovement = false
 	
+	# Hide progress bar
+	playerRef.getHud().progressBar.hide()
+	
 	onSuccessfulInteract(playerRef)
 
 

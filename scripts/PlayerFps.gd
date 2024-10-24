@@ -232,7 +232,7 @@ func _physics_process(delta):
 		# Reset head position
 		head.position.y = lerp(head.position.y, 0.0, delta * lerpSpd)
 		
-		if Input.is_action_pressed("sprint") and canSprint:
+		if Input.is_action_pressed("sprint") and canSprint and inputDir != Vector2.ZERO:
 			# Sprinting
 			currentSpd = lerp(currentSpd, sprintSpd, delta * lerpSpd)
 			
