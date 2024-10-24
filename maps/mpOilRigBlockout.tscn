@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
 [ext_resource type="Texture2D" uid="uid://dsv66tl33pl8m" path="res://assets/textures/dev/grids/Dark/texture_01.png" id="1_pl5iy"]
-[ext_resource type="Script" path="res://scripts/interaction/Door.gd" id="2_s3teo"]
+[ext_resource type="Script" path="res://scripts/interaction/DoorExterior.gd" id="2_s3teo"]
 [ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="3_gx7hh"]
 [ext_resource type="Script" path="res://scripts/interaction/Barrel.gd" id="4_e40u6"]
 [ext_resource type="AudioStream" uid="uid://cqidkdg84jgsa" path="res://assets/audio/music/ambient3.ogg" id="4_sf2s4"]

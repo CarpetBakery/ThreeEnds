@@ -1,4 +1,4 @@
-class_name Door extends Interactable
+class_name DoorExterior extends Interactable
 
 func onInteract(_player: PlayerFps):
 	match Global.day:

@@ -1,17 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhfec7nodvgih"]
+[gd_scene load_steps=16 format=3 uid="uid://bhfec7nodvgih"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_85g6y"]
 [ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="1_egfkl"]
 [ext_resource type="Material" uid="uid://dj4022ne2tnx6" path="res://assets/materials/BedWood.tres" id="1_jr3nr"]
+[ext_resource type="Script" path="res://scripts/interaction/DoorInterior.gd" id="2_mdcod"]
 [ext_resource type="PackedScene" uid="uid://s3egqwgoi1pv" path="res://assets/meshes/closet.glb" id="3_7mib7"]
 [ext_resource type="PackedScene" uid="uid://n528w5bd0lde" path="res://assets/meshes/room/bed.glb" id="3_eaxmy"]
 [ext_resource type="Texture2D" uid="uid://cwgw4uwt1ajaq" path="res://assets/textures/128x128/Dirt/Dirt_16-128x128.png" id="3_i0iox"]
 [ext_resource type="PackedScene" uid="uid://ci1h230g3olg7" path="res://assets/meshes/room/desk.glb" id="4_avqrk"]
 [ext_resource type="Script" path="res://scripts/interaction/DialogInteractable.gd" id="6_8y0vs"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rpya8"]
+size = Vector3(0.671082, 3.46875, 1.49463)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hif05"]
 albedo_texture = ExtResource("3_i0iox")
-uv1_scale = Vector3(2.5, 1, 1)
+uv1_scale = Vector3(2.5, 3.3, 1)
 texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0n3c6"]
@@ -41,6 +45,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.69812, 1.90324, -10.7945)
 material_override = ExtResource("1_jr3nr")
 use_collision = true
 size = Vector3(0.42395, 3.40527, 1.51514)
+
+[node name="Area3D" type="Area3D" parent="Rookm/DoorPlaceholderf"]
+script = ExtResource("2_mdcod")
+interactionText = "TO EXTERIOR ->"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rookm/DoorPlaceholderf/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0868225, 0, 0.0124512)
+shape = SubResource("BoxShape3D_rpya8")
 
 [node name="Chest" type="CSGBox3D" parent="Rookm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.04999, 0.679234, -5.81222)
