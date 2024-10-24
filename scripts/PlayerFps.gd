@@ -339,10 +339,11 @@ func _processInteraction(delta):
 		var node = rayCastInteract.get_collider()
 		
 		if node is Interactable:
-			if node not in focusedInteractables and node.canFocus:
+			if node not in focusedInteractables:
 				# Add node to focused array and call inFocus
-				node.enterFocus(self)
-				node.focused = true
+				if  node.canFocus:
+					node.enterFocus(self)
+					node.focused = true
 				focusedInteractables.insert(0, node)
 			#else:
 				## Currently colliding node *is* in the list already. Move it to the front
@@ -360,7 +361,8 @@ func _processInteraction(delta):
 			# Temp var for convenience
 			var currentNode: Interactable = focusedInteractables[0]
 			# Call inFocus on Interactable
-			currentNode.inFocus(self)
+			if currentNode.canFocus:
+				currentNode.inFocus(self)
 			
 			# Interact with the object if 'interact' button is pressed
 			if interactPressed and currentNode.canInteract:
@@ -384,8 +386,9 @@ func _processCarry(_delta):
 func _clearFocused():
 	# Call exit focus on each node
 	for i in focusedInteractables:
-		i.focused = false
-		i.exitFocus(self)
+		if i.canFocus:
+			i.focused = false
+			i.exitFocus(self)
 	# Clear focused array
 	focusedInteractables.clear()
 
