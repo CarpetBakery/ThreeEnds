@@ -634,6 +634,6 @@ func startTransition(fadeIn: bool, spd: float = 1):
 func _playFootstep() -> void:
 	## TODO: Determine what material the ground is and play a sound
 	footstepSpeaker.pitch_scale = randf_range(0.9, 1.2)
-	footstepSpeaker.volume_db = randf_range(-14, -9) 
+	footstepSpeaker.volume_db = randf_range(-14, -9) + 4 
 	footstepSpeaker.play()
 	pass
