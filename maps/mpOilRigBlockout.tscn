@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=55 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="5_jd2yi"]
 [ext_resource type="Script" path="res://scripts/interaction/BarrelReceiver.gd" id="5_vkbhv"]
 [ext_resource type="Material" uid="uid://lnuojmwwix77" path="res://assets/materials/Pillars.tres" id="6_oidor"]
+[ext_resource type="Texture2D" uid="uid://cipa4np6cekju" path="res://assets/textures/128x128/Metal/Metal_13-128x128.png" id="7_m611f"]
+[ext_resource type="Texture2D" uid="uid://cgxb7w2g82uwm" path="res://assets/textures/128x128/Metal/Metal_02-128x128.png" id="7_sbyfm"]
 [ext_resource type="Material" uid="uid://0ty16rkmj8ou" path="res://assets/materials/Railing.tres" id="7_vh11f"]
 [ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
 [ext_resource type="Material" uid="uid://dq6f88go8f6kh" path="res://assets/materials/DockFloor.tres" id="8_bdblo"]
@@ -62,6 +64,11 @@ distance_fade_max_distance = 36.45
 material = SubResource("StandardMaterial3D_f44ox")
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdgpy"]
+emission_enabled = true
+emission = Color(0.556953, 0.556953, 0.556953, 1)
+emission_energy_multiplier = 10.3
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oykpb"]
 albedo_texture = ExtResource("2_s46jd")
 uv1_scale = Vector3(10, 5, 1)
@@ -72,13 +79,27 @@ albedo_texture = ExtResource("2_s46jd")
 uv1_scale = Vector3(30, 3, 10)
 texture_filter = 4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eeqs4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oy1iu"]
 albedo_texture = ExtResource("4_tvqfm")
-uv1_scale = Vector3(23.755, 2.583, 7.75)
+uv1_scale = Vector3(20, 5, 20)
 texture_filter = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jlrja"]
 size = Vector3(1.00049, 9.29395, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n88rq"]
+albedo_texture = ExtResource("7_m611f")
+uv1_scale = Vector3(0.5, 1, 1)
+texture_filter = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwfjc"]
+emission_enabled = true
+emission = Color(0.737255, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oifjj"]
+albedo_texture = ExtResource("7_sbyfm")
+uv1_scale = Vector3(0.5, 0.5, 1)
+texture_filter = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5s176"]
 albedo_texture = ExtResource("4_tvqfm")
@@ -92,6 +113,11 @@ size = Vector3(1, 8.45172, 1)
 albedo_texture = ExtResource("5_6n78g")
 uv1_scale = Vector3(9.31, 9.31, 9.31)
 texture_filter = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18d46"]
+emission_enabled = true
+emission = Color(0.952941, 0, 0, 1)
+emission_energy_multiplier = 5.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwm78"]
 size = Vector3(2.22751, 1.99716, 2.19908)
@@ -244,6 +270,21 @@ light_volumetric_fog_energy = 7.083
 spot_range = 9.75
 spot_angle = 53.0594
 
+[node name="BallLight" type="CSGSphere3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8315, -8.06884, 35.3509)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.0577596
+
+[node name="BallLight2" type="CSGSphere3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8315, -8.06884, 41.4223)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.0577596
+
+[node name="BallLight3" type="CSGSphere3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8315, -8.06884, 47.0155)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.0577596
+
 [node name="Platform1" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.125, -0.125)
 material_override = ExtResource("1_4rrst")
@@ -302,7 +343,7 @@ size = Vector3(19.25, 0.5, 39.75)
 
 [node name="Drill 1" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(11.0175, 0, 0, 0, 1, 0, 0, 0, 11.0175, 15.75, 53.875, -11)
-material_override = SubResource("StandardMaterial3D_eeqs4")
+material_override = SubResource("StandardMaterial3D_oy1iu")
 use_collision = true
 size = Vector3(1, 107.25, 1)
 
@@ -311,6 +352,46 @@ size = Vector3(1, 107.25, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Drill 1/StaticBody3D"]
 transform = Transform3D(0.999975, 0, 0, 0, 0.999983, 0, 0, 0, 0.999975, 0.000246167, -43.7474, 0)
 shape = SubResource("BoxShape3D_jlrja")
+
+[node name="DrillSwitch" type="CSGCylinder3D" parent="LevelBlockout"]
+transform = Transform3D(0.575119, -0.818069, 0, 0.818069, 0.575119, 0, 0, 0, 1, 10.3803, 6.82058, -9.5699)
+material_override = SubResource("StandardMaterial3D_n88rq")
+radius = 0.0276864
+height = 1.35427
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelBlockout/DrillSwitch"]
+transform = Transform3D(0.79381, -0.608166, 0, 0.608166, 0.79381, 0, 0, 0, 1, 0.225038, 0.123101, 9.44138e-05)
+size = Vector3(0.252686, 0.802856, 0.175278)
+
+[node name="DrillSwitch2" type="CSGCylinder3D" parent="LevelBlockout"]
+transform = Transform3D(0.575119, -0.818069, 0, 0.818069, 0.575119, 0, 0, 0, 1, 10.3803, 6.82058, 9.99184)
+material_override = SubResource("StandardMaterial3D_n88rq")
+radius = 0.0276864
+height = 1.35427
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LevelBlockout/DrillSwitch2"]
+transform = Transform3D(0.79381, -0.608166, 0, 0.608166, 0.79381, 0, 0, 0, 1, 0.225038, 0.123101, 9.44138e-05)
+size = Vector3(0.252686, 0.802856, 0.175278)
+
+[node name="RedBulb" type="CSGSphere3D" parent="LevelBlockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1267, 7.16049, -9.20827)
+material_override = SubResource("StandardMaterial3D_lwfjc")
+radius = 0.0712328
+
+[node name="RedBulb2" type="CSGSphere3D" parent="LevelBlockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1267, 7.16049, 10.3328)
+material_override = SubResource("StandardMaterial3D_lwfjc")
+radius = 0.0712328
+
+[node name="DrillBox" type="CSGBox3D" parent="LevelBlockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.589, 6.946, -9.41063)
+material_override = SubResource("StandardMaterial3D_oifjj")
+size = Vector3(1, 0.722534, 0.606079)
+
+[node name="DrillBox2" type="CSGBox3D" parent="LevelBlockout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.589, 6.946, 10.1488)
+material_override = SubResource("StandardMaterial3D_oifjj")
+size = Vector3(1, 0.722534, 0.606079)
 
 [node name="Drill 2" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(11.0175, 0, 0, 0, 1, 0, 0, 0, 11.0175, 15.75, 53.125, 12.5)
@@ -578,15 +659,6 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
-
 [node name="RedLight2" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 5.11664, -4.55319, 23.8899)
 
@@ -596,15 +668,6 @@ material_override = ExtResource("7_vh11f")
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
-
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight2"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
 
 [node name="RedLight3" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 5.11664, -4.55319, 9.7302)
@@ -616,15 +679,6 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight3"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247763, 9.11998e-07, -0.00550699, 0.304584, 3.54778, 5.41478, 0.375079)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
-
 [node name="RedLight4" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 5.11664, -4.55319, 7.2503)
 
@@ -635,15 +689,6 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight4"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247763, 9.11998e-07, -0.00550699, 0.304584, 3.54777, 5.41478, 0.375079)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
-
 [node name="RedLight7" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 3.45623, -4.55319, -8.11948)
 
@@ -652,15 +697,6 @@ transform = Transform3D(1, -1.16415e-10, 2.32831e-10, -7.45058e-09, 1, 0, 1.3969
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
-
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight7"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
 
 [node name="RedLight8" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 3.45623, -4.55319, -10.176)
@@ -671,15 +707,6 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight8"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
-
 [node name="RedLight9" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 3.45623, -4.55319, -19.6057)
 
@@ -689,15 +716,6 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight9"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
-
 [node name="RedLight10" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 5.14906, -4.55319, -19.6057)
 
@@ -706,15 +724,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 1.45519e-11, 4.65661e-10, 0, 1, 0, 0, 0)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
-
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight10"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
 
 [node name="RedLight11" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, -8.02458, -4.55319, -19.6057)
@@ -726,15 +735,6 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight11"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369112, 1.63538, 0.0139969, 0.000247761, 9.12e-07, -0.00550697, 0.304584, -0.00935841, 0.0245442, 0.39512)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
-
 [node name="RedLight12" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, -18.7921, -4.55319, -19.6057)
 
@@ -744,15 +744,6 @@ material_override = ExtResource("7_vh11f")
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
-
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight12"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, -0.00801182, 0.102571, 0.5632)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 16.0
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 2.91791
-spot_angle = 15.4493
 
 [node name="RedLight5" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 16.1804, -4.55319, 7.2503)
@@ -764,15 +755,6 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight5"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, 3.52059, 0.26733, 0.375264)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
-
 [node name="RedLight6" type="Node3D" parent="LevelBlockout/catwalkLighting"]
 transform = Transform3D(-0.0420535, 0.611434, -9.53674e-07, 0.0184632, 2.01186e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 16.1804, -4.55319, 9.55585)
 
@@ -783,14 +765,60 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight4" type="SpotLight3D" parent="LevelBlockout/catwalkLighting/RedLight6"]
-transform = Transform3D(-0.00174742, 0.204159, 0.00369113, 1.63538, 0.0139969, 0.000247762, 9.11999e-07, -0.00550698, 0.304584, 3.52059, 0.267332, 0.375264)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
+[node name="CSGSphere3D" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45656, -3.97584, -19.6005)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D5" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45656, -3.97584, -10.176)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D6" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45656, -3.97584, -7.63019)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D11" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(0.99964, 0.0268399, 0, -0.0268399, 0.99964, 0, 0, 0, 1, 5.11834, -3.94189, 23.8891)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D7" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25473, -3.97584, -7.6043)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D8" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25473, -3.97584, -10.0864)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D9" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1832, -3.97584, -10.0385)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D10" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1832, -3.97584, -7.71828)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.01784, -3.97584, -19.6005)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D4" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7941, -3.97584, -19.6005)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="LevelBlockout/catwalkLighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.14627, -3.97584, -19.6005)
+material_override = SubResource("StandardMaterial3D_18d46")
+radius = 0.085227
 
 [node name="2ndStoryRamp2" type="Node3D" parent="LevelBlockout"]
 transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -5.12821, -10.6074, 40.3591)
@@ -1097,38 +1125,79 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
+[node name="BallLight5" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94067e-08, 1.35391e-11, -6.85455e-07, 1, -2.79397e-09, -2.64322e-11, -9.31323e-10, 0.999999, 1.15861, 4.90243, 42.7908)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.258842
+
+[node name="BallLight12" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94067e-08, 1.35391e-11, -6.85455e-07, 1, -2.79397e-09, -2.64322e-11, -9.31323e-10, 0.999999, 1.3519, 4.90243, 32.789)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.279733
+
+[node name="BallLight13" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94067e-08, 1.35391e-11, -6.85455e-07, 1, -2.79397e-09, -2.64322e-11, -9.31323e-10, 0.999999, 1.61337, 4.90243, 19.0917)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.311983
+
+[node name="BallLight11" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94067e-08, 1.35391e-11, -6.85455e-07, 1, -2.79397e-09, -2.64322e-11, -9.31323e-10, 0.999999, 1.01098, 4.90922, 52.7769)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.273304
+
+[node name="BallLight4" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94071e-08, 8.45546e-13, -6.85454e-07, 1, -5.79583e-19, 8.45546e-13, 0, 1, 1.29671, 2.53856, 12.364)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.0577596
+
 [node name="Railing49" type="CSGBox3D" parent="LevelBlockout/Docks"]
 transform = Transform3D(-0.0420535, 0.611434, -6.60186e-07, 0.0184632, 1.96995e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 1.29526, 1.94234, 12.3573)
 snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight" type="SpotLight3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(1, -2.74218e-05, -3.93577e-06, 2.94699e-06, -0.0143075, 0.999899, -2.74753e-05, -0.999898, -0.0143075, 1.31066, 3.23919, 12.328)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
+[node name="BallLight6" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94071e-08, -9.73444e-13, -6.85454e-07, 1, 6.67251e-19, 8.45546e-13, 0, 1, 1.29671, 2.53856, 17.0846)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.0577596
 
-[node name="DockLight2" type="SpotLight3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(1, -2.74218e-05, -3.93577e-06, 2.94699e-06, -0.0143075, 0.999899, -2.74753e-05, -0.999898, -0.0143075, 1.31066, 3.23919, 6.6314)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
+[node name="Railing50" type="CSGBox3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(-0.0420535, 0.611434, -6.60186e-07, 0.0184632, 1.96995e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 1.29526, 1.94234, 17.0779)
+snap = 1e-06
+use_collision = true
+size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="DockLight3" type="SpotLight3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(1, -2.74218e-05, -3.93577e-06, 2.94699e-06, -0.0143075, 0.999899, -2.74753e-05, -0.999898, -0.0143075, 1.31066, 3.23919, 1.0928)
-light_color = Color(0.979388, 0.518187, 0.577516, 1)
-light_energy = 9.838
-light_volumetric_fog_energy = 13.343
-light_specular = 0.525
-spot_range = 1.8193
-spot_angle = 15.4493
+[node name="BallLight7" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94067e-08, -9.69974e-13, -6.85454e-07, 1, -9.31324e-10, -9.69891e-13, -9.31323e-10, 1, 1.29671, 2.55031, 42.2379)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.0577596
+
+[node name="Railing51" type="CSGBox3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(-0.0420535, 0.611434, -6.60187e-07, 0.0184632, 1.96995e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, 1.29526, 1.94234, 42.2313)
+snap = 1e-06
+use_collision = true
+size = Vector3(0.0203617, 0.1692, 0.350708)
+
+[node name="BallLight8" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94071e-08, -9.73444e-13, -6.85454e-07, 1, 6.67251e-19, 8.45546e-13, 0, 1, -6.08386, 2.53856, 42.2379)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.0577596
+
+[node name="Railing52" type="CSGBox3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(-0.0420535, 0.611434, -6.60186e-07, 0.0184632, 1.96995e-05, 3.28261, -4.89694, -0.00524923, 0.0123742, -6.08531, 1.94234, 42.2313)
+snap = 1e-06
+use_collision = true
+size = Vector3(0.0203617, 0.1692, 0.350708)
+
+[node name="BallLight9" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94071e-08, 8.45546e-13, -6.85454e-07, 1, -5.79583e-19, 8.45546e-13, 0, 1, 1.29671, 2.53856, 12.364)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.0577596
+
+[node name="BallLight10" type="CSGSphere3D" parent="LevelBlockout/Docks"]
+transform = Transform3D(1, 8.94071e-08, 8.45546e-13, -6.85454e-07, 1, -5.79583e-19, 8.45546e-13, 0, 1, 1.29671, 2.53856, 12.364)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.0577596
 
 [node name="DockCrates" type="Node3D" parent="LevelBlockout/Docks"]
 transform = Transform3D(1, 8.94071e-08, 0, -6.85454e-07, 1, 0, 0, 0, 1, 5.12821, 10.6074, -40.3591)
@@ -1457,7 +1526,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.52
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sf2s4")
-volume_db = 1.0
+volume_db = 0.495
 pitch_scale = 0.74
 autoplay = true
 parameters/looping = true
