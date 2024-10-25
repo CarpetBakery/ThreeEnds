@@ -38,7 +38,7 @@ func _day2(_player: PlayerFps):
 
 func _day3(_player: PlayerFps):
 	if not Global.dayFinished3:
-		_player.addDialog("I need to turn off the DRILLS.")
+		_player.addDialog("I should wait on the helipad for my FLIGHT.")
 		_player.startDialog()
 	else:
 		gotoRoom(_player)

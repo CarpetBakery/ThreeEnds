@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=77 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
 [ext_resource type="Material" uid="uid://dq6f88go8f6kh" path="res://assets/materials/DockFloor.tres" id="8_bdblo"]
 [ext_resource type="AudioStream" uid="uid://d0an0agc1ece6" path="res://assets/audio/sfx/ShipEnigne.mp3" id="8_olmtc"]
+[ext_resource type="Script" path="res://scripts/interaction/Helipad.gd" id="9_4v0sh"]
 [ext_resource type="Material" uid="uid://d2u0258kgqtut" path="res://assets/materials/DockRamp.tres" id="9_dofji"]
 [ext_resource type="Material" uid="uid://b62hcsjyuiq37" path="res://assets/materials/P1Ramp.tres" id="10_sdomd"]
 [ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="14_madnm"]
@@ -35,6 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://dxkd65f8lfu61" path="res://assets/audio/sfx/DoorClose.wav" id="30_x1lot"]
 [ext_resource type="Texture2D" uid="uid://dy02c6mg7fql8" path="res://assets/textures/128x128/Metal/Metal_06-128x128.png" id="31_oi81h"]
 [ext_resource type="AudioStream" uid="uid://f4m2ea3ywv26" path="res://assets/audio/sfx/Waves.mp3" id="32_02nfb"]
+[ext_resource type="Script" path="res://scripts/interaction/Lifeboat.gd" id="33_b0fe5"]
 [ext_resource type="PackedScene" uid="uid://deri8nfbfipil" path="res://assets/meshes/lifeboat.glb" id="34_yli8q"]
 [ext_resource type="AudioStream" uid="uid://bifdvmuat2ipp" path="res://assets/audio/sfx/VineBoom.mp3" id="35_kjq8q"]
 
@@ -61,6 +63,9 @@ radius = 0.605409
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ekacx"]
 size = Vector3(2.95398, 2, 8.96436)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n862s"]
+size = Vector3(16.4258, 4.7666, 16.7598)
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
@@ -175,6 +180,9 @@ rings = 10
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_irk07"]
 size = Vector3(16.6114, 3.19617, 4.79535)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7kv1"]
+size = Vector3(16.6768, 4.85437, 4.72437)
 
 [sub_resource type="Animation" id="Animation_2l6sj"]
 length = 0.001
@@ -474,6 +482,15 @@ autoplay = true
 parameters/looping = true
 
 [node name="Day3" type="Node3D" parent="."]
+
+[node name="Helipad" type="Area3D" parent="Day3" node_paths=PackedStringArray("playerRef")]
+script = ExtResource("9_4v0sh")
+playerRef = NodePath("../../player")
+interactionText = "Helipad"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day3/Helipad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5239, 7.74294, 18.01)
+shape = SubResource("BoxShape3D_n862s")
 
 [node name="env" type="Node3D" parent="."]
 
@@ -1741,12 +1758,12 @@ transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 0.9311, -9
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
 shape = SubResource("BoxShape3D_rwm78")
 
-[node name="CommsTower" type="Node3D" parent="."]
+[node name="CommsTower" type="Node3D" parent="LevelBlockout"]
 transform = Transform3D(0.5, 0, 0, 0, 0.999374, 0, 0, 0, 0.5, -20.3252, 4.69592, -16.4098)
 
-[node name="commTower" parent="CommsTower" instance=ExtResource("14_madnm")]
+[node name="commTower" parent="LevelBlockout/CommsTower" instance=ExtResource("14_madnm")]
 
-[node name="CommLight" type="SpotLight3D" parent="CommsTower"]
+[node name="CommLight" type="SpotLight3D" parent="LevelBlockout/CommsTower"]
 transform = Transform3D(2, 0, 0, 0, -4.37388e-08, 1.00063, 0, -2, -8.74228e-08, -0.415546, 22.5118, -0.113621)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
 light_energy = 6.95
@@ -1754,10 +1771,10 @@ light_volumetric_fog_energy = 7.083
 spot_range = 7.5
 spot_angle = 63.8724
 
-[node name="Crane" type="Node3D" parent="."]
+[node name="Crane" type="Node3D" parent="LevelBlockout"]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.07, 0.116133, 21.005)
 
-[node name="CraneLight" type="SpotLight3D" parent="Crane"]
+[node name="CraneLight" type="SpotLight3D" parent="LevelBlockout/Crane"]
 transform = Transform3D(-8.74228e-08, 2, 8.74228e-08, 0, -8.74228e-08, 2, 2, 8.74228e-08, 3.82137e-15, -62.0417, 86.2132, 0.158918)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
 light_energy = 6.95
@@ -1765,7 +1782,7 @@ light_volumetric_fog_energy = 7.083
 spot_range = 7.5
 spot_angle = 63.8724
 
-[node name="CraneLight2" type="SpotLight3D" parent="Crane"]
+[node name="CraneLight2" type="SpotLight3D" parent="LevelBlockout/Crane"]
 transform = Transform3D(-8.74228e-08, 2, 8.74228e-08, 0, -8.74228e-08, 2, 2, 8.74228e-08, 3.82137e-15, 0.0106773, 105.293, -0.00758582)
 light_color = Color(0.979388, 0.518187, 0.577516, 1)
 light_energy = 6.95
@@ -1773,86 +1790,87 @@ light_volumetric_fog_energy = 7.083
 spot_range = 7.5
 spot_angle = 63.8724
 
-[node name="crane" parent="Crane" instance=ExtResource("15_s0whf")]
+[node name="crane" parent="LevelBlockout/Crane" instance=ExtResource("15_s0whf")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Crane"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Crane"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Crane/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Crane/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0174675, 14.5841, -0.0198136)
 shape = SubResource("BoxShape3D_1jumv")
 
-[node name="Catwalks" type="Node3D" parent="."]
+[node name="Catwalks" type="Node3D" parent="LevelBlockout"]
 
-[node name="catwalk" parent="Catwalks" instance=ExtResource("16_jrguc")]
+[node name="catwalk" parent="LevelBlockout/Catwalks" instance=ExtResource("16_jrguc")]
 transform = Transform3D(0.477379, 0, 0, 0, 0.541638, 0, 0, 0, 0.497591, 4.27586, -5.26811, 17.0764)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Catwalks/catwalk"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Catwalks/catwalk"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalks/catwalk/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00372028, -0.128479, 0.0553055)
 shape = SubResource("BoxShape3D_w1320")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalks/catwalk/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85173, 0.962357, 0.0277061)
 shape = SubResource("BoxShape3D_lailt")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalks/catwalk/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74752, 0.962357, 0.0277061)
 shape = SubResource("BoxShape3D_lailt")
 
-[node name="catwalk2" parent="Catwalks" instance=ExtResource("16_jrguc")]
+[node name="catwalk2" parent="LevelBlockout/Catwalks" instance=ExtResource("16_jrguc")]
 transform = Transform3D(0.477379, 0, 0, 0, 0.541638, 0, 0, 0, 0.497591, 4.27586, -5.26811, 7.18605)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Catwalks/catwalk2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Catwalks/catwalk2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalks/catwalk2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00372028, -0.128479, 0.0553055)
 shape = SubResource("BoxShape3D_w1320")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalks/catwalk2/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85173, 0.962357, 0.0277061)
 shape = SubResource("BoxShape3D_lailt")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalks/catwalk2/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74752, 0.962357, 0.0277061)
 shape = SubResource("BoxShape3D_lailt")
 
-[node name="catwalk3" parent="Catwalks" instance=ExtResource("16_jrguc")]
+[node name="catwalk3" parent="LevelBlockout/Catwalks" instance=ExtResource("16_jrguc")]
 transform = Transform3D(0.477379, 0, 0, 0, 0.541638, 0, 0, 0, 0.497591, 4.27586, -5.26811, -2.70526)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Catwalks/catwalk3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Catwalks/catwalk3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalks/catwalk3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00372028, -0.128479, 0.0553055)
 shape = SubResource("BoxShape3D_w1320")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalks/catwalk3/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85173, 0.962357, 0.0277061)
 shape = SubResource("BoxShape3D_lailt")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalks/catwalk3/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74752, 0.962357, 0.0277061)
 shape = SubResource("BoxShape3D_lailt")
 
-[node name="catwalk4" parent="Catwalks" instance=ExtResource("16_jrguc")]
+[node name="catwalk4" parent="LevelBlockout/Catwalks" instance=ExtResource("16_jrguc")]
 transform = Transform3D(0.477379, 0, 0, 0, 0.541638, 0, 0, 0, 0.369122, 4.27586, -5.26811, -13.7903)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Catwalks/catwalk4"]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBlockout/Catwalks/catwalk4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Catwalks/catwalk4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk4/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00372028, -0.128479, 0.0553055)
 shape = SubResource("BoxShape3D_w1320")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Catwalks/catwalk4/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk4/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85173, 0.962357, 0.0277061)
 shape = SubResource("BoxShape3D_lailt")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Catwalks/catwalk4/StaticBody3D"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LevelBlockout/Catwalks/catwalk4/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74752, 0.962357, 0.0277061)
 shape = SubResource("BoxShape3D_lailt")
 
-[node name="Water" parent="." instance=ExtResource("17_svn74")]
+[node name="Water" parent="LevelBlockout" instance=ExtResource("17_svn74")]
 transform = Transform3D(2.07567, 0, 0, 0, 2.07567, 0, 0, 0, 2.07567, -14.1329, -10.1796, 36.0313)
+skeleton = NodePath("../..")
 
 [node name="Interaction" type="Node3D" parent="."]
 
@@ -1887,14 +1905,23 @@ transform = Transform3D(3.79641e-16, 8.68517e-09, -0.198694, 0.198694, -8.68517e
 material_override = SubResource("StandardMaterial3D_ah4x5")
 mesh = SubResource("SphereMesh_ecqp3")
 
-[node name="lifeboat" parent="Interaction" instance=ExtResource("34_yli8q")]
+[node name="Lifeboat" type="Area3D" parent="Interaction" node_paths=PackedStringArray("playerRef")]
+script = ExtResource("33_b0fe5")
+playerRef = NodePath("../../player")
+interactionText = "Lifeboat"
+
+[node name="lifeboat" parent="Interaction/Lifeboat" instance=ExtResource("34_yli8q")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.9263, -5.29267, -11.6364)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Interaction/lifeboat"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Interaction/Lifeboat/lifeboat"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction/lifeboat/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction/Lifeboat/lifeboat/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.747513, 1.09808, -0.0931091)
 shape = SubResource("BoxShape3D_irk07")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction/Lifeboat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6937, -3.62346, -11.6818)
+shape = SubResource("BoxShape3D_t7kv1")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Interaction"]
 transform = Transform3D(0.957506, -0.18462, -0.22158, 2.75603e-08, -0.768272, 0.640123, -0.288414, -0.612922, -0.735625, -17.4676, -0.925676, -18.2112)
