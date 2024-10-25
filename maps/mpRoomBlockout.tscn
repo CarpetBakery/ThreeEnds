@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bhfec7nodvgih"]
+[gd_scene load_steps=25 format=3 uid="uid://bhfec7nodvgih"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_85g6y"]
 [ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="1_egfkl"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://ci1h230g3olg7" path="res://assets/meshes/room/desk.glb" id="4_avqrk"]
 [ext_resource type="Script" path="res://scripts/interaction/DialogInteractable.gd" id="6_8y0vs"]
 [ext_resource type="Script" path="res://scripts/interaction/Bed.gd" id="6_m0e0l"]
+[ext_resource type="PackedScene" uid="uid://de2tgcnag613h" path="res://assets/meshes/room/computer-keyboard.glb" id="10_wqkl1"]
+[ext_resource type="PackedScene" uid="uid://ht44s7diqpip" path="res://assets/meshes/room/computer-monitor.glb" id="11_fk2ec"]
+[ext_resource type="PackedScene" uid="uid://ctfoi5w4nt3m0" path="res://assets/meshes/room/computer-tower.glb" id="12_dnc1x"]
+[ext_resource type="PackedScene" uid="uid://bdmemv4j7p8ju" path="res://assets/meshes/room/computer-mouse.glb" id="13_3scwx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rpya8"]
 size = Vector3(0.671082, 3.46875, 1.49463)
@@ -34,15 +38,30 @@ size = Vector3(1.99902, 6.6582, 2.9834)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xf8c"]
 size = Vector3(9.18594, 5.63222, 15.33)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_klte1"]
+size = Vector3(1.79047, 1.11731, 1.36469)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awcll"]
+emission_enabled = true
+emission = Color(0.749886, 0.504957, 0.338254, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="Environment" id="Environment_ns14y"]
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1145
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Rookm" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707069, 0, 1.7074)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Rookm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.27077, 3.44013, -8.37976)
-light_color = Color(0.909804, 0.498039, 0.14902, 1)
-omni_range = 13.3819
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.15783, 3.63563, -8.37976)
+light_color = Color(0.868812, 0.523525, 0.273714, 1)
+light_energy = 1.99
+shadow_enabled = true
+omni_range = 6.739
 
 [node name="DoorPlaceholderf" type="CSGBox3D" parent="Rookm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.69812, 1.90324, -10.7945)
@@ -145,8 +164,38 @@ transform = Transform3D(-6.92097e-09, 0, 0.250261, 0, 0.189292, 0, -0.158333, 0,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 1.52767e-13, 0, 1, -0.0277252, 2.71973, -6.93219)
 shape = SubResource("BoxShape3D_0xf8c")
 
+[node name="Computer" type="Node3D" parent="Rookm"]
+
+[node name="computer-keyboard" parent="Rookm/Computer" instance=ExtResource("10_wqkl1")]
+transform = Transform3D(0.029388, 0, -0.297849, 0, 0.299295, 0, 0.297849, 0, 0.029388, -4.73892, 1.30546, -6.65269)
+
+[node name="computer-monitor" parent="Rookm/Computer" instance=ExtResource("11_fk2ec")]
+transform = Transform3D(-1.11103e-08, 0, -0.254174, 0, 0.254174, 0, 0.254174, 0, -1.11103e-08, -4.61998, 1.26731, -5.70441)
+
+[node name="computer-tower" parent="Rookm/Computer" instance=ExtResource("12_dnc1x")]
+transform = Transform3D(-1.23015e-08, 0, -0.281425, 0, 0.281425, 0, 0.281425, 0, -1.23015e-08, -3.78846, 1.28607, -5.82604)
+
+[node name="computer-mouse" parent="Rookm/Computer" instance=ExtResource("13_3scwx")]
+transform = Transform3D(-0.0315353, 0, -0.229647, 0, 0.231802, 0, 0.229647, 0, -0.0315353, -5.28193, 1.2391, -6.37525)
+
+[node name="Area3D" type="Area3D" parent="Rookm/Computer"]
+script = ExtResource("6_8y0vs")
+dialogLines = Array[String](["My goddamn computer."])
+interactionText = "Computer"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rookm/Computer/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.38916, 1.81546, -5.88679)
+shape = SubResource("BoxShape3D_klte1")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Rookm"]
+transform = Transform3D(0.317222, 0, 0, 0, 0.317222, 0, 0, 0, 0.317222, -3.17105, 4.09427, -8.31307)
+material = SubResource("StandardMaterial3D_awcll")
+
 [node name="player" parent="." instance=ExtResource("1_85g6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.25, -7)
 canJump = false
 walkFov = 65.0
 sprintFov = 70.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ns14y")
