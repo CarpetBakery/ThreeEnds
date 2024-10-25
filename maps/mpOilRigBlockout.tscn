@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=47 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
+[ext_resource type="Material" uid="uid://cyrdta7puqjn6" path="res://assets/materials/CatwalkTex.tres" id="2_ox0mg"]
 [ext_resource type="Script" path="res://scripts/interaction/DoorExterior.gd" id="2_s3teo"]
 [ext_resource type="Texture2D" uid="uid://dplvtioevgb7x" path="res://assets/textures/128x128/Metal/Metal_07-128x128.png" id="2_s46jd"]
 [ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="3_gx7hh"]
@@ -14,10 +15,14 @@
 [ext_resource type="Material" uid="uid://lnuojmwwix77" path="res://assets/materials/Pillars.tres" id="6_oidor"]
 [ext_resource type="Material" uid="uid://0ty16rkmj8ou" path="res://assets/materials/Railing.tres" id="7_vh11f"]
 [ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
+[ext_resource type="Material" uid="uid://dq6f88go8f6kh" path="res://assets/materials/DockFloor.tres" id="8_bdblo"]
+[ext_resource type="Material" uid="uid://d2u0258kgqtut" path="res://assets/materials/DockRamp.tres" id="9_dofji"]
+[ext_resource type="Material" uid="uid://b62hcsjyuiq37" path="res://assets/materials/P1Ramp.tres" id="10_sdomd"]
 [ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="14_madnm"]
 [ext_resource type="PackedScene" uid="uid://bf5nwoclk7xkv" path="res://assets/meshes/crane.glb" id="15_s0whf"]
 [ext_resource type="PackedScene" uid="uid://coux3afea14q7" path="res://assets/meshes/catwalk.glb" id="16_jrguc"]
 [ext_resource type="PackedScene" uid="uid://dlhkd3ps0xtt8" path="res://maps/test/WaterTest.tscn" id="17_svn74"]
+[ext_resource type="PackedScene" uid="uid://dl2ervup3eq7b" path="res://assets/meshes/cargoship.glb" id="20_07w6s"]
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
@@ -208,7 +213,7 @@ size = Vector3(57.25, 0.25, 48.25)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.589739, -5.20883, 23.0251)
 
 [node name="Catwalk" type="CSGBox3D" parent="LevelBlockout/Platform2"]
-material_override = ExtResource("1_4rrst")
+material_override = ExtResource("2_ox0mg")
 use_collision = true
 size = Vector3(11.642, 0.25, 1.94977)
 
@@ -280,7 +285,7 @@ shape = SubResource("BoxShape3D_r7ghc")
 
 [node name="Drill Ramp" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(0.479274, 0.877665, 0, -0.877665, 0.479274, 0, 0, 0, 1, 1.53723, 2.63375, 0)
-material_override = ExtResource("1_4rrst")
+material_override = ExtResource("9_dofji")
 use_collision = true
 size = Vector3(0.25, 11.459, 2.75)
 
@@ -751,20 +756,20 @@ transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -5
 
 [node name="2ndStoryRamp" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(0.866026, 0.5, 0, -0.500001, 0.866027, 0, 0, 0, 1, 0.203181, 8.0742, -15.1527)
-material_override = ExtResource("1_4rrst")
+material_override = ExtResource("9_dofji")
 snap = 1e-06
 use_collision = true
 size = Vector3(10.9897, 0.15, 2.5)
 
 [node name="2ndTopRamp" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(1, -5.96046e-08, 0, -1.49011e-07, 1, 0, 0, 0, 1, -5.6918, 10.8163, -15.133)
-material_override = ExtResource("1_4rrst")
+material_override = ExtResource("10_sdomd")
 use_collision = true
 size = Vector3(2.39927, 0.15, 2.44104)
 
 [node name="2ndBotRamp" type="CSGBox3D" parent="LevelBlockout/2ndStoryRamp2"]
 transform = Transform3D(1, -5.96046e-08, 0, -1.49011e-07, 1, 0, 0, 0, 1, 5.49133, 5.4281, -15.1586)
-material_override = ExtResource("1_4rrst")
+material_override = ExtResource("10_sdomd")
 use_collision = true
 size = Vector3(1.4948, 0.15, 2.44104)
 
@@ -915,17 +920,17 @@ size = Vector3(0.499076, 0.1692, 0.0293057)
 transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -5.12821, -10.6074, 40.3591)
 
 [node name="DockRamp" type="CSGBox3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(-8.25588e-08, 5.55739e-08, -1, -0.500001, 0.866035, 6.85461e-07, 0.866026, 0.5, -4.37114e-08, -0.012795, 3.39509, -12.8409)
-material_override = ExtResource("1_4rrst")
+transform = Transform3D(-8.25588e-08, 5.5574e-08, -1, -0.500001, 0.866036, 6.85462e-07, 0.866026, 0.5, -4.37114e-08, 0.0147929, 3.39509, -12.8409)
+material_override = ExtResource("9_dofji")
 snap = 1e-06
 use_collision = true
-size = Vector3(8.24767, 0.15, 2.5)
+size = Vector3(8.24767, 0.15, 2.55518)
 
 [node name="DockBase" type="CSGBox3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(1, 1.74794e-12, 0, 0, 1, 0, 0, 0, 1, -2.43695, 1.33221, 1.62867)
-material_override = ExtResource("1_4rrst")
+transform = Transform3D(1, 3.04823e-12, 0, 0, 1, 0, 0, 0, 1, -2.43695, 1.33221, 16.4959)
+material_override = ExtResource("8_bdblo")
 use_collision = true
-size = Vector3(7.43249, 0.15, 21.8559)
+size = Vector3(7.43249, 0.15, 51.5904)
 
 [node name="Railing30" type="CSGBox3D" parent="LevelBlockout/Docks"]
 transform = Transform3D(-0.0420535, 0.611434, -6.60188e-07, 0.0184631, 1.96994e-05, 3.28259, -4.89694, -0.00524923, 0.0123742, -1.33214, 5.86404, -16.4247)
@@ -1379,7 +1384,7 @@ layers = 2
 mesh = SubResource("CylinderMesh_p8rbu")
 
 [node name="BarrelReciever" type="Area3D" parent="Interaction" node_paths=PackedStringArray("playerRef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -7.8, 38.588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -7.8, 63.3121)
 script = ExtResource("5_vkbhv")
 playerRef = NodePath("../../player")
 interactionText = "Place barrel"
@@ -1531,3 +1536,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1329, -9.72624, 36.0313)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1934, -8.84054, 34.794)
+
+[node name="cargoship" parent="." instance=ExtResource("20_07w6s")]
+transform = Transform3D(-0.0168417, 0, -0.999858, 0, 1, 0, 0.999858, 0, -0.0168417, 5.66401, 1.11384, 66.0587)
