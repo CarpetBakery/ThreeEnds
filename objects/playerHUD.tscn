@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c6nrrp6eh5i5m"]
+[gd_scene load_steps=20 format=3 uid="uid://c6nrrp6eh5i5m"]
 
 [ext_resource type="Script" path="res://scripts/PlayerHud.gd" id="1_o71xv"]
 [ext_resource type="FontFile" uid="uid://du71miqja3wkn" path="res://ui/fonts/Perfect DOS VGA 437.ttf" id="2_30hb3"]
@@ -315,10 +315,39 @@ tracks/1/keys = {
 "values": ["", "THE RIG", "ENDING 1 OF 3", ""]
 }
 
+[sub_resource type="Animation" id="Animation_jak83"]
+resource_name = "credits2"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits/Credits:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits/Credits:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 5, 8.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["", "THE RIG", "ENDING 3 OF 3", ""]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lg2n5"]
 _data = {
 "RESET": SubResource("Animation_blb0p"),
-"credits": SubResource("Animation_2klnb")
+"credits": SubResource("Animation_2klnb"),
+"credits2": SubResource("Animation_jak83")
 }
 
 [node name="PlayerHud" type="Control" node_paths=PackedStringArray("crosshair", "interactionText", "progressBar", "black", "white", "animationPlayer", "barsAnimation", "dayIntroAnimation", "dialogParent", "dialogText", "cinemaBars", "dayIntro", "daySubtitle", "todoLabel", "todoAnimation", "credits", "creditsLabel")]
@@ -400,8 +429,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -258.93
-offset_right = -258.93
 grow_horizontal = 2
 grow_vertical = 2
 

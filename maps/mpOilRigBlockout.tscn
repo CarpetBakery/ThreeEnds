@@ -1938,8 +1938,9 @@ transform = Transform3D(3.79641e-16, 8.68517e-09, -0.198694, 0.198694, -8.68517e
 material_override = SubResource("StandardMaterial3D_ah4x5")
 mesh = SubResource("SphereMesh_ecqp3")
 
-[node name="Lifeboat" type="Area3D" parent="Interaction" node_paths=PackedStringArray("playerRef")]
+[node name="Lifeboat" type="Area3D" parent="Interaction" node_paths=PackedStringArray("audioFade", "playerRef")]
 script = ExtResource("33_b0fe5")
+audioFade = NodePath("../../AudioFade")
 playerRef = NodePath("../../player")
 interactionText = "Lifeboat"
 
