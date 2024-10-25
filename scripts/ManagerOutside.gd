@@ -1,5 +1,9 @@
 class_name ManagerOutside extends DayManager
 
+@export var player: PlayerFps
+@export var audioFade: AnimationPlayer
+@export var vineBoom: AudioStreamPlayer
+
 # Class for managing state in the map outside
 
 @export_group("Day 1")
@@ -22,6 +26,28 @@ func _ready() -> void:
 		dayParent2.queue_free()
 	if Global.day != Global.Day.THREE:
 		dayParent3.queue_free()
+
+func _process(delta: float) -> void:
+	super(delta)
+	
+	# Kill player below y value
+	if player.position.y < -10 and not player.dying:
+		player.die()
+		audioFade.play("fadeAudio")
+		
+		player.addDialog("I think I am dying.")
+		player.startDialog()
+		
+		await player.dialogFinished
+		
+		vineBoom.play()
+		player.addDialog("ENDING 1 OF 3")
+		player.startDialog()
+		
+		await player.dialogFinished
+		await get_tree().create_timer(3).timeout
+		Global.resetGame()
+		
 
 func _dayProcess1(_delta: float):
 	if not Global.dayFinished1:

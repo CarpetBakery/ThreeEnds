@@ -38,10 +38,14 @@ func _day2(_player: PlayerFps):
 
 func _day3(_player: PlayerFps):
 	if not Global.dayFinished3:
-		gotoRig(_player)
-	else:
-		_player.addDialog("I should go to bed.")
+		_player.addDialog("I need to pack my bags first.")
 		_player.startDialog()
+	else:
+		gotoRig(_player)
+		
+	#else:
+		#_player.addDialog("I should go to bed.")
+		#_player.startDialog()
 
 
 func gotoRig(_player: PlayerFps):

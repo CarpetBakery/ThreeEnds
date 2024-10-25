@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=68 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
@@ -34,6 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://dxkd65f8lfu61" path="res://assets/audio/sfx/DoorClose.wav" id="30_x1lot"]
 [ext_resource type="AudioStream" uid="uid://f4m2ea3ywv26" path="res://assets/audio/sfx/Waves.mp3" id="32_02nfb"]
 [ext_resource type="PackedScene" uid="uid://deri8nfbfipil" path="res://assets/meshes/lifeboat.glb" id="34_yli8q"]
+[ext_resource type="AudioStream" uid="uid://bifdvmuat2ipp" path="res://assets/audio/sfx/VineBoom.mp3" id="35_kjq8q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k1yx0"]
 size = Vector3(1, 0.723633, 0.693298)
@@ -203,8 +204,11 @@ _data = {
 [node name="Node3D2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0248675, -0.00916481, 0.0183249)
 
-[node name="ManagerOutside" type="Node" parent="." node_paths=PackedStringArray("dayParent1", "switchLeft", "switchRight", "dayParent2", "dayParent3")]
+[node name="ManagerOutside" type="Node" parent="." node_paths=PackedStringArray("player", "audioFade", "vineBoom", "dayParent1", "switchLeft", "switchRight", "dayParent2", "dayParent3")]
 script = ExtResource("1_dhgit")
+player = NodePath("../player")
+audioFade = NodePath("../AudioFade")
+vineBoom = NodePath("../Audio/VineBoom")
 dayParent1 = NodePath("../Day1")
 switchLeft = NodePath("../Day1/LeftSwitch")
 switchRight = NodePath("../Day1/RightSwitch")
@@ -1891,3 +1895,6 @@ volume_db = 0.495
 pitch_scale = 0.74
 autoplay = true
 parameters/looping = true
+
+[node name="VineBoom" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("35_kjq8q")

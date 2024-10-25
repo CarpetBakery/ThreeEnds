@@ -39,10 +39,15 @@ func _day2(_player: PlayerFps) -> void:
 
 
 func _day3(_player: PlayerFps) -> void:
-	if Global.dayFinished3:
-		_sleepRoutine(_player)
-	else:
-		cantSleep(_player)
+	_player.addDialog("Today is the day I leave.")
+	_player.addDialog("I cannot miss my flight.")
+	_player.startDialog()
+	
+	pass
+	#if Global.dayFinished3:
+		#_sleepRoutine(_player)
+	#else:
+		#cantSleep(_player)
 
 
 func cantSleep(_player: PlayerFps):

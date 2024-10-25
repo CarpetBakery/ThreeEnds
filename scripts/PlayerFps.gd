@@ -137,6 +137,9 @@ var dialogTimer: Timer = Timer.new()
 # How quickly the dialog displays
 var dialogSpd: float = 0.02
 
+## Whether the player is dying
+var dying: bool = false
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -637,3 +640,9 @@ func _playFootstep() -> void:
 	footstepSpeaker.volume_db = randf_range(-14, -9) + 4 
 	footstepSpeaker.play()
 	pass
+
+
+## You die
+func die() -> void:
+	dying = true
+	startTransition(false, 0.4)

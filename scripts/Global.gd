@@ -15,7 +15,7 @@ enum Day
 	THREE
 }
 ## The current day
-var day: Day = Day.ZERO
+var day: Day = Day.THREE
 ## Timer of the current day
 var dayTimer: float = 0
 
@@ -86,3 +86,12 @@ func setPlayerPos(player: PlayerFps, pos: Vector3, rot: Vector3):
 	player.head.rotation = Vector3(0, 0, 0)
 	player.neck.rotation = Vector3(0, 0, 0)
 	player.eyes.rotation = Vector3(0, 0, 0)
+
+
+func resetGame():
+	day = Day.ZERO
+	dayFinished1 = false
+	dayFinished2 = false
+	dayFinished3 = false
+	
+	TransitionManager.gotoScene("res://maps/mpComputer.tscn")
