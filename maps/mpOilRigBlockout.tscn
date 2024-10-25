@@ -169,7 +169,7 @@ dayParent3 = NodePath("../Day3")
 
 [node name="LeftSwitch" type="Area3D" parent="Day1" node_paths=PackedStringArray("audio", "playerRef")]
 script = ExtResource("27_xc3xa")
-audio = NodePath("AudioStreamPlayer3D")
+audio = NodePath("AudioStreamPlayer3D2")
 playerRef = NodePath("../../player")
 interactionText = "Left oil drill power"
 
@@ -177,14 +177,16 @@ interactionText = "Left oil drill power"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3468, 6.97927, -9.39346)
 shape = SubResource("BoxShape3D_k1yx0")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Day1/LeftSwitch"]
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Day1/LeftSwitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6933, 7.05993, -9.34779)
 stream = ExtResource("3_vljst")
 volume_db = -7.065
+unit_size = 33.23
 
 [node name="RightSwitch" type="Area3D" parent="Day1" node_paths=PackedStringArray("audio", "playerRef")]
 script = ExtResource("27_xc3xa")
 drill = 1
-audio = NodePath("AudioStreamPlayer3D2")
+audio = NodePath("AudioStreamPlayer3D")
 playerRef = NodePath("../../player")
 interactionText = "Right oil drill power"
 
@@ -192,9 +194,11 @@ interactionText = "Right oil drill power"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3468, 6.97927, 10.1463)
 shape = SubResource("BoxShape3D_k1yx0")
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Day1/RightSwitch"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Day1/RightSwitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.81289, 7.04359, 10.1578)
 stream = ExtResource("3_vljst")
 volume_db = -7.065
+unit_size = 33.23
 
 [node name="Day2" type="Node3D" parent="."]
 
@@ -1689,7 +1693,7 @@ transform = Transform3D(3.36, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
 shape = SubResource("BoxShape3D_dcgqm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/Door"]
-transform = Transform3D(3.36, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
+transform = Transform3D(2.57519, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
 material_override = SubResource("StandardMaterial3D_otcsb")
 mesh = SubResource("BoxMesh_ptdk3")
 

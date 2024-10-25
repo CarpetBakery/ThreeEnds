@@ -37,4 +37,4 @@ func inFocus(_player: PlayerFps):
 func onSuccessfulInteract(_player: PlayerFps):
 	print("Working")
 	disabled = true
-	audio.play()
+	audio.play(0.4)

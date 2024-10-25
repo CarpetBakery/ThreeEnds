@@ -15,10 +15,21 @@ enum Day
 	THREE
 }
 ## The current day
-var day: Day = Day.ONE
+var day: Day = Day.ZERO
 ## Timer of the current day
 var dayTimer: float = 0
 
+# -- Day 0 --
+var transitionFromComputer = false
+
+# -- Day 1 --
+var dayFinished1 := false
+
+# -- Day 2 --
+var dayFinished2 := false
+
+# -- Day 3 --
+var dayFinished3 := false
 
 # -- Scene transition --
 var transition: bool = false
@@ -62,3 +73,14 @@ func nextDay() -> void:
 		day = Day.THREE
 	elif day == Day.THREE:
 		day = Day.THREE
+
+
+# -- Helper funcs --
+func setPlayerPos(player: PlayerFps, pos: Vector3, rot: Vector3):
+	player.position = pos
+	#player.rotation = rot
+	player.rotation_degrees = rot
+	
+	player.head.rotation = Vector3(0, 0, 0)
+	player.neck.rotation = Vector3(0, 0, 0)
+	player.eyes.rotation = Vector3(0, 0, 0)

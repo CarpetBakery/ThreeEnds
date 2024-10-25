@@ -18,7 +18,7 @@ func onInteract(_player: PlayerFps):
 
 
 func _day1(_player: PlayerFps):
-	if not manager.day1Complete:
+	if not Global.dayFinished1:
 		_player.addDialog("I need to turn off the DRILLS.")
 		_player.startDialog()
 	else:

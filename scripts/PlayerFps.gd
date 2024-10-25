@@ -19,7 +19,7 @@ var currentSpd: float = 5.0
 # Mouse look sensitivity
 # NOTE: The sensitivity seems to change based on how big you set the viewport... wtf...
 @export_group("Mouse sensitivity")
-@export var mouseSens: float = 0.17
+@export var mouseSens: float = 0.14
 
 # States
 var walking: bool = false
@@ -169,12 +169,6 @@ func _transitionStart():
 	hud.fade(true)
 	await hud.animationPlayer.animation_finished
 	
-	var scene = get_tree().current_scene.name
-	
-	if scene == "mpRoomBlockout":
-		addDialog("That was a transition")
-		addDialog("did you notice the single gray frame")
-		startDialog()
 
 
 func updateCamPos():

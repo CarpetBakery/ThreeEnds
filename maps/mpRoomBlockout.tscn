@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://bhfec7nodvgih"]
+[gd_scene load_steps=31 format=3 uid="uid://bhfec7nodvgih"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_85g6y"]
+[ext_resource type="Script" path="res://scripts/RoomManager.gd" id="1_474uj"]
 [ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="1_egfkl"]
 [ext_resource type="Material" uid="uid://dj4022ne2tnx6" path="res://assets/materials/BedWood.tres" id="1_jr3nr"]
 [ext_resource type="Script" path="res://scripts/interaction/DoorInterior.gd" id="2_mdcod"]
@@ -15,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ctfoi5w4nt3m0" path="res://assets/meshes/room/computer-tower.glb" id="12_dnc1x"]
 [ext_resource type="PackedScene" uid="uid://bdmemv4j7p8ju" path="res://assets/meshes/room/computer-mouse.glb" id="13_3scwx"]
 [ext_resource type="AudioStream" uid="uid://kxcg6jvl2ynh" path="res://assets/audio/music/roomAmbience.ogg" id="15_8me7j"]
+[ext_resource type="AudioStream" uid="uid://bifdvmuat2ipp" path="res://assets/audio/sfx/VineBoom.mp3" id="17_m3rdm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rpya8"]
 size = Vector3(0.671082, 3.46875, 1.49463)
@@ -52,7 +54,48 @@ glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.1145
 
+[sub_resource type="Animation" id="Animation_po0uy"]
+resource_name = "fadeAudio"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_us22o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gvgyx"]
+_data = {
+"RESET": SubResource("Animation_us22o"),
+"fadeAudio": SubResource("Animation_po0uy")
+}
+
 [node name="Node3D" type="Node3D"]
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("1_474uj")
+player = NodePath("../player")
 
 [node name="Rookm" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707069, 0, 1.7074)
@@ -77,11 +120,6 @@ interactionText = "-> TO EXTERIOR"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rookm/DoorPlaceholderf/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0868225, 0, 0.0124512)
 shape = SubResource("BoxShape3D_rpya8")
-
-[node name="Chest" type="CSGBox3D" parent="Rookm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.04999, 0.679234, -5.81222)
-use_collision = true
-size = Vector3(2.63379, 1, 1.25)
 
 [node name="Walls" type="Node3D" parent="Rookm"]
 
@@ -130,8 +168,9 @@ transform = Transform3D(-6.73896e-09, 0, -0.154169, 0, 0.154169, 0, 0.154169, 0,
 transform = Transform3D(1, 0, 3.45679e-12, 0, 1, 0, -3.45679e-12, 0, 1, 0.133923, 2.44604, 7.81817)
 shape = SubResource("BoxShape3D_0n3c6")
 
-[node name="Area3D" type="Area3D" parent="Rookm/bed"]
+[node name="Area3D" type="Area3D" parent="Rookm/bed" node_paths=PackedStringArray("vineBoom")]
 script = ExtResource("6_m0e0l")
+vineBoom = NodePath("../../../vineboom")
 interactionText = "Bed"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rookm/bed/Area3D"]
@@ -202,6 +241,17 @@ sprintFov = 70.0
 environment = SubResource("Environment_ns14y")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53056, 2.32288, -6.45579)
 stream = ExtResource("15_8me7j")
 autoplay = true
+panning_strength = 0.15
 parameters/looping = true
+
+[node name="vineboom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_m3rdm")
+volume_db = -4.082
+
+[node name="Audiofade" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gvgyx")
+}

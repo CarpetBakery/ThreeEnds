@@ -6,7 +6,6 @@ class_name ManagerOutside extends DayManager
 @export var dayParent1: Node3D
 @export var switchLeft: DrillSwitch
 @export var switchRight: DrillSwitch
-var day1Complete: bool = false
 
 @export_group("Day 2")
 @export var dayParent2: Node3D
@@ -25,10 +24,10 @@ func _ready() -> void:
 		dayParent3.queue_free()
 
 func _dayProcess1(_delta: float):
-	if not day1Complete:
+	if not Global.dayFinished1:
 		if switchLeft.disabled and switchRight.disabled:
 			# Day activities completed
-			day1Complete = true
+			Global.dayFinished1 = true
 
 func _dayProcess2(_delta: float):
 	pass

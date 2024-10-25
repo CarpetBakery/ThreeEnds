@@ -50,7 +50,7 @@ var canGetUp: bool = false
 var timeTilGetUp: float = 4
 
 ## Skip intro
-var skipIntro: bool = false
+var skipIntro: bool = true
 
 func _ready() -> void:
 	# -- Do intro --
@@ -165,7 +165,9 @@ func getUp() -> void:
 	# Wait till animation is done
 	await animPlayer.animation_finished
 	# Go to other scene
-	get_tree().change_scene_to_file("res://maps/mpRoomBlockout.tscn")
+	Global.transitionFromComputer = true
+	TransitionManager.gotoScene("res://maps/mpRoomBlockout.tscn")
+	
 
 
 func playAmbience():
