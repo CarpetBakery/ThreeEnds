@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=48 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cqidkdg84jgsa" path="res://assets/audio/music/ambient3.ogg" id="4_sf2s4"]
 [ext_resource type="Texture2D" uid="uid://cwxm5led3a5fp" path="res://assets/textures/128x128/Metal/Metal_11-128x128.png" id="4_tvqfm"]
 [ext_resource type="Texture2D" uid="uid://c3m8bl5r8j28m" path="res://assets/textures/128x128/Metal/Metal_03-128x128.png" id="5_6n78g"]
+[ext_resource type="Material" uid="uid://cqaio7urbx38k" path="res://assets/materials/DrillFloor.tres" id="5_8rdit"]
 [ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="5_jd2yi"]
 [ext_resource type="Script" path="res://scripts/interaction/BarrelReceiver.gd" id="5_vkbhv"]
 [ext_resource type="Material" uid="uid://lnuojmwwix77" path="res://assets/materials/Pillars.tres" id="6_oidor"]
@@ -155,6 +156,46 @@ light_volumetric_fog_energy = 7.083
 spot_range = 7.5
 spot_angle = 63.8724
 
+[node name="SpotLight3D12" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(0.626641, 0.613863, 0.480098, -0.145644, -0.512953, 0.845971, 0.765577, -0.600044, -0.232031, -1.01148, 7.27942, 22.1007)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 11.9078
+spot_angle = 22.7683
+
+[node name="SpotLight3D8" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(0.763413, -2.82337e-08, 0.645911, -0.645911, -3.33698e-08, 0.763413, 7.53182e-16, -1, -4.37114e-08, -3.69504, -5.58857, 59.4601)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="SpotLight3D9" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(0.806579, -2.5839e-08, 0.591127, -0.591127, -3.52567e-08, 0.806579, 3.36313e-17, -1, -4.37114e-08, -3.69504, -5.58857, 73.1932)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="SpotLight3D10" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(0.601843, -3.49086e-08, 0.798615, -0.798615, -2.63074e-08, 0.601843, 3.36313e-17, -1, -4.37114e-08, -3.69504, -5.58857, 83.2059)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="SpotLight3D11" type="SpotLight3D" parent="LevelBlockout/Lighting"]
+transform = Transform3D(0.601843, -3.49086e-08, 0.798615, -0.798615, -2.63074e-08, 0.601843, 3.36313e-17, -1, -4.37114e-08, -3.68499, -5.57233, 93.2468)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
 [node name="SpotLight3D7" type="SpotLight3D" parent="LevelBlockout/Lighting"]
 transform = Transform3D(-0.482963, -0.595035, 0.642402, 0.12941, 0.677077, 0.724444, -0.866025, 0.433013, -0.25, -23.25, 4.25, -5.75)
 light_color = Color(0.849441, 0.835552, 0.733714, 1)
@@ -254,8 +295,8 @@ use_collision = true
 size = Vector3(19.25, 4.75, 13)
 
 [node name="Drill Floor" type="CSGBox3D" parent="LevelBlockout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.125, 5.25, 0.625001)
-material_override = ExtResource("1_4rrst")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1289, 5.23768, 0.360397)
+material_override = ExtResource("5_8rdit")
 use_collision = true
 size = Vector3(19.25, 0.5, 39.75)
 
@@ -417,7 +458,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4886, -4.71741, -17.9464)
 
 [node name="Helipad Ramp" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
 transform = Transform3D(0.866026, 0.5, 0, -0.5, 0.866026, 0, 0, 0, 1, -26.6473, 2.39774, 6.90174)
-material_override = ExtResource("1_4rrst")
+material_override = ExtResource("2_ox0mg")
 snap = 1e-06
 use_collision = true
 size = Vector3(9.3512, 0.15, 2.5)
@@ -518,7 +559,7 @@ size = Vector3(0.154211, 0.15, 0.0529961)
 
 [node name="HelipadTopRamp" type="CSGBox3D" parent="LevelBlockout/Helipad/HelipadRamp"]
 transform = Transform3D(1, -8.9407e-08, 0, 6.85453e-07, 0.999999, 0, 0, 0, 1, -31.222, 4.71527, 6.80266)
-material_override = ExtResource("1_4rrst")
+material_override = ExtResource("10_sdomd")
 use_collision = true
 size = Vector3(1.12486, 0.15, 2.28369)
 
@@ -1394,7 +1435,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_ekacx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/BarrelReciever"]
-transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, -1.3, 0)
+transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 0.354743, 0)
 mesh = SubResource("BoxMesh_8bgkk")
 
 [node name="Door" type="Area3D" parent="Interaction"]
@@ -1533,9 +1574,6 @@ shape = SubResource("BoxShape3D_lailt")
 
 [node name="Water" parent="." instance=ExtResource("17_svn74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1329, -9.72624, 36.0313)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1934, -8.84054, 34.794)
 
 [node name="cargoship" parent="." instance=ExtResource("20_07w6s")]
 transform = Transform3D(-0.0168417, 0, -0.999858, 0, 1, 0, 0.999858, 0, -0.0168417, 5.66401, 1.11384, 66.0587)
