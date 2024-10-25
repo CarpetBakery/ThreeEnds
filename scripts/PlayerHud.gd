@@ -18,6 +18,10 @@ class_name PlayerHud extends Control
 @export var dayIntro: Label
 @export var daySubtitle: Label
 
+@export_category("Credits")
+@export var credits: AnimationPlayer
+@export var creditsLabel: Label
+
 ## Whether or not to play UI animations
 @export var playAnimations: bool = false
 
@@ -35,6 +39,8 @@ func _ready() -> void:
 	
 	dayIntro.hide()
 	daySubtitle.hide()
+	
+	creditsLabel.hide()
 	
 	# Set up dialog
 	dialogText.text = ""

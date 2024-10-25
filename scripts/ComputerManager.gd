@@ -66,9 +66,10 @@ func _ready() -> void:
 	emailWindow.hide()
 	
 	uiParent.show()
-	black.hide()
+	black.show()
 	notifIcon.hide()
 	getUpLabel.hide()
+	introText.hide()
 	
 	if skipIntro and Global.DEBUG_MODE:
 		finishIntro()

@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 		await player.dialogFinished
 		
 		vineBoom.play()
-		player.addDialog("ENDING 1 OF 3")
+		player.addDialog("ENDING 2 OF 3")
 		player.startDialog()
 		
 		await player.dialogFinished

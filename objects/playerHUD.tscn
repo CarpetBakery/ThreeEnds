@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6nrrp6eh5i5m"]
+[gd_scene load_steps=16 format=3 uid="uid://c6nrrp6eh5i5m"]
 
 [ext_resource type="Script" path="res://scripts/PlayerHud.gd" id="1_o71xv"]
 [ext_resource type="FontFile" uid="uid://du71miqja3wkn" path="res://ui/fonts/Perfect DOS VGA 437.ttf" id="2_30hb3"]
@@ -200,7 +200,68 @@ _data = {
 "fadeToBlack": SubResource("Animation_7eusj")
 }
 
-[node name="PlayerHud" type="Control" node_paths=PackedStringArray("crosshair", "interactionText", "progressBar", "black", "white", "animationPlayer", "barsAnimation", "dayIntroAnimation", "dialogParent", "dialogText", "cinemaBars", "dayIntro", "daySubtitle")]
+[sub_resource type="Animation" id="Animation_2klnb"]
+resource_name = "credits"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits/Credits:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits/Credits:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 5, 8.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["", "THE RIG", "ENDING 1 OF 3", ""]
+}
+
+[sub_resource type="Animation" id="Animation_blb0p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits/Credits:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits/Credits:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["THE RIG"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lg2n5"]
+_data = {
+"RESET": SubResource("Animation_blb0p"),
+"credits": SubResource("Animation_2klnb")
+}
+
+[node name="PlayerHud" type="Control" node_paths=PackedStringArray("crosshair", "interactionText", "progressBar", "black", "white", "animationPlayer", "barsAnimation", "dayIntroAnimation", "dialogParent", "dialogText", "cinemaBars", "dayIntro", "daySubtitle", "credits", "creditsLabel")]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
 anchors_preset = 0
@@ -218,6 +279,8 @@ dialogText = NodePath("Dialog/DialogText")
 cinemaBars = [NodePath("Dialog/CinemaBar1"), NodePath("Dialog/CinemaBar2")]
 dayIntro = NodePath("SleepGraphics/DayIntro")
 daySubtitle = NodePath("SleepGraphics/DayIntroSubtitle")
+credits = NodePath("CreditsAnimation")
+creditsLabel = NodePath("Credits/Credits")
 
 [node name="Crosshair" type="ColorRect" parent="."]
 layout_mode = 1
@@ -268,7 +331,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Black" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -316,6 +378,7 @@ grow_vertical = 0
 color = Color(0, 0, 0, 1)
 
 [node name="DialogText" type="Label" parent="Dialog"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -362,6 +425,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DayIntro" type="Label" parent="SleepGraphics"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -384,6 +448,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DayIntroSubtitle" type="Label" parent="SleepGraphics"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -410,6 +475,36 @@ libraries = {
 "": SubResource("AnimationLibrary_5is5k")
 }
 
+[node name="Credits" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Credits" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -11.5
+offset_right = 37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_30hb3")
+theme_override_font_sizes/font_size = 16
+text = "THE RIG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="FadeAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tmrbl")
@@ -418,4 +513,9 @@ libraries = {
 [node name="BarsAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tmrbl")
+}
+
+[node name="CreditsAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lg2n5")
 }

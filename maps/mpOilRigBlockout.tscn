@@ -493,8 +493,9 @@ parameters/looping = true
 
 [node name="Day3" type="Node3D" parent="."]
 
-[node name="Helipad" type="Area3D" parent="Day3" node_paths=PackedStringArray("playerRef")]
+[node name="Helipad" type="Area3D" parent="Day3" node_paths=PackedStringArray("audioFade", "playerRef")]
 script = ExtResource("9_4v0sh")
+audioFade = NodePath("../../AudioFade")
 playerRef = NodePath("../../player")
 interactionText = "Helipad"
 
@@ -508,7 +509,7 @@ shape = SubResource("BoxShape3D_n862s")
 environment = SubResource("Environment_jhmsr")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="env"]
-transform = Transform3D(8.64588, 0, 0, 0, 2.7766, 0, 0, 0, 18.3314, -4.93701, 26.4058, 39.052)
+transform = Transform3D(10.2003, 0, 0, 0, 2.7766, 0, 0, 0, 18.3314, -10.9054, 26.4058, 39.052)
 cast_shadow = 0
 amount = 2000
 lifetime = 14.45
