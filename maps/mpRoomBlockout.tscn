@@ -192,7 +192,7 @@ transform = Transform3D(0.317222, 0, 0, 0, 0.317222, 0, 0, 0, 0.317222, -3.17105
 material = SubResource("StandardMaterial3D_awcll")
 
 [node name="player" parent="." instance=ExtResource("1_85g6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0.25, -7)
+transform = Transform3D(-0.26421, 0, 0.964465, 0, 1, 0, -0.964465, 0, -0.26421, 1.46535, 0.25, -7.90921)
 canJump = false
 walkFov = 65.0
 sprintFov = 70.0

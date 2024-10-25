@@ -12,6 +12,9 @@ class_name PlayerHud extends Control
 @export var dialogText: Label
 @export var cinemaBars: Array[ColorRect]
 
+@export_category("Sleep")
+@export var dayIntro: Label
+
 ## Whether or not to play UI animations
 @export var playAnimations: bool = false
 
