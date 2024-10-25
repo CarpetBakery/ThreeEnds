@@ -625,6 +625,12 @@ func startTransition(fadeIn: bool, spd: float = 1):
 	
 	# Fade out and transition to other scene
 	hud.fade(fadeIn, spd)
+	
+	if fadeIn:
+		await hud.animationPlayer.animation_finished
+		# Allow player to move again
+		freezeMovement = false
+		canInteract = true
 
 
 # -- Audio --
