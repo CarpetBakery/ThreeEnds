@@ -77,6 +77,9 @@ func _ready() -> void:
 		# Play intro animation
 		canInteract = false
 		animPlayer.play("intro")
+	
+	await animPlayer.animation_finished
+	
 
 
 func finishIntro():

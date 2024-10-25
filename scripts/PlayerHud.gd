@@ -18,6 +18,9 @@ class_name PlayerHud extends Control
 @export var dayIntro: Label
 @export var daySubtitle: Label
 
+@export_category("Todo")
+@export var todoAnimation: AnimationPlayer
+
 @export_category("Credits")
 @export var credits: AnimationPlayer
 @export var creditsLabel: Label
