@@ -13,7 +13,7 @@ func onInteract(_player: PlayerFps):
 	if _player.carryObject == _player.CarryType.BARREL:
 		startHold(_player)
 	else:
-		if Global.dayFinished2:
+		if not Global.dayFinished2:
 			playerRef.addDialog("The ship is waiting for its oil...")
 		else:
 			playerRef.addDialog("The ship is full.")

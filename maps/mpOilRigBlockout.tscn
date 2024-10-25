@@ -922,6 +922,7 @@ size = Vector3(1.12486, 0.15, 2.28369)
 
 [node name="BoatCrane" type="CSGBox3D" parent="LevelBlockout"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3638, -3.67343, -15.0971)
+visible = false
 size = Vector3(1.18848, 2.83905, 1)
 
 [node name="catwalkLighting" type="Node3D" parent="LevelBlockout"]

@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 	super(delta)
 	
 	# Kill player below y value
-	if player.position.y < -10 and not player.dying:
+	if player.position.y < -20 and not player.dying:
 		player.die()
 		audioFade.play("fadeAudio")
 		

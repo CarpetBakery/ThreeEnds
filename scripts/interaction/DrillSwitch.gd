@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func onInteract(_player: PlayerFps):
 	if disabled:
-		_player.addDialog("The drill is already off")
+		_player.addDialog("The drill is already off.")
 		_player.startDialog()
 		return
 	
