@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvdhgcp4nqbwa"]
+[gd_scene load_steps=18 format=3 uid="uid://dvdhgcp4nqbwa"]
 
 [ext_resource type="Texture2D" uid="uid://dvw4wya6apiut" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_fc38h"]
 [ext_resource type="Texture2D" uid="uid://dflihjofrhrwh" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="2_85rlk"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="10_3pq0s"]
 [ext_resource type="PackedScene" uid="uid://bf5nwoclk7xkv" path="res://assets/meshes/crane.glb" id="11_d6cl1"]
 [ext_resource type="PackedScene" uid="uid://dw7qjumplaf1x" path="res://assets/meshes/wallLight.glb" id="12_ehkbi"]
+[ext_resource type="PackedScene" uid="uid://dl2ervup3eq7b" path="res://assets/meshes/cargoship.glb" id="13_bk7w7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_g2xyr"]
 panorama = ExtResource("1_fc38h")
@@ -70,3 +71,6 @@ transform = Transform3D(0.524369, 0, 0, 0, 0.524369, 0, 0, 0, 0.524369, -8.60259
 
 [node name="wallLight" parent="." instance=ExtResource("12_ehkbi")]
 transform = Transform3D(-4.71899e-09, 0, 0.107958, 0, 0.107958, 0, -0.107958, 0, -4.71899e-09, -2.83956, -0.424217, 6.58571)
+
+[node name="cargoship" parent="." instance=ExtResource("13_bk7w7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152671, 10.0975, -23.4558)

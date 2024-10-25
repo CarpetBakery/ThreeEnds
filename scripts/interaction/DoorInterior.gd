@@ -15,10 +15,9 @@ func onInteract(_player: PlayerFps):
 
 
 func _day0(_player: PlayerFps):
-	#_player.addDialog("If you're seeing this, I messsed up")
-	#_player.startDialog()
-#
-	#await _player.dialogFinished
+	pass
+
+func _day1(_player: PlayerFps):
 	# Don't allow the player to move
 	_player.freezeMovement = true
 	_player.canInteract = false
@@ -29,10 +28,6 @@ func _day0(_player: PlayerFps):
 	
 	#await get_tree().create_timer(1.3).timeout
 	TransitionManager.gotoScenePacked(MP_OIL_RIG_BLOCKOUT)
-
-func _day1(_player: PlayerFps):
-	_player.addDialog("I need to turn off the DRILLS.")
-	_player.startDialog()
 	
 
 
