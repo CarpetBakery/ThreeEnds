@@ -36,10 +36,15 @@ func _day3(_player: PlayerFps) -> void:
 func _sleepRoutine(_player: PlayerFps) -> void:
 	print("Thjat worked")
 	
+	# TODO:
 	# Fade to black
 	# Advance the day
-	Global.nextDay()
+	
+	_player.startTransition(true)
 	
 	_player.addDialog("goodnight")
 	_player.addDialog("The day is now " + str(Global.day))
 	_player.startDialog()
+	
+	
+	Global.nextDay()

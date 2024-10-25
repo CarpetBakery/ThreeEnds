@@ -20,20 +20,11 @@ func _day0(_player: PlayerFps):
 
 
 func _day1(_player: PlayerFps):
-	# Don't allow the player to move
-	#_player.freezeMovement = true
-	#_player.canInteract = false
-	#
-	## Fade out and transition to other scene
-	#_player.hud.fade(false)
-	#await _player.hud.animationPlayer.animation_finished
-	#
 	_player.startTransition(false)
 	await _player.hud.animationPlayer.animation_finished
 	
 	#await get_tree().create_timer(1.3).timeout
 	TransitionManager.gotoScenePacked(MP_OIL_RIG_BLOCKOUT)
-	
 
 
 func _day2(_player: PlayerFps):
