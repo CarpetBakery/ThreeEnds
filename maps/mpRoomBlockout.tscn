@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bhfec7nodvgih"]
+[gd_scene load_steps=42 format=3 uid="uid://bhfec7nodvgih"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_85g6y"]
 [ext_resource type="Script" path="res://scripts/RoomManager.gd" id="1_474uj"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cwgw4uwt1ajaq" path="res://assets/textures/128x128/Dirt/Dirt_16-128x128.png" id="3_i0iox"]
 [ext_resource type="PackedScene" uid="uid://ci1h230g3olg7" path="res://assets/meshes/room/desk.glb" id="4_avqrk"]
 [ext_resource type="AudioStream" uid="uid://c2aq7rb28aoo2" path="res://assets/audio/sfx/DoorOpen.wav" id="4_j4mt4"]
+[ext_resource type="Texture2D" uid="uid://dy02c6mg7fql8" path="res://assets/textures/128x128/Metal/Metal_06-128x128.png" id="5_8h23s"]
 [ext_resource type="Script" path="res://scripts/interaction/DialogInteractable.gd" id="6_8y0vs"]
 [ext_resource type="Script" path="res://scripts/interaction/Bed.gd" id="6_m0e0l"]
 [ext_resource type="Script" path="res://scripts/interaction/Closet.gd" id="10_fktsp"]
@@ -23,6 +24,13 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rpya8"]
 size = Vector3(0.671082, 3.46875, 1.49463)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6h64"]
+albedo_texture = ExtResource("5_8h23s")
+
+[sub_resource type="SphereMesh" id="SphereMesh_oqecu"]
+radial_segments = 10
+rings = 10
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hif05"]
 albedo_texture = ExtResource("3_i0iox")
@@ -54,6 +62,13 @@ emission_energy_multiplier = 16.0
 
 [sub_resource type="Environment" id="Environment_ns14y"]
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.60266, 0.333709, 0.225197, 1)
+fog_light_energy = 0.72
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 26.4
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.1145
 
@@ -106,7 +121,24 @@ tangential_accel_min = -0.140002
 tangential_accel_max = 0.0999978
 turbulence_noise_strength = 2.15
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tig3k"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f44ox"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_distance = 30.43
+distance_fade_mode = 1
+distance_fade_max_distance = 36.45
+
+[sub_resource type="QuadMesh" id="QuadMesh_8x4t8"]
+material = SubResource("StandardMaterial3D_f44ox")
+size = Vector2(0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwff6"]
+emission = Color(0.862216, 0.418308, 0.0148572, 1)
 emission_energy_multiplier = 1.96
 billboard_mode = 3
 billboard_keep_scale = true
@@ -116,7 +148,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_qoun0"]
 lightmap_size_hint = Vector2i(2, 2)
-material = SubResource("StandardMaterial3D_tig3k")
+material = SubResource("StandardMaterial3D_xwff6")
 size = Vector2(0.025, 0.025)
 
 [node name="Node3D" type="Node3D"]
@@ -137,7 +169,7 @@ shadow_enabled = true
 omni_range = 6.739
 
 [node name="DoorPlaceholderf" type="CSGBox3D" parent="Rookm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.69812, 1.90324, -10.7945)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.89551, 1.90324, -10.7945)
 material_override = ExtResource("1_jr3nr")
 use_collision = true
 size = Vector3(0.42395, 3.40527, 1.51514)
@@ -153,6 +185,11 @@ shape = SubResource("BoxShape3D_rpya8")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rookm/DoorPlaceholderf"]
 stream = ExtResource("4_j4mt4")
 volume_db = -18.527
+
+[node name="DoorKnob" type="MeshInstance3D" parent="Rookm/DoorPlaceholderf"]
+transform = Transform3D(-8.68517e-09, -0.198694, 0, 0.198694, -8.68517e-09, 0, 0, 0, 0.198694, 0.229041, -0.320733, 0.537333)
+material_override = SubResource("StandardMaterial3D_q6h64")
+mesh = SubResource("SphereMesh_oqecu")
 
 [node name="Walls" type="Node3D" parent="Rookm"]
 
@@ -289,16 +326,39 @@ parameters/looping = true
 stream = ExtResource("17_m3rdm")
 volume_db = -4.082
 
+[node name="DayIntro" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Audiofade")
+
 [node name="Audiofade" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gvgyx")
 }
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
 transform = Transform3D(1.1136, 0, 0, 0, 1, 0, 0, 0, 1.0317, -2.69465, 3.41931, -6.47546)
+visible = false
 cast_shadow = 0
-emitting = false
-amount = 203
+amount = 200
+lifetime = 9.66
+preprocess = 19.52
+randomness = 0.47
+process_material = SubResource("ParticleProcessMaterial_0eibx")
+draw_pass_1 = SubResource("QuadMesh_8x4t8")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.1136, 0, 0, 0, 1, 0, 0, 0, 1.0317, -1.87295, 3.41931, -6.47546)
+cast_shadow = 0
+amount = 90
+lifetime = 9.66
+preprocess = 4.87
+randomness = 0.47
+process_material = SubResource("ParticleProcessMaterial_0eibx")
+draw_pass_1 = SubResource("QuadMesh_qoun0")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.202859, 0, 0, 0, 0.183132, 0, 0, 0, 0.233303, -2.45993, 3.68843, -6.36361)
+cast_shadow = 0
+amount = 10
 lifetime = 9.66
 preprocess = 4.87
 randomness = 0.47

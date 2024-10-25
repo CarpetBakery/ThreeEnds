@@ -16,6 +16,7 @@ class_name PlayerHud extends Control
 
 @export_category("Sleep")
 @export var dayIntro: Label
+@export var daySubtitle: Label
 
 ## Whether or not to play UI animations
 @export var playAnimations: bool = false
@@ -33,6 +34,7 @@ func _ready() -> void:
 	toggleCinemaBars(true)
 	
 	dayIntro.hide()
+	daySubtitle.hide()
 	
 	# Set up dialog
 	dialogText.text = ""
@@ -53,4 +55,8 @@ func fade(fadeIn: bool, spd: float = 1) -> void:
 		animationPlayer.play("fadeFromBlack")
 	else:
 		animationPlayer.play("fadeToBlack")
-	
+
+
+func setDayIntroText(title: String, subtitle: String):
+	dayIntro.text = title
+	daySubtitle.text = subtitle

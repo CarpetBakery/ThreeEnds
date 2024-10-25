@@ -90,16 +90,22 @@ func _sleepRoutine(_player: PlayerFps) -> void:
 	_player.startTransition(true, 9999)
 	
 	_player.hud.dayIntro.show()
+	_player.hud.daySubtitle.show()
+	
 	if Global.day == Global.Day.ONE:
-		_player.hud.dayIntro.text = "Day 1"
+		_player.hud.dayIntro.text = "DAY 1"
+		_player.hud.daySubtitle.text = "2 DAYS UNTIL FLIGHT"
 	if Global.day == Global.Day.TWO:
-		_player.hud.dayIntro.text = "Day 2"
+		_player.hud.dayIntro.text = "DAY 2"
+		_player.hud.daySubtitle.text = "1 DAY UNTIL FLIGHT"
 	if Global.day == Global.Day.THREE:
-		_player.hud.dayIntro.text = "Day 3"
+		_player.hud.dayIntro.text = "DAY 3"
+		_player.hud.daySubtitle.text = "DAY OF FLIGHT"
 	
 	await _player.hud.animationPlayer.animation_finished
 	
 	await get_tree().create_timer(3).timeout
 	_player.hud.dayIntro.hide()
+	_player.hud.daySubtitle.hide()
 	
 	
