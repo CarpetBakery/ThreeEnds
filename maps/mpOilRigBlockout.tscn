@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=73 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
@@ -45,6 +45,9 @@ size = Vector3(1, 0.723633, 0.693298)
 emission_enabled = true
 emission = Color(0.556953, 0.556953, 0.556953, 1)
 emission_energy_multiplier = 10.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6y41w"]
+size = Vector3(58.2396, 9.2937, 2.01233)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4kr8y"]
 height = 3.66842
@@ -169,6 +172,9 @@ albedo_texture = ExtResource("31_oi81h")
 [sub_resource type="SphereMesh" id="SphereMesh_ecqp3"]
 radial_segments = 10
 rings = 10
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_irk07"]
+size = Vector3(16.6114, 3.19617, 4.79535)
 
 [sub_resource type="Animation" id="Animation_2l6sj"]
 length = 0.001
@@ -312,6 +318,12 @@ spot_angle = 63.8724
 transform = Transform3D(-0.0168417, -9.31186e-10, 0.999857, -1.3074e-12, 0.999999, -2.79397e-09, -0.999858, 1.59906e-11, -0.0168417, -6.45238, -6.81881, 9.28884)
 material_override = SubResource("StandardMaterial3D_tdgpy")
 radius = 0.311983
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Day2/cargoship"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day2/cargoship/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.96002, -5.04515, 8.3545)
+shape = SubResource("BoxShape3D_6y41w")
 
 [node name="Barrel" type="StaticBody3D" parent="Day2"]
 transform = Transform3D(-0.0911019, 0, 0.995842, 0, 1, 0, -0.995842, 0, -0.0911019, -10.5, -8.21214, 32.588)
@@ -1877,6 +1889,12 @@ mesh = SubResource("SphereMesh_ecqp3")
 
 [node name="lifeboat" parent="Interaction" instance=ExtResource("34_yli8q")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.9263, -5.29267, -11.6364)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Interaction/lifeboat"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction/lifeboat/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.747513, 1.09808, -0.0931091)
+shape = SubResource("BoxShape3D_irk07")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Interaction"]
 transform = Transform3D(0.957506, -0.18462, -0.22158, 2.75603e-08, -0.768272, 0.640123, -0.288414, -0.612922, -0.735625, -17.4676, -0.925676, -18.2112)
