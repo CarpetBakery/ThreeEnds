@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkl5uauqwgryi"]
+[gd_scene load_steps=11 format=3 uid="uid://bkl5uauqwgryi"]
 
 [ext_resource type="Script" path="res://scripts/PlayerFps.gd" id="1_l6dy0"]
+[ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="2_02oew"]
 [ext_resource type="PackedScene" uid="uid://c6nrrp6eh5i5m" path="res://objects/playerHUD.tscn" id="2_qbs1g"]
 [ext_resource type="AudioStream" uid="uid://cbvc8ji846nay" path="res://assets/audio/sfx/footstep_TEMP.wav" id="3_nj3ts"]
 [ext_resource type="AudioStream" uid="uid://dwtnkx5nkgp3u" path="res://assets/audio/sfx/keytap_lowquality.wav" id="4_nedpt"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_1f8gl"]
+[ext_resource type="AudioStream" uid="uid://bsiprsrh7o1g4" path="res://assets/audio/sfx/barrelPickup.wav" id="5_balln"]
+[ext_resource type="AudioStream" uid="uid://bbqm184kxiw2n" path="res://assets/audio/sfx/BarrelDown.wav" id="5_qpcd0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aly1q"]
 
@@ -15,7 +16,7 @@ height = 1.2
 [sub_resource type="ViewportTexture" id="ViewportTexture_3083w"]
 viewport_path = NodePath("MainViewport")
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "carrySocket", "carryBarrel", "hud", "screenSurface", "footstepSpeaker", "dialogSpeaker")]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("neck", "head", "eyes", "camera", "standing_collision_shape", "crouching_collision_shape", "ray_cast_3d", "rayCastInteract", "carrySocket", "carryBarrel", "hud", "screenSurface", "footstepSpeaker", "dialogSpeaker", "barrelUp", "barrelDown")]
 script = ExtResource("1_l6dy0")
 neck = NodePath("Neck")
 head = NodePath("Neck/head")
@@ -31,6 +32,8 @@ hud = NodePath("UI/SubViewportContainer/HudViewport/PlayerHud")
 screenSurface = NodePath("UI/ScreenSurface")
 footstepSpeaker = NodePath("Audio/FootstepsTemp")
 dialogSpeaker = NodePath("Audio/DialogSounds")
+barrelUp = NodePath("Audio/BarrelUp")
+barrelDown = NodePath("Audio/BarrelDown")
 
 [node name="MainViewport" type="SubViewport" parent="."]
 handle_input_locally = false
@@ -48,9 +51,11 @@ fov = 85.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="BarrelMesh" type="MeshInstance3D" parent="MainViewport/CarrySocket"]
-transform = Transform3D(0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0, 1, 0, -1.3, -1.1)
+transform = Transform3D(0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0, 1, 0, -1.12461, -1.1)
 visible = false
-mesh = SubResource("CylinderMesh_1f8gl")
+
+[node name="barrel" parent="MainViewport/CarrySocket/BarrelMesh" instance=ExtResource("2_02oew")]
+transform = Transform3D(0.319879, -0.0205919, 0.25995, 0.0159805, 0.412185, 0.0129865, -0.260274, -9.31323e-10, 0.320278, -0.00417736, -0.623801, -0.0371077)
 
 [node name="Neck" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
@@ -144,3 +149,11 @@ max_polyphony = 5
 [node name="DialogSounds" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("4_nedpt")
 max_polyphony = 50
+
+[node name="BarrelUp" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_balln")
+volume_db = -7.173
+
+[node name="BarrelDown" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_qpcd0")
+volume_db = -8.069

@@ -13,8 +13,7 @@ func onInteract(_player: PlayerFps):
 
 func onSuccessfulInteract(_player: PlayerFps):
 	_player.pickupObject(PlayerFps.CarryType.BARREL)
-	
-	_player.startDialog()
+	_player.barrelUp.play()
 	
 	parent.queue_free()
 	

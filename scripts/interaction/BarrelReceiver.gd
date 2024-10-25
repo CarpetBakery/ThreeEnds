@@ -22,9 +22,10 @@ func onInteract(_player: PlayerFps):
 func onSuccessfulInteract(_player: PlayerFps):
 	if _player.carryObject == _player.CarryType.BARREL:
 		_player.dropObject()
+		_player.barrelDown.play()
 		addBarrel()
 		
-		if barrelCount >= 5:
+		if barrelCount >= 6:
 			_player.addDialog("That should be everything for today")
 			_player.startDialog()
 			Global.dayFinished2 = true

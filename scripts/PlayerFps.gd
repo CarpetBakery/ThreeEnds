@@ -89,6 +89,8 @@ var progressBar: ProgressBar
 # Audio nodes
 @export var footstepSpeaker: AudioStreamPlayer
 @export var dialogSpeaker: AudioStreamPlayer
+@export var barrelUp: AudioStreamPlayer
+@export var barrelDown: AudioStreamPlayer
 
 # -- Input vars --
 var interactPressed: bool = false
