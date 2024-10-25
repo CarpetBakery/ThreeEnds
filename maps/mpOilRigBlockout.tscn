@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=66 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
@@ -21,6 +21,7 @@
 [ext_resource type="Material" uid="uid://0ty16rkmj8ou" path="res://assets/materials/Railing.tres" id="7_vh11f"]
 [ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
 [ext_resource type="Material" uid="uid://dq6f88go8f6kh" path="res://assets/materials/DockFloor.tres" id="8_bdblo"]
+[ext_resource type="AudioStream" uid="uid://d0an0agc1ece6" path="res://assets/audio/sfx/ShipEnigne.mp3" id="8_olmtc"]
 [ext_resource type="Material" uid="uid://d2u0258kgqtut" path="res://assets/materials/DockRamp.tres" id="9_dofji"]
 [ext_resource type="Material" uid="uid://b62hcsjyuiq37" path="res://assets/materials/P1Ramp.tres" id="10_sdomd"]
 [ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="14_madnm"]
@@ -31,6 +32,7 @@
 [ext_resource type="Script" path="res://scripts/interaction/DrillSwitch.gd" id="27_xc3xa"]
 [ext_resource type="AudioStream" uid="uid://c2aq7rb28aoo2" path="res://assets/audio/sfx/DoorOpen.wav" id="28_b6nyv"]
 [ext_resource type="AudioStream" uid="uid://dxkd65f8lfu61" path="res://assets/audio/sfx/DoorClose.wav" id="30_x1lot"]
+[ext_resource type="AudioStream" uid="uid://f4m2ea3ywv26" path="res://assets/audio/sfx/Waves.mp3" id="32_02nfb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k1yx0"]
 size = Vector3(1, 0.723633, 0.693298)
@@ -67,6 +69,7 @@ fog_depth_end = 46.0
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.859261, 0.837443, 0.925703, 1)
 adjustment_enabled = true
+adjustment_brightness = 1.42
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0sega"]
 emission_shape_offset = Vector3(0, 2.8, 0)
@@ -164,7 +167,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/path = NodePath("Audio/Music:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -180,7 +183,7 @@ length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/path = NodePath("Audio/Music:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -438,6 +441,14 @@ interactionText = "Place barrel"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Day2/BarrelReciever"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.256165, 0.5, 3.23218)
 shape = SubResource("BoxShape3D_ekacx")
+
+[node name="BoatAmbience" type="AudioStreamPlayer3D" parent="Day2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.05029, -4.95502, 65.9902)
+stream = ExtResource("8_olmtc")
+volume_db = -9.321
+unit_size = 26.49
+autoplay = true
+parameters/looping = true
 
 [node name="Day3" type="Node3D" parent="."]
 
@@ -1705,13 +1716,6 @@ transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 0.9311, -9
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
 shape = SubResource("BoxShape3D_rwm78")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_sf2s4")
-volume_db = 0.495
-pitch_scale = 0.74
-autoplay = true
-parameters/looping = true
-
 [node name="CommsTower" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.999374, 0, 0, 0, 0.5, -20.3252, 4.69592, -16.4098)
 
@@ -1823,7 +1827,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74752, 0.962357, 0.0277061
 shape = SubResource("BoxShape3D_lailt")
 
 [node name="Water" parent="." instance=ExtResource("17_svn74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1329, -9.72624, 36.0313)
+transform = Transform3D(2.07567, 0, 0, 0, 2.07567, 0, 0, 0, 2.07567, -14.1329, -10.1796, 36.0313)
 
 [node name="Interaction" type="Node3D" parent="."]
 
@@ -1860,3 +1864,21 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.52
 libraries = {
 "": SubResource("AnimationLibrary_sqsld")
 }
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="Waves" type="AudioStreamPlayer3D" parent="Audio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78767, -7.77622, 2.1606)
+stream = ExtResource("32_02nfb")
+volume_db = -9.388
+unit_size = 18.73
+autoplay = true
+panning_strength = 0.65
+parameters/looping = true
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_sf2s4")
+volume_db = 0.495
+pitch_scale = 0.74
+autoplay = true
+parameters/looping = true

@@ -15,7 +15,7 @@ enum Day
 	THREE
 }
 ## The current day
-var day: Day = Day.ZERO
+var day: Day = Day.TWO
 ## Timer of the current day
 var dayTimer: float = 0
 
