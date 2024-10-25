@@ -439,7 +439,6 @@ libraries = {
 [node name="windows" type="Node2D" parent="."]
 
 [node name="emailwindow" type="Sprite2D" parent="windows" node_paths=PackedStringArray("cursorArea", "dragArea", "closeArea", "parent", "whiteFlash", "scrollContainer")]
-visible = false
 position = Vector2(300, 236)
 texture = ExtResource("4_2oc2g")
 script = ExtResource("5_b7anf")
@@ -477,17 +476,19 @@ theme = ExtResource("6_fk0mh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_bq52e")
 theme_override_font_sizes/font_size = 16
-text = "You're dead!
-eerqqworkqopwrkq
-w
-rk
-qwokr
-qwkr
-qk
-wrk
-qwkrqr
+text = "Dear Mr. Bonjovi,  
+          We at OilCorp appreciate your unending loyalty to the 
+company. We understand your supplies are getting low now 
+that your Rig is no longer a priority. This is due to the launch 
+of our newest family member, \"Riggley\"! Fortunately for you,
+we have scheduled a FLIGHT HOME for you in 3 DAYS. Once 
+you are on solid ground, there will a delectable sushi dinner 
+and cash bonus waiting for you! This is to show our sincere 
+gratitude for all the oil you've secured over the past 15 years! 
+Thanks again and good luck with your retirement. 
 
-- Sir BigSoda <3"
+- Sir BigSoda, CEO
+\"Oil Makes the Water Shiny!\" "
 
 [node name="WhiteFlash" type="Sprite2D" parent="windows/emailwindow"]
 visible = false
@@ -567,7 +568,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("8_mf634")
 theme_override_font_sizes/font_size = 32
-text = "DAY 99999999"
+text = "DAY 5478"
 horizontal_alignment = 1
 vertical_alignment = 1
 
