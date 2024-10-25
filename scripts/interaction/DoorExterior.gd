@@ -1,5 +1,9 @@
 class_name DoorExterior extends Interactable
 
+@export var manager: ManagerOutside
+
+const MP_ROOM_BLOCKOUT = preload("res://maps/mpRoomBlockout.tscn")
+
 func onInteract(_player: PlayerFps):
 	match Global.day:
 		Global.Day.ZERO:
@@ -12,7 +16,32 @@ func onInteract(_player: PlayerFps):
 			_day3(_player)
 
 
+
+func _day1(_player: PlayerFps):
+	if not manager.day1Complete:
+		_player.addDialog("I need to turn off the DRILLS.")
+		_player.startDialog()
+	else:
+		_player.startTransition(false)
+		await _player.hud.animationPlayer.animation_finished
+		TransitionManager.gotoScenePacked(MP_ROOM_BLOCKOUT)
+	
+
+
+func _day2(_player: PlayerFps):
+	pass
+
+
+func _day3(_player: PlayerFps):
+	pass
+
+
+
+
+
+
 func _day0(_player: PlayerFps):
+	return
 	_player.addDialog("If you're seeing this, I messsed up")
 	_player.startDialog()
 
@@ -27,16 +56,3 @@ func _day0(_player: PlayerFps):
 	
 	await get_tree().create_timer(1.3).timeout
 	TransitionManager.gotoScene("res://maps/mpRoomBlockout.tscn")
-
-func _day1(_player: PlayerFps):
-	_player.addDialog("I need to turn off the DRILLS.")
-	_player.startDialog()
-	
-
-
-func _day2(_player: PlayerFps):
-	pass
-
-
-func _day3(_player: PlayerFps):
-	pass
