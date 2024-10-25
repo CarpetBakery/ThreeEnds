@@ -26,6 +26,9 @@ func _ready() -> void:
 		dayParent2.queue_free()
 	if Global.day != Global.Day.THREE:
 		dayParent3.queue_free()
+	
+	# Show todo 
+	player.showTodo()
 
 func _process(delta: float) -> void:
 	super(delta)
@@ -54,10 +57,14 @@ func _dayProcess1(_delta: float):
 		if switchLeft.disabled and switchRight.disabled:
 			# Day activities completed
 			Global.dayFinished1 = true
+	else:
+		Global.todoString = "Go to bed"
 
 func _dayProcess2(_delta: float):
-	pass
+	if Global.dayFinished2:
+		Global.todoString = "Go to bed"
 
 
 func _dayProcess3(_delta: float):
-	pass
+	if Global.dayFinished3:
+		Global.todoString = "Wait on the helipad"

@@ -4,21 +4,6 @@
 [ext_resource type="FontFile" uid="uid://du71miqja3wkn" path="res://ui/fonts/Perfect DOS VGA 437.ttf" id="2_30hb3"]
 [ext_resource type="FontFile" uid="uid://2agfvt0ut1c0" path="res://ui/fonts/DS-DIGIB.TTF" id="3_6xrd6"]
 
-[sub_resource type="Animation" id="Animation_rfsp6"]
-resource_name = "todoIntro"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-480, 0), Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_73ck2"]
 length = 0.001
 tracks/0/type = "value"
@@ -32,6 +17,45 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TodoLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rfsp6"]
+resource_name = "todoIntro"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-480, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TodoLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6xao4"]
@@ -297,7 +321,7 @@ _data = {
 "credits": SubResource("Animation_2klnb")
 }
 
-[node name="PlayerHud" type="Control" node_paths=PackedStringArray("crosshair", "interactionText", "progressBar", "black", "white", "animationPlayer", "barsAnimation", "dayIntroAnimation", "dialogParent", "dialogText", "cinemaBars", "dayIntro", "daySubtitle", "todoAnimation", "credits", "creditsLabel")]
+[node name="PlayerHud" type="Control" node_paths=PackedStringArray("crosshair", "interactionText", "progressBar", "black", "white", "animationPlayer", "barsAnimation", "dayIntroAnimation", "dialogParent", "dialogText", "cinemaBars", "dayIntro", "daySubtitle", "todoLabel", "todoAnimation", "credits", "creditsLabel")]
 custom_minimum_size = Vector2(480, 270)
 layout_mode = 3
 anchors_preset = 0
@@ -315,6 +339,7 @@ dialogText = NodePath("Dialog/DialogText")
 cinemaBars = [NodePath("Dialog/CinemaBar1"), NodePath("Dialog/CinemaBar2")]
 dayIntro = NodePath("SleepGraphics/DayIntro")
 daySubtitle = NodePath("SleepGraphics/DayIntroSubtitle")
+todoLabel = NodePath("Todo/TodoLabel")
 todoAnimation = NodePath("Todo/TodoAnimation")
 credits = NodePath("CreditsAnimation")
 creditsLabel = NodePath("Credits/Credits")
@@ -370,29 +395,13 @@ text = "Interaction text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Black" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="White" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Todo" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -258.93
+offset_right = -258.93
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -420,6 +429,24 @@ text = "Turn off the drills"
 libraries = {
 "": SubResource("AnimationLibrary_6xao4")
 }
+
+[node name="Black" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="White" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Dialog" type="Control" parent="."]
 anchors_preset = 0

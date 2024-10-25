@@ -32,5 +32,5 @@ func onInteract(_player: PlayerFps):
 
 
 func onSuccessfulInteract(_player: PlayerFps):
-	print("Worke")
 	Global.dayFinished3 = true
+	Global.todoString = "Wait on the helipad"

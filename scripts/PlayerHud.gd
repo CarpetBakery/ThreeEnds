@@ -19,6 +19,7 @@ class_name PlayerHud extends Control
 @export var daySubtitle: Label
 
 @export_category("Todo")
+@export var todoLabel: Label
 @export var todoAnimation: AnimationPlayer
 
 @export_category("Credits")
@@ -45,10 +46,15 @@ func _ready() -> void:
 	
 	creditsLabel.hide()
 	
+	todoLabel.hide()
+	
 	# Set up dialog
 	dialogText.text = ""
 	for i in cinemaBars:
 		i.hide()
+
+func _process(delta: float) -> void:
+	todoLabel.text = Global.todoString
 
 
 func toggleCinemaBars(on: bool):

@@ -36,6 +36,9 @@ var transition: bool = false
 var transitionFromComputer: bool = false
 var transitionFromOutside: bool = false
 
+# -- Todo string --
+var todoString: String = ""
+
 
 func _ready():
 	# Limit framerate

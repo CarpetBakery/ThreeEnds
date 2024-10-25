@@ -93,12 +93,15 @@ func _sleepRoutine(_player: PlayerFps) -> void:
 	_player.hud.daySubtitle.show()
 	
 	if Global.day == Global.Day.ONE:
+		Global.todoString = "Turn off the drills"
 		_player.hud.dayIntro.text = "DAY 1"
 		_player.hud.daySubtitle.text = "2 DAYS UNTIL FLIGHT"
 	if Global.day == Global.Day.TWO:
+		Global.todoString = "Deliver oil barrels to the cargo ship"
 		_player.hud.dayIntro.text = "DAY 2"
 		_player.hud.daySubtitle.text = "1 DAY UNTIL FLIGHT"
 	if Global.day == Global.Day.THREE:
+		Global.todoString = "Pack your bags"
 		_player.hud.dayIntro.text = "DAY 3"
 		_player.hud.daySubtitle.text = "DAY OF FLIGHT"
 	
@@ -107,5 +110,7 @@ func _sleepRoutine(_player: PlayerFps) -> void:
 	await get_tree().create_timer(3).timeout
 	_player.hud.dayIntro.hide()
 	_player.hud.daySubtitle.hide()
+	
+	_player.showTodo()
 	
 	

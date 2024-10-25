@@ -168,6 +168,7 @@ func _ready():
 	# Transition in
 	if TransitionManager.transition:
 		_transitionStart()
+	
 
 
 func _transitionStart():
@@ -646,3 +647,9 @@ func _playFootstep() -> void:
 func die() -> void:
 	dying = true
 	startTransition(false, 0.4)
+
+
+func showTodo() -> void:
+	#hud.todoLabel.show()
+	hud.todoAnimation.play("todoIntro")
+	
