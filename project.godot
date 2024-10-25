@@ -24,6 +24,7 @@ buses/default_bus_layout=""
 
 Global="*res://scripts/Global.gd"
 TransitionManager="*res://scripts/TransitionManager.gd"
+MusicManager="*res://scripts/MusicManager.gd"
 
 [display]
 

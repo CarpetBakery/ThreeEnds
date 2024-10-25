@@ -1,8 +1,8 @@
-[gd_scene load_steps=55 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=57 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
-[ext_resource type="Material" uid="uid://cyrdta7puqjn6" path="res://assets/materials/CatwalkTex.tres" id="2_ox0mg"]
+[ext_resource type="Material" path="res://assets/materials/CatwalkTex.tres" id="2_ox0mg"]
 [ext_resource type="Script" path="res://scripts/interaction/DoorExterior.gd" id="2_s3teo"]
 [ext_resource type="Texture2D" uid="uid://dplvtioevgb7x" path="res://assets/textures/128x128/Metal/Metal_07-128x128.png" id="2_s46jd"]
 [ext_resource type="Material" uid="uid://pslfpkadsdbq" path="res://assets/materials/InsideWalls.tres" id="3_gx7hh"]
@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cqidkdg84jgsa" path="res://assets/audio/music/ambient3.ogg" id="4_sf2s4"]
 [ext_resource type="Texture2D" uid="uid://cwxm5led3a5fp" path="res://assets/textures/128x128/Metal/Metal_11-128x128.png" id="4_tvqfm"]
 [ext_resource type="Texture2D" uid="uid://c3m8bl5r8j28m" path="res://assets/textures/128x128/Metal/Metal_03-128x128.png" id="5_6n78g"]
-[ext_resource type="Material" uid="uid://cqaio7urbx38k" path="res://assets/materials/DrillFloor.tres" id="5_8rdit"]
+[ext_resource type="Material" path="res://assets/materials/DrillFloor.tres" id="5_8rdit"]
 [ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="5_jd2yi"]
 [ext_resource type="Script" path="res://scripts/interaction/BarrelReceiver.gd" id="5_vkbhv"]
 [ext_resource type="Material" uid="uid://lnuojmwwix77" path="res://assets/materials/Pillars.tres" id="6_oidor"]
@@ -18,14 +18,18 @@
 [ext_resource type="Texture2D" uid="uid://cgxb7w2g82uwm" path="res://assets/textures/128x128/Metal/Metal_02-128x128.png" id="7_sbyfm"]
 [ext_resource type="Material" uid="uid://0ty16rkmj8ou" path="res://assets/materials/Railing.tres" id="7_vh11f"]
 [ext_resource type="PackedScene" uid="uid://cr44osc88ldc0" path="res://assets/meshes/crate.glb" id="7_yri5b"]
-[ext_resource type="Material" uid="uid://dq6f88go8f6kh" path="res://assets/materials/DockFloor.tres" id="8_bdblo"]
-[ext_resource type="Material" uid="uid://d2u0258kgqtut" path="res://assets/materials/DockRamp.tres" id="9_dofji"]
-[ext_resource type="Material" uid="uid://b62hcsjyuiq37" path="res://assets/materials/P1Ramp.tres" id="10_sdomd"]
+[ext_resource type="Material" path="res://assets/materials/DockFloor.tres" id="8_bdblo"]
+[ext_resource type="Material" path="res://assets/materials/DockRamp.tres" id="9_dofji"]
+[ext_resource type="Material" path="res://assets/materials/P1Ramp.tres" id="10_sdomd"]
 [ext_resource type="PackedScene" uid="uid://cg5jm41kjysld" path="res://assets/meshes/commTower.glb" id="14_madnm"]
 [ext_resource type="PackedScene" uid="uid://bf5nwoclk7xkv" path="res://assets/meshes/crane.glb" id="15_s0whf"]
 [ext_resource type="PackedScene" uid="uid://coux3afea14q7" path="res://assets/meshes/catwalk.glb" id="16_jrguc"]
 [ext_resource type="PackedScene" uid="uid://dlhkd3ps0xtt8" path="res://maps/test/WaterTest.tscn" id="17_svn74"]
 [ext_resource type="PackedScene" uid="uid://dl2ervup3eq7b" path="res://assets/meshes/cargoship.glb" id="20_07w6s"]
+[ext_resource type="Script" path="res://scripts/interaction/DrillSwitch.gd" id="27_xc3xa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k1yx0"]
+size = Vector3(1, 0.723633, 0.693298)
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
@@ -122,6 +126,15 @@ emission_energy_multiplier = 5.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwm78"]
 size = Vector3(2.22751, 1.99716, 2.19908)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1jumv"]
+size = Vector3(4.65768, 30.1682, 4.70421)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1320"]
+size = Vector3(4.00525, 0.743042, 19.8657)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lailt"]
+size = Vector3(0.264404, 2.92471, 19.6851)
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4kr8y"]
 height = 1.28083
 
@@ -139,17 +152,35 @@ albedo_color = Color(0.600783, 0.411336, 0.323149, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ptdk3"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1jumv"]
-size = Vector3(4.65768, 30.1682, 4.70421)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_w1320"]
-size = Vector3(4.00525, 0.743042, 19.8657)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lailt"]
-size = Vector3(0.264404, 2.92471, 19.6851)
-
 [node name="Node3D2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0248675, -0.00916481, 0.0183249)
+
+[node name="OutsideManager" type="Node" parent="."]
+
+[node name="Day1" type="Node3D" parent="."]
+
+[node name="LeftSwitch" type="Area3D" parent="Day1" node_paths=PackedStringArray("playerRef")]
+script = ExtResource("27_xc3xa")
+playerRef = NodePath("../../player")
+interactionText = "Left oil drill power"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day1/LeftSwitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3468, 6.97927, -9.39346)
+shape = SubResource("BoxShape3D_k1yx0")
+
+[node name="RightSwitch" type="Area3D" parent="Day1" node_paths=PackedStringArray("playerRef")]
+script = ExtResource("27_xc3xa")
+drill = 1
+playerRef = NodePath("../../player")
+interactionText = "Right oil drill power"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day1/RightSwitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3468, 6.97927, 10.1463)
+shape = SubResource("BoxShape3D_k1yx0")
+
+[node name="Day2" type="Node3D" parent="."]
+
+[node name="Day3" type="Node3D" parent="."]
 
 [node name="env" type="Node3D" parent="."]
 
@@ -157,7 +188,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0248675, -0.00916481, 0.018
 environment = SubResource("Environment_jhmsr")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="env"]
-transform = Transform3D(8.64588, 0, 0, 0, 2.7766, 0, 0, 0, 8.19878, -4.93701, 26.4058, 0)
+transform = Transform3D(8.64588, 0, 0, 0, 2.7766, 0, 0, 0, 18.3314, -4.93701, 26.4058, 39.052)
 cast_shadow = 0
 amount = 2000
 lifetime = 14.45
@@ -179,6 +210,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.75, 
 light_color = Color(0.849441, 0.835552, 0.733714, 1)
 light_energy = 2.322
 light_volumetric_fog_energy = 7.083
+shadow_enabled = true
 spot_range = 7.5
 spot_angle = 63.8724
 
@@ -251,6 +283,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.75, 
 light_color = Color(0.849441, 0.835552, 0.733714, 1)
 light_energy = 2.322
 light_volumetric_fog_energy = 7.083
+shadow_enabled = true
 spot_range = 7.5
 spot_angle = 63.8724
 
@@ -1465,65 +1498,6 @@ transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0.166277, 0.9311, -9
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0068512, -0.00904846, 0.00478363)
 shape = SubResource("BoxShape3D_rwm78")
 
-[node name="Interaction" type="Node3D" parent="."]
-
-[node name="Barrel" type="RigidBody3D" parent="Interaction"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, -8, 32.588)
-
-[node name="Area3D" type="Area3D" parent="Interaction/Barrel" node_paths=PackedStringArray("parent", "playerRef")]
-transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
-collision_layer = 2
-script = ExtResource("4_e40u6")
-parent = NodePath("..")
-playerRef = NodePath("../../../player")
-interactionText = "Pick up barrel with 'E'"
-
-[node name="InteractHitbox" type="CollisionShape3D" parent="Interaction/Barrel/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.162552)
-shape = SubResource("CylinderShape3D_4kr8y")
-
-[node name="barrel" parent="Interaction/Barrel/Area3D" instance=ExtResource("5_jd2yi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.115166, 0, -0.130447)
-
-[node name="PhysicsHitbox" type="CollisionShape3D" parent="Interaction/Barrel"]
-shape = SubResource("CylinderShape3D_4kr8y")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/Barrel"]
-transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
-layers = 2
-mesh = SubResource("CylinderMesh_p8rbu")
-
-[node name="BarrelReciever" type="Area3D" parent="Interaction" node_paths=PackedStringArray("playerRef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -7.8, 63.3121)
-script = ExtResource("5_vkbhv")
-playerRef = NodePath("../../player")
-interactionText = "Place barrel"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction/BarrelReciever"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_ekacx")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/BarrelReciever"]
-transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 0.354743, 0)
-mesh = SubResource("BoxMesh_8bgkk")
-
-[node name="Door" type="Area3D" parent="Interaction"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.25, 0.75, -5.25)
-script = ExtResource("2_s3teo")
-interactionText = "Go inside"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction/Door"]
-transform = Transform3D(3.36, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
-shape = SubResource("BoxShape3D_dcgqm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/Door"]
-transform = Transform3D(3.36, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
-material_override = SubResource("StandardMaterial3D_otcsb")
-mesh = SubResource("BoxMesh_ptdk3")
-
-[node name="player" parent="." instance=ExtResource("1_23sgh")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.5249, 0.00916481, -3.76832)
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sf2s4")
 volume_db = 0.495
@@ -1644,5 +1618,64 @@ shape = SubResource("BoxShape3D_lailt")
 [node name="Water" parent="." instance=ExtResource("17_svn74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1329, -9.72624, 36.0313)
 
+[node name="Interaction" type="Node3D" parent="."]
+
+[node name="Barrel" type="RigidBody3D" parent="Interaction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, -8, 32.588)
+
+[node name="Area3D" type="Area3D" parent="Interaction/Barrel" node_paths=PackedStringArray("parent", "playerRef")]
+transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
+collision_layer = 2
+script = ExtResource("4_e40u6")
+parent = NodePath("..")
+playerRef = NodePath("../../../player")
+interactionText = "Pick up barrel with 'E'"
+
+[node name="InteractHitbox" type="CollisionShape3D" parent="Interaction/Barrel/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.162552)
+shape = SubResource("CylinderShape3D_4kr8y")
+
+[node name="barrel" parent="Interaction/Barrel/Area3D" instance=ExtResource("5_jd2yi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.115166, 0, -0.130447)
+
+[node name="PhysicsHitbox" type="CollisionShape3D" parent="Interaction/Barrel"]
+shape = SubResource("CylinderShape3D_4kr8y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/Barrel"]
+transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_p8rbu")
+
+[node name="BarrelReciever" type="Area3D" parent="Interaction" node_paths=PackedStringArray("playerRef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -7.8, 63.3121)
+script = ExtResource("5_vkbhv")
+playerRef = NodePath("../../player")
+interactionText = "Place barrel"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction/BarrelReciever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ekacx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/BarrelReciever"]
+transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 0.354743, 0)
+mesh = SubResource("BoxMesh_8bgkk")
+
+[node name="Door" type="Area3D" parent="Interaction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.25, 0.75, -5.25)
+script = ExtResource("2_s3teo")
+interactionText = "Go inside"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction/Door"]
+transform = Transform3D(3.36, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
+shape = SubResource("BoxShape3D_dcgqm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/Door"]
+transform = Transform3D(3.36, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
+material_override = SubResource("StandardMaterial3D_otcsb")
+mesh = SubResource("BoxMesh_ptdk3")
+
 [node name="cargoship" parent="." instance=ExtResource("20_07w6s")]
 transform = Transform3D(-0.0168417, 0, -0.999858, 0, 1, 0, 0.999858, 0, -0.0168417, 5.66401, 1.11384, 66.0587)
+
+[node name="player" parent="." instance=ExtResource("1_23sgh")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.5249, 0.00916481, -3.76832)
