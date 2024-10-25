@@ -52,11 +52,13 @@ func _process(delta):
 
 ## Increase the day
 func nextDay() -> void:
-	if Global.Day.ZERO:
-		Global.day = Global.Day.ONE
-	elif Global.Day.ONE:
-		Global.day = Global.Day.TWO
-	elif Global.Day.TWO:
-		Global.day = Global.Day.THREE
-	elif Global.Day.THREE:
-		Global.day = Global.Day.THREE
+	print(Global.day)
+	
+	if day == Day.ZERO:
+		day = Day.ONE
+	elif day == Day.ONE:
+		day = Day.TWO
+	elif day == Day.TWO:
+		day = Day.THREE
+	elif day == Day.THREE:
+		day = Day.THREE

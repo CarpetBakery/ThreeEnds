@@ -37,6 +37,8 @@ func _day3(_player: PlayerFps) -> void:
 
 
 func _sleepRoutine(_player: PlayerFps) -> void:
+	print("Day is " + str(Global.day))
+	
 	# TODO: Fade out the audio
 	_player.startTransition(false)
 	await _player.hud.animationPlayer.animation_finished

@@ -29,6 +29,8 @@ func _ready() -> void:
 	dialogText.show()
 	toggleCinemaBars(true)
 	
+	dayIntro.hide()
+	
 	# Set up dialog
 	dialogText.text = ""
 	for i in cinemaBars:
