@@ -15,12 +15,11 @@ enum Day
 	THREE
 }
 ## The current day
-var day: Day = Day.ZERO
+var day: Day = Day.TWO
 ## Timer of the current day
 var dayTimer: float = 0
 
 # -- Day 0 --
-var transitionFromComputer = false
 
 # -- Day 1 --
 var dayFinished1 := false
@@ -33,6 +32,9 @@ var dayFinished3 := false
 
 # -- Scene transition --
 var transition: bool = false
+
+var transitionFromComputer: bool = false
+var transitionFromOutside: bool = false
 
 
 func _ready():

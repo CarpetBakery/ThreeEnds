@@ -2,6 +2,7 @@ class_name DoorInterior extends Interactable
 
 const MP_OIL_RIG_BLOCKOUT = preload("res://maps/mpOilRigBlockout.tscn")
 @onready var audiofade: AnimationPlayer = $"../../../Audiofade"
+@onready var doorOpen: AudioStreamPlayer3D = $"../AudioStreamPlayer3D"
 
 func onInteract(_player: PlayerFps):
 	match Global.day:
@@ -21,23 +22,35 @@ func _day0(_player: PlayerFps):
 
 
 func _day1(_player: PlayerFps):
-	gotoRig(_player)
-	
-	#await get_tree().create_timer(1.3).timeout
+	if not Global.dayFinished1:
+		gotoRig(_player)
+	else:
+		_player.addDialog("I should go to bed.")
+		_player.startDialog()
 
 
 func _day2(_player: PlayerFps):
-	pass
+	if not Global.dayFinished2:
+		gotoRig(_player)
+	else:
+		_player.addDialog("I should go to bed.")
+		_player.startDialog()
 
 
 func _day3(_player: PlayerFps):
-	pass
+	if not Global.dayFinished3:
+		gotoRig(_player)
+	else:
+		_player.addDialog("I should go to bed.")
+		_player.startDialog()
 
 
 func gotoRig(_player: PlayerFps):
 	audiofade.play("fadeAudio")
 	_player.startTransition(false)
 	await _player.hud.animationPlayer.animation_finished
+	
+	doorOpen.play()
 	
 	await get_tree().create_timer(1.5).timeout
 	

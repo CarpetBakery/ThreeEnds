@@ -50,7 +50,7 @@ var canGetUp: bool = false
 var timeTilGetUp: float = 4
 
 ## Skip intro
-var skipIntro: bool = true
+var skipIntro: bool = false
 
 func _ready() -> void:
 	# -- Do intro --

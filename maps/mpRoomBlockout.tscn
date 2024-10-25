@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bhfec7nodvgih"]
+[gd_scene load_steps=33 format=3 uid="uid://bhfec7nodvgih"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_85g6y"]
 [ext_resource type="Script" path="res://scripts/RoomManager.gd" id="1_474uj"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://n528w5bd0lde" path="res://assets/meshes/room/bed.glb" id="3_eaxmy"]
 [ext_resource type="Texture2D" uid="uid://cwgw4uwt1ajaq" path="res://assets/textures/128x128/Dirt/Dirt_16-128x128.png" id="3_i0iox"]
 [ext_resource type="PackedScene" uid="uid://ci1h230g3olg7" path="res://assets/meshes/room/desk.glb" id="4_avqrk"]
+[ext_resource type="AudioStream" uid="uid://c2aq7rb28aoo2" path="res://assets/audio/sfx/DoorOpen.wav" id="4_j4mt4"]
 [ext_resource type="Script" path="res://scripts/interaction/DialogInteractable.gd" id="6_8y0vs"]
 [ext_resource type="Script" path="res://scripts/interaction/Bed.gd" id="6_m0e0l"]
 [ext_resource type="PackedScene" uid="uid://de2tgcnag613h" path="res://assets/meshes/room/computer-keyboard.glb" id="10_wqkl1"]
@@ -17,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bdmemv4j7p8ju" path="res://assets/meshes/room/computer-mouse.glb" id="13_3scwx"]
 [ext_resource type="AudioStream" uid="uid://kxcg6jvl2ynh" path="res://assets/audio/music/roomAmbience.ogg" id="15_8me7j"]
 [ext_resource type="AudioStream" uid="uid://bifdvmuat2ipp" path="res://assets/audio/sfx/VineBoom.mp3" id="17_m3rdm"]
+[ext_resource type="AudioStream" uid="uid://dxkd65f8lfu61" path="res://assets/audio/sfx/DoorClose.wav" id="17_nqrq8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rpya8"]
 size = Vector3(0.671082, 3.46875, 1.49463)
@@ -93,9 +95,10 @@ _data = {
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Node" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("player", "doorClose")]
 script = ExtResource("1_474uj")
 player = NodePath("../player")
+doorClose = NodePath("../DoorClose")
 
 [node name="Rookm" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.707069, 0, 1.7074)
@@ -120,6 +123,10 @@ interactionText = "-> TO EXTERIOR"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rookm/DoorPlaceholderf/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0868225, 0, 0.0124512)
 shape = SubResource("BoxShape3D_rpya8")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Rookm/DoorPlaceholderf"]
+stream = ExtResource("4_j4mt4")
+volume_db = -18.527
 
 [node name="Walls" type="Node3D" parent="Rookm"]
 
@@ -239,6 +246,11 @@ sprintFov = 70.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ns14y")
+
+[node name="DoorClose" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61666, 2.04916, -8.89378)
+stream = ExtResource("17_nqrq8")
+panning_strength = 0.15
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53056, 2.32288, -6.45579)

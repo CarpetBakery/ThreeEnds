@@ -439,7 +439,7 @@ func _processCarry(_delta):
 func _clearFocused():
 	# Call exit focus on each node
 	for i in focusedInteractables:
-		if i.canFocus:
+		if i != null and i.canFocus:
 			i.focused = false
 			i.exitFocus(self)
 	# Clear focused array

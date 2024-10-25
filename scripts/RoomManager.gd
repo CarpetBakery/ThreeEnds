@@ -1,6 +1,7 @@
 class_name RoomManager extends DayManager
 
 @export var player: PlayerFps
+@export var doorClose: AudioStreamPlayer3D
 
 func _ready() -> void:
 	if TransitionManager.transition:
@@ -15,6 +16,15 @@ func _readyTransition():
 		var pos := Vector3(-3.845, 0.258, -5.765)
 		var rot := Vector3(0, 177.7, 0)
 		Global.setPlayerPos(player, pos, rot)
+	elif Global.transitionFromOutside:
+		Global.transitionFromOutside = false
+		
+		var pos := Vector3(-4.883, 0.219, -9.039)
+		var rot := Vector3(0, -90, 0)
+		Global.setPlayerPos(player, pos, rot)
+		
+		doorClose.play()
+		
 	
 
 func _process(delta: float) -> void:

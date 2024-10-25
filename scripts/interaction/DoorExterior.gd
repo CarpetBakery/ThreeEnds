@@ -4,6 +4,9 @@ class_name DoorExterior extends Interactable
 
 const MP_ROOM_BLOCKOUT = preload("res://maps/mpRoomBlockout.tscn")
 
+@onready var doorOpen: AudioStreamPlayer3D = $DoorOpen
+@onready var audioFade: AnimationPlayer = $"../../AudioFade"
+
 func onInteract(_player: PlayerFps):
 	match Global.day:
 		Global.Day.ZERO:
@@ -16,27 +19,43 @@ func onInteract(_player: PlayerFps):
 			_day3(_player)
 
 
-
 func _day1(_player: PlayerFps):
 	if not Global.dayFinished1:
 		_player.addDialog("I need to turn off the DRILLS.")
 		_player.startDialog()
 	else:
-		_player.startTransition(false)
-		await _player.hud.animationPlayer.animation_finished
-		TransitionManager.gotoScenePacked(MP_ROOM_BLOCKOUT)
-	
+		gotoRoom(_player)
+		
 
 
 func _day2(_player: PlayerFps):
-	pass
+	if not Global.dayFinished2:
+		_player.addDialog("I need to deliver BARRELS\nto the SHIP.")
+		_player.startDialog()
+	else:
+		gotoRoom(_player)
 
 
 func _day3(_player: PlayerFps):
-	pass
+	if not Global.dayFinished3:
+		_player.addDialog("I need to turn off the DRILLS.")
+		_player.startDialog()
+	else:
+		gotoRoom(_player)
 
 
-
+func gotoRoom(_player: PlayerFps):
+	Global.transitionFromOutside = true
+	
+	audioFade.play("fadeAudio")
+	_player.startTransition(false)
+	await _player.hud.animationPlayer.animation_finished
+	
+	doorOpen.play()
+	
+	await get_tree().create_timer(1.5).timeout
+	
+	TransitionManager.gotoScenePacked(MP_ROOM_BLOCKOUT)
 
 
 

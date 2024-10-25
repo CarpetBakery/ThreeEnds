@@ -24,11 +24,17 @@ func onSuccessfulInteract(_player: PlayerFps):
 		_player.dropObject()
 		addBarrel()
 		
-		playerRef.addDialog("That's barrel #" + str(barrelCount) + ", hell yeah!")
-		playerRef.addDialog("WOOOOOO YEAH!!!!!!!!!!!!! \nQIOWRJOIQWR JQOWITJ QWOITJOIQWJT OQWTJ ")
-		playerRef.addDialog("qrijqwoijqwiot jqwotijqwoitjq owtijqwotj qopitjq owtpij  ")
-		playerRef.addDialog("LOREM IPSUM")
-		playerRef.startDialog()
+		if barrelCount >= 5:
+			_player.addDialog("That should be everything for today")
+			_player.startDialog()
+			Global.dayFinished2 = true
+			
+		
+		#playerRef.addDialog("That's barrel #" + str(barrelCount) + ", hell yeah!")
+		#playerRef.addDialog("WOOOOOO YEAH!!!!!!!!!!!!! \nQIOWRJOIQWR JQOWITJ QWOITJOIQWJT OQWTJ ")
+		#playerRef.addDialog("qrijqwoijqwiot jqwotijqwoitjq owtijqwotj qopitjq owtpij  ")
+		#playerRef.addDialog("LOREM IPSUM")
+		#playerRef.startDialog()
 
 func addBarrel():
 	barrelCount += 1

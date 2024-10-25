@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://min6rams7kgs"]
+[gd_scene load_steps=64 format=3 uid="uid://min6rams7kgs"]
 
 [ext_resource type="Material" uid="uid://bwcqa7fve22wu" path="res://assets/materials/RigFloor.tres" id="1_4rrst"]
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_23sgh"]
@@ -29,9 +29,29 @@
 [ext_resource type="PackedScene" uid="uid://dlhkd3ps0xtt8" path="res://maps/test/WaterTest.tscn" id="17_svn74"]
 [ext_resource type="PackedScene" uid="uid://dl2ervup3eq7b" path="res://assets/meshes/cargoship.glb" id="20_07w6s"]
 [ext_resource type="Script" path="res://scripts/interaction/DrillSwitch.gd" id="27_xc3xa"]
+[ext_resource type="AudioStream" uid="uid://c2aq7rb28aoo2" path="res://assets/audio/sfx/DoorOpen.wav" id="28_b6nyv"]
+[ext_resource type="AudioStream" uid="uid://dxkd65f8lfu61" path="res://assets/audio/sfx/DoorClose.wav" id="30_x1lot"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k1yx0"]
 size = Vector3(1, 0.723633, 0.693298)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdgpy"]
+emission_enabled = true
+emission = Color(0.556953, 0.556953, 0.556953, 1)
+emission_energy_multiplier = 10.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4kr8y"]
+height = 3.66842
+radius = 1.20518
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p8rbu"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lfay5"]
+height = 1.31749
+radius = 0.605409
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ekacx"]
+size = Vector3(2.95398, 2, 8.96436)
 
 [sub_resource type="Sky" id="Sky_a6te1"]
 
@@ -69,11 +89,6 @@ distance_fade_max_distance = 36.45
 [sub_resource type="QuadMesh" id="QuadMesh_kam71"]
 material = SubResource("StandardMaterial3D_f44ox")
 size = Vector2(0.1, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdgpy"]
-emission_enabled = true
-emission = Color(0.556953, 0.556953, 0.556953, 1)
-emission_energy_multiplier = 10.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oykpb"]
 albedo_texture = ExtResource("2_s46jd")
@@ -137,22 +152,49 @@ size = Vector3(4.00525, 0.743042, 19.8657)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lailt"]
 size = Vector3(0.264404, 2.92471, 19.6851)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_4kr8y"]
-height = 1.28083
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_p8rbu"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ekacx"]
-size = Vector3(2.5, 2, 2.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_8bgkk"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_dcgqm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otcsb"]
 albedo_color = Color(0.600783, 0.411336, 0.323149, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ptdk3"]
+
+[sub_resource type="Animation" id="Animation_hvwqt"]
+resource_name = "fadeAudio"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.495, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_2l6sj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.495]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sqsld"]
+_data = {
+"RESET": SubResource("Animation_2l6sj"),
+"fadeAudio": SubResource("Animation_hvwqt")
+}
 
 [node name="Node3D2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0248675, -0.00916481, 0.0183249)
@@ -202,6 +244,227 @@ unit_size = 33.23
 
 [node name="Day2" type="Node3D" parent="."]
 
+[node name="cargoship" parent="Day2" instance=ExtResource("20_07w6s")]
+transform = Transform3D(-0.0168417, 0, -0.999858, 0, 1, 0, 0.999858, 0, -0.0168417, 5.66401, 1.11384, 66.0587)
+
+[node name="SpotLight3D8" type="SpotLight3D" parent="Day2/cargoship"]
+transform = Transform3D(-0.0128572, -0.999858, -0.0108783, -0.645911, -3.33698e-08, 0.763413, -0.763305, 0.0168417, -0.645819, -6.44004, -6.70241, 9.46886)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="SpotLight3D9" type="SpotLight3D" parent="Day2/cargoship"]
+transform = Transform3D(-0.0135842, -0.999858, -0.00995563, -0.591127, -3.52567e-08, 0.806579, -0.806464, 0.0168417, -0.591043, 7.29111, -6.70241, 9.23757)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="SpotLight3D10" type="SpotLight3D" parent="Day2/cargoship"]
+transform = Transform3D(-0.0101361, -0.999858, -0.0134501, -0.798615, -2.63074e-08, 0.601843, -0.601758, 0.0168417, -0.798502, 17.3024, -6.70241, 9.06894)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="BallLight5" type="CSGSphere3D" parent="Day2/cargoship"]
+transform = Transform3D(-0.0168417, -9.31186e-10, 0.999857, -1.3074e-12, 0.999999, -2.79397e-09, -0.999858, 1.59906e-11, -0.0168417, 17.251, -6.81881, 9.3444)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.258842
+
+[node name="BallLight12" type="CSGSphere3D" parent="Day2/cargoship"]
+transform = Transform3D(-0.0168417, -9.31186e-10, 0.999857, -1.3074e-12, 0.999999, -2.79397e-09, -0.999858, 1.59906e-11, -0.0168417, 7.24739, -6.81881, 9.31959)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.279733
+
+[node name="BallLight11" type="CSGSphere3D" parent="Day2/cargoship"]
+transform = Transform3D(-0.0168417, -9.31186e-10, 0.999857, -1.3074e-12, 0.999999, -2.79397e-09, -0.999858, 1.59906e-11, -0.0168417, 27.2382, -6.81202, 9.32383)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.273304
+
+[node name="SpotLight3D11" type="SpotLight3D" parent="Day2/cargoship"]
+transform = Transform3D(-0.0101361, -0.999858, -0.0134501, -0.798615, -2.63074e-08, 0.601843, -0.601758, 0.0168417, -0.798502, 27.3417, -6.68617, 8.88978)
+light_color = Color(0.849441, 0.835552, 0.733714, 1)
+light_energy = 2.322
+light_volumetric_fog_energy = 7.083
+spot_range = 7.5
+spot_angle = 63.8724
+
+[node name="BallLight13" type="CSGSphere3D" parent="Day2/cargoship"]
+transform = Transform3D(-0.0168417, -9.31186e-10, 0.999857, -1.3074e-12, 0.999999, -2.79397e-09, -0.999858, 1.59906e-11, -0.0168417, -6.45238, -6.81881, 9.28884)
+material_override = SubResource("StandardMaterial3D_tdgpy")
+radius = 0.311983
+
+[node name="Barrel" type="StaticBody3D" parent="Day2"]
+transform = Transform3D(-0.0911019, 0, 0.995842, 0, 1, 0, -0.995842, 0, -0.0911019, -10.5, -8.21214, 32.588)
+
+[node name="Area3D" type="Area3D" parent="Day2/Barrel" node_paths=PackedStringArray("parent", "playerRef")]
+transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
+collision_layer = 2
+script = ExtResource("4_e40u6")
+parent = NodePath("..")
+playerRef = NodePath("../../../player")
+interactionText = "Pick up barrel with 'E'"
+
+[node name="InteractHitbox" type="CollisionShape3D" parent="Day2/Barrel/Area3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.17758, 1.557, -0.092556)
+shape = SubResource("CylinderShape3D_4kr8y")
+
+[node name="barrel" parent="Day2/Barrel/Area3D" instance=ExtResource("5_jd2yi")]
+transform = Transform3D(0.532463, 0, -0.846454, 0, 1, 0, 0.846454, 0, 0.532463, -0.11517, 0, -0.130444)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Day2/Barrel"]
+transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_p8rbu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day2/Barrel"]
+shape = SubResource("CylinderShape3D_lfay5")
+
+[node name="Barrel2" type="StaticBody3D" parent="Day2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.01088, -8.21214, 32.1046)
+
+[node name="Area3D" type="Area3D" parent="Day2/Barrel2" node_paths=PackedStringArray("parent", "playerRef")]
+transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
+collision_layer = 2
+script = ExtResource("4_e40u6")
+parent = NodePath("..")
+playerRef = NodePath("../../../player")
+interactionText = "Pick up barrel with 'E'"
+
+[node name="InteractHitbox" type="CollisionShape3D" parent="Day2/Barrel2/Area3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.17758, 1.557, -0.092556)
+shape = SubResource("CylinderShape3D_4kr8y")
+
+[node name="barrel" parent="Day2/Barrel2/Area3D" instance=ExtResource("5_jd2yi")]
+transform = Transform3D(0.532463, 0, -0.846454, 0, 1, 0, 0.846454, 0, 0.532463, -0.11517, 0, -0.130444)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Day2/Barrel2"]
+transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_p8rbu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day2/Barrel2"]
+shape = SubResource("CylinderShape3D_lfay5")
+
+[node name="Barrel3" type="StaticBody3D" parent="Day2"]
+transform = Transform3D(0.38523, 0, 0.922821, 0, 1, 0, -0.922821, 0, 0.38523, -10.4767, -8.21214, 34.3175)
+
+[node name="Area3D" type="Area3D" parent="Day2/Barrel3" node_paths=PackedStringArray("parent", "playerRef")]
+transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
+collision_layer = 2
+script = ExtResource("4_e40u6")
+parent = NodePath("..")
+playerRef = NodePath("../../../player")
+interactionText = "Pick up barrel with 'E'"
+
+[node name="InteractHitbox" type="CollisionShape3D" parent="Day2/Barrel3/Area3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.17758, 1.557, -0.092556)
+shape = SubResource("CylinderShape3D_4kr8y")
+
+[node name="barrel" parent="Day2/Barrel3/Area3D" instance=ExtResource("5_jd2yi")]
+transform = Transform3D(0.532463, 0, -0.846454, 0, 1, 0, 0.846454, 0, 0.532463, -0.11517, 0, -0.130444)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Day2/Barrel3"]
+transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_p8rbu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day2/Barrel3"]
+shape = SubResource("CylinderShape3D_lfay5")
+
+[node name="Barrel4" type="StaticBody3D" parent="Day2"]
+transform = Transform3D(-0.0012217, 0, 0.999999, 0, 1, 0, -0.999999, 0, -0.0012217, -9.17883, -8.21214, 33.5648)
+
+[node name="Area3D" type="Area3D" parent="Day2/Barrel4" node_paths=PackedStringArray("parent", "playerRef")]
+transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
+collision_layer = 2
+script = ExtResource("4_e40u6")
+parent = NodePath("..")
+playerRef = NodePath("../../../player")
+interactionText = "Pick up barrel with 'E'"
+
+[node name="InteractHitbox" type="CollisionShape3D" parent="Day2/Barrel4/Area3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.17758, 1.557, -0.092556)
+shape = SubResource("CylinderShape3D_4kr8y")
+
+[node name="barrel" parent="Day2/Barrel4/Area3D" instance=ExtResource("5_jd2yi")]
+transform = Transform3D(0.532463, 0, -0.846454, 0, 1, 0, 0.846454, 0, 0.532463, -0.11517, 0, -0.130444)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Day2/Barrel4"]
+transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_p8rbu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day2/Barrel4"]
+shape = SubResource("CylinderShape3D_lfay5")
+
+[node name="Barrel5" type="StaticBody3D" parent="Day2"]
+transform = Transform3D(0.0896591, 0, 0.995973, 0, 1, 0, -0.995973, 0, 0.0896591, -9.27646, -8.21214, 34.9607)
+
+[node name="Area3D" type="Area3D" parent="Day2/Barrel5" node_paths=PackedStringArray("parent", "playerRef")]
+transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
+collision_layer = 2
+script = ExtResource("4_e40u6")
+parent = NodePath("..")
+playerRef = NodePath("../../../player")
+interactionText = "Pick up barrel with 'E'"
+
+[node name="InteractHitbox" type="CollisionShape3D" parent="Day2/Barrel5/Area3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.17758, 1.557, -0.092556)
+shape = SubResource("CylinderShape3D_4kr8y")
+
+[node name="barrel" parent="Day2/Barrel5/Area3D" instance=ExtResource("5_jd2yi")]
+transform = Transform3D(0.532463, 0, -0.846454, 0, 1, 0, 0.846454, 0, 0.532463, -0.11517, 0, -0.130444)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Day2/Barrel5"]
+transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_p8rbu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day2/Barrel5"]
+shape = SubResource("CylinderShape3D_lfay5")
+
+[node name="Barrel6" type="StaticBody3D" parent="Day2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.78038, -8.21214, 32.7943)
+
+[node name="Area3D" type="Area3D" parent="Day2/Barrel6" node_paths=PackedStringArray("parent", "playerRef")]
+transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
+collision_layer = 2
+script = ExtResource("4_e40u6")
+parent = NodePath("..")
+playerRef = NodePath("../../../player")
+interactionText = "Pick up barrel with 'E'"
+
+[node name="InteractHitbox" type="CollisionShape3D" parent="Day2/Barrel6/Area3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -0.17758, 1.557, -0.092556)
+shape = SubResource("CylinderShape3D_4kr8y")
+
+[node name="barrel" parent="Day2/Barrel6/Area3D" instance=ExtResource("5_jd2yi")]
+transform = Transform3D(0.532463, 0, -0.846454, 0, 1, 0, 0.846454, 0, 0.532463, -0.11517, 0, -0.130444)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Day2/Barrel6"]
+transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_p8rbu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day2/Barrel6"]
+shape = SubResource("CylinderShape3D_lfay5")
+
+[node name="BarrelReciever" type="Area3D" parent="Day2" node_paths=PackedStringArray("playerRef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -7.8, 63.3121)
+script = ExtResource("5_vkbhv")
+playerRef = NodePath("../../player")
+interactionText = "Place barrel"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Day2/BarrelReciever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.256165, 0.5, 3.23218)
+shape = SubResource("BoxShape3D_ekacx")
+
 [node name="Day3" type="Node3D" parent="."]
 
 [node name="env" type="Node3D" parent="."]
@@ -243,38 +506,6 @@ light_energy = 2.322
 light_volumetric_fog_energy = 7.083
 spot_range = 11.9078
 spot_angle = 22.7683
-
-[node name="SpotLight3D8" type="SpotLight3D" parent="LevelBlockout/Lighting"]
-transform = Transform3D(0.763413, -2.82337e-08, 0.645911, -0.645911, -3.33698e-08, 0.763413, 7.53182e-16, -1, -4.37114e-08, -3.69504, -5.58857, 59.4601)
-light_color = Color(0.849441, 0.835552, 0.733714, 1)
-light_energy = 2.322
-light_volumetric_fog_energy = 7.083
-spot_range = 7.5
-spot_angle = 63.8724
-
-[node name="SpotLight3D9" type="SpotLight3D" parent="LevelBlockout/Lighting"]
-transform = Transform3D(0.806579, -2.5839e-08, 0.591127, -0.591127, -3.52567e-08, 0.806579, 3.36313e-17, -1, -4.37114e-08, -3.69504, -5.58857, 73.1932)
-light_color = Color(0.849441, 0.835552, 0.733714, 1)
-light_energy = 2.322
-light_volumetric_fog_energy = 7.083
-spot_range = 7.5
-spot_angle = 63.8724
-
-[node name="SpotLight3D10" type="SpotLight3D" parent="LevelBlockout/Lighting"]
-transform = Transform3D(0.601843, -3.49086e-08, 0.798615, -0.798615, -2.63074e-08, 0.601843, 3.36313e-17, -1, -4.37114e-08, -3.69504, -5.58857, 83.2059)
-light_color = Color(0.849441, 0.835552, 0.733714, 1)
-light_energy = 2.322
-light_volumetric_fog_energy = 7.083
-spot_range = 7.5
-spot_angle = 63.8724
-
-[node name="SpotLight3D11" type="SpotLight3D" parent="LevelBlockout/Lighting"]
-transform = Transform3D(0.601843, -3.49086e-08, 0.798615, -0.798615, -2.63074e-08, 0.601843, 3.36313e-17, -1, -4.37114e-08, -3.68499, -5.57233, 93.2468)
-light_color = Color(0.849441, 0.835552, 0.733714, 1)
-light_energy = 2.322
-light_volumetric_fog_energy = 7.083
-spot_range = 7.5
-spot_angle = 63.8724
 
 [node name="SpotLight3D7" type="SpotLight3D" parent="LevelBlockout/Lighting"]
 transform = Transform3D(-0.482963, -0.595035, 0.642402, 0.12941, 0.677077, 0.724444, -0.866025, 0.433013, -0.25, -23.25, 4.25, -5.75)
@@ -1180,26 +1411,6 @@ snap = 1e-06
 use_collision = true
 size = Vector3(0.0203617, 0.1692, 0.350708)
 
-[node name="BallLight5" type="CSGSphere3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(1, 8.94067e-08, 1.35391e-11, -6.85455e-07, 1, -2.79397e-09, -2.64322e-11, -9.31323e-10, 0.999999, 1.15861, 4.90243, 42.7908)
-material_override = SubResource("StandardMaterial3D_tdgpy")
-radius = 0.258842
-
-[node name="BallLight12" type="CSGSphere3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(1, 8.94067e-08, 1.35391e-11, -6.85455e-07, 1, -2.79397e-09, -2.64322e-11, -9.31323e-10, 0.999999, 1.3519, 4.90243, 32.789)
-material_override = SubResource("StandardMaterial3D_tdgpy")
-radius = 0.279733
-
-[node name="BallLight13" type="CSGSphere3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(1, 8.94067e-08, 1.35391e-11, -6.85455e-07, 1, -2.79397e-09, -2.64322e-11, -9.31323e-10, 0.999999, 1.61337, 4.90243, 19.0917)
-material_override = SubResource("StandardMaterial3D_tdgpy")
-radius = 0.311983
-
-[node name="BallLight11" type="CSGSphere3D" parent="LevelBlockout/Docks"]
-transform = Transform3D(1, 8.94067e-08, 1.35391e-11, -6.85455e-07, 1, -2.79397e-09, -2.64322e-11, -9.31323e-10, 0.999999, 1.01098, 4.90922, 52.7769)
-material_override = SubResource("StandardMaterial3D_tdgpy")
-radius = 0.273304
-
 [node name="BallLight4" type="CSGSphere3D" parent="LevelBlockout/Docks"]
 transform = Transform3D(1, 8.94071e-08, 8.45546e-13, -6.85454e-07, 1, -5.79583e-19, 8.45546e-13, 0, 1, 1.29671, 2.53856, 12.364)
 material_override = SubResource("StandardMaterial3D_tdgpy")
@@ -1642,46 +1853,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1329, -9.72624, 36.0313)
 
 [node name="Interaction" type="Node3D" parent="."]
 
-[node name="Barrel" type="RigidBody3D" parent="Interaction"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, -8, 32.588)
-
-[node name="Area3D" type="Area3D" parent="Interaction/Barrel" node_paths=PackedStringArray("parent", "playerRef")]
-transform = Transform3D(-0.374825, 0, 0.330918, 0, 0.5, 0, -0.330918, 0, -0.374825, 0, -1.00149, -0.0529099)
-collision_layer = 2
-script = ExtResource("4_e40u6")
-parent = NodePath("..")
-playerRef = NodePath("../../../player")
-interactionText = "Pick up barrel with 'E'"
-
-[node name="InteractHitbox" type="CollisionShape3D" parent="Interaction/Barrel/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.162552)
-shape = SubResource("CylinderShape3D_4kr8y")
-
-[node name="barrel" parent="Interaction/Barrel/Area3D" instance=ExtResource("5_jd2yi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.115166, 0, -0.130447)
-
-[node name="PhysicsHitbox" type="CollisionShape3D" parent="Interaction/Barrel"]
-shape = SubResource("CylinderShape3D_4kr8y")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/Barrel"]
-transform = Transform3D(1, 0, 0, 0, 0.626251, 0, 0, 0, 1, 0, 0, 0)
-layers = 2
-mesh = SubResource("CylinderMesh_p8rbu")
-
-[node name="BarrelReciever" type="Area3D" parent="Interaction" node_paths=PackedStringArray("playerRef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -7.8, 63.3121)
-script = ExtResource("5_vkbhv")
-playerRef = NodePath("../../player")
-interactionText = "Place barrel"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interaction/BarrelReciever"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_ekacx")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Interaction/BarrelReciever"]
-transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 0.354743, 0)
-mesh = SubResource("BoxMesh_8bgkk")
-
 [node name="Door" type="Area3D" parent="Interaction" node_paths=PackedStringArray("manager")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.25, 0.75, -5.25)
 script = ExtResource("2_s3teo")
@@ -1697,8 +1868,21 @@ transform = Transform3D(2.57519, 0, 0, 0, 3.36, 0, 0, 0, 3.36, 0, 0.75, -2)
 material_override = SubResource("StandardMaterial3D_otcsb")
 mesh = SubResource("BoxMesh_ptdk3")
 
-[node name="cargoship" parent="." instance=ExtResource("20_07w6s")]
-transform = Transform3D(-0.0168417, 0, -0.999858, 0, 1, 0, 0.999858, 0, -0.0168417, 5.66401, 1.11384, 66.0587)
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Interaction/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.130989, 1.07214, 0.0279484)
+stream = ExtResource("30_x1lot")
+autoplay = true
+panning_strength = 0.15
+
+[node name="DoorOpen" type="AudioStreamPlayer3D" parent="Interaction/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02543, 0)
+stream = ExtResource("28_b6nyv")
+volume_db = -18.527
 
 [node name="player" parent="." instance=ExtResource("1_23sgh")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.5249, 0.00916481, -3.76832)
+
+[node name="AudioFade" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sqsld")
+}
