@@ -467,6 +467,7 @@ transform = Transform3D(8.64588, 0, 0, 0, 2.7766, 0, 0, 0, 18.3314, -4.93701, 26
 cast_shadow = 0
 amount = 2000
 lifetime = 14.45
+preprocess = 19.52
 process_material = SubResource("ParticleProcessMaterial_0sega")
 draw_pass_1 = SubResource("QuadMesh_kam71")
 

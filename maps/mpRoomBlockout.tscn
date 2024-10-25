@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bhfec7nodvgih"]
+[gd_scene load_steps=37 format=3 uid="uid://bhfec7nodvgih"]
 
 [ext_resource type="PackedScene" uid="uid://bkl5uauqwgryi" path="res://objects/player.tscn" id="1_85g6y"]
 [ext_resource type="Script" path="res://scripts/RoomManager.gd" id="1_474uj"]
@@ -93,6 +93,31 @@ _data = {
 "RESET": SubResource("Animation_us22o"),
 "fadeAudio": SubResource("Animation_po0uy")
 }
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0eibx"]
+emission_shape = 3
+emission_box_extents = Vector3(5.095, 2.71, 3.55)
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -0.150002
+linear_accel_max = 0.0999978
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+tangential_accel_min = -0.140002
+tangential_accel_max = 0.0999978
+turbulence_noise_strength = 2.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tig3k"]
+emission_energy_multiplier = 1.96
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_qoun0"]
+lightmap_size_hint = Vector2i(2, 2)
+material = SubResource("StandardMaterial3D_tig3k")
+size = Vector2(0.025, 0.025)
 
 [node name="Node3D" type="Node3D"]
 
@@ -268,3 +293,14 @@ volume_db = -4.082
 libraries = {
 "": SubResource("AnimationLibrary_gvgyx")
 }
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.1136, 0, 0, 0, 1, 0, 0, 0, 1.0317, -2.69465, 3.41931, -6.47546)
+cast_shadow = 0
+emitting = false
+amount = 203
+lifetime = 9.66
+preprocess = 4.87
+randomness = 0.47
+process_material = SubResource("ParticleProcessMaterial_0eibx")
+draw_pass_1 = SubResource("QuadMesh_qoun0")
