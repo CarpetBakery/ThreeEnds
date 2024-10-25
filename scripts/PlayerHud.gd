@@ -4,8 +4,10 @@ class_name PlayerHud extends Control
 @export var interactionText: Label
 @export var progressBar: ProgressBar
 @export var black: ColorRect
+@export var white: ColorRect
 @export var animationPlayer: AnimationPlayer
 @export var barsAnimation: AnimationPlayer
+@export var dayIntroAnimation: AnimationPlayer
 
 @export_category("Dialog")
 @export var dialogParent: Control
@@ -24,6 +26,7 @@ func _ready() -> void:
 	interactionText.show()
 	progressBar.hide()
 	black.hide()
+	white.hide()
 	
 	dialogParent.show()
 	dialogText.show()

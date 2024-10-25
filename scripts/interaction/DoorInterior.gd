@@ -1,6 +1,5 @@
 class_name DoorInterior extends Interactable
 
-const MP_OIL_RIG_BLOCKOUT = preload("res://maps/mpOilRigBlockout.tscn")
 @onready var audiofade: AnimationPlayer = $"../../../Audiofade"
 @onready var doorOpen: AudioStreamPlayer3D = $"../AudioStreamPlayer3D"
 
@@ -54,4 +53,4 @@ func gotoRig(_player: PlayerFps):
 	
 	await get_tree().create_timer(1.5).timeout
 	
-	TransitionManager.gotoScenePacked(MP_OIL_RIG_BLOCKOUT)
+	TransitionManager.gotoScene("res://maps/mpOilRigBlockout.tscn")

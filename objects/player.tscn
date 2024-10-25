@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/PlayerFps.gd" id="1_l6dy0"]
 [ext_resource type="PackedScene" uid="uid://b517g8gesc38p" path="res://assets/meshes/barrel.glb" id="2_02oew"]
 [ext_resource type="PackedScene" uid="uid://c6nrrp6eh5i5m" path="res://objects/playerHUD.tscn" id="2_qbs1g"]
-[ext_resource type="AudioStream" uid="uid://cbvc8ji846nay" path="res://assets/audio/sfx/footstep_TEMP.wav" id="3_nj3ts"]
+[ext_resource type="AudioStream" uid="uid://de6p1kr0oikem" path="res://assets/audio/sfx/MetalFootstep.wav" id="4_6xwwt"]
 [ext_resource type="AudioStream" uid="uid://dwtnkx5nkgp3u" path="res://assets/audio/sfx/keytap_lowquality.wav" id="4_nedpt"]
 [ext_resource type="AudioStream" uid="uid://bsiprsrh7o1g4" path="res://assets/audio/sfx/barrelPickup.wav" id="5_balln"]
 [ext_resource type="AudioStream" uid="uid://bbqm184kxiw2n" path="res://assets/audio/sfx/BarrelDown.wav" id="5_qpcd0"]
@@ -143,7 +143,8 @@ grow_vertical = 0
 [node name="Audio" type="Node" parent="."]
 
 [node name="FootstepsTemp" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("3_nj3ts")
+stream = ExtResource("4_6xwwt")
+volume_db = -9.541
 max_polyphony = 5
 
 [node name="DialogSounds" type="AudioStreamPlayer" parent="Audio"]

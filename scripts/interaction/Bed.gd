@@ -78,8 +78,9 @@ func _sleepRoutine(_player: PlayerFps) -> void:
 	
 	await get_tree().create_timer(3)
 	
-	vineBoom.play()
 	audiofade.play("RESET")
+	vineBoom.play()
+	_player.hud.dayIntroAnimation.play("white")
 	
 	_player.startTransition(true, 9999)
 	

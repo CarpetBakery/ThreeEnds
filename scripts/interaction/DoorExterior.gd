@@ -2,7 +2,7 @@ class_name DoorExterior extends Interactable
 
 @export var manager: ManagerOutside
 
-const MP_ROOM_BLOCKOUT = preload("res://maps/mpRoomBlockout.tscn")
+const MP_ROOM_BLOCKOUT = "res://maps/mpRoomBlockout.tscn"
 
 @onready var doorOpen: AudioStreamPlayer3D = $DoorOpen
 @onready var audioFade: AnimationPlayer = $"../../AudioFade"
@@ -55,7 +55,7 @@ func gotoRoom(_player: PlayerFps):
 	
 	await get_tree().create_timer(1.5).timeout
 	
-	TransitionManager.gotoScenePacked(MP_ROOM_BLOCKOUT)
+	TransitionManager.gotoScene(MP_ROOM_BLOCKOUT)
 
 
 

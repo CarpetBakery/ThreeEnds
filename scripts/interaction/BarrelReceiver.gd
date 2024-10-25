@@ -13,8 +13,10 @@ func onInteract(_player: PlayerFps):
 	if _player.carryObject == _player.CarryType.BARREL:
 		startHold(_player)
 	else:
-		playerRef.addDialog("It's a barrel reciever thing...")
-		playerRef.addDialog("Not sure what to do with this")
+		if Global.dayFinished2:
+			playerRef.addDialog("The ship is waiting for its oil...")
+		else:
+			playerRef.addDialog("The ship is full.")
 		playerRef.startDialog()
 
 
@@ -25,8 +27,8 @@ func onSuccessfulInteract(_player: PlayerFps):
 		_player.barrelDown.play()
 		addBarrel()
 		
-		if barrelCount >= 6:
-			_player.addDialog("That should be everything for today")
+		if barrelCount >= 5:
+			_player.addDialog("That should be everything for today.")
 			_player.startDialog()
 			Global.dayFinished2 = true
 			
