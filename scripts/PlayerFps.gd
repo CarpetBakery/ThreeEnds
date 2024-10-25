@@ -618,6 +618,15 @@ func _nextDialogString() -> void:
 		closeDialog()
 
 
+func startTransition(fadeIn: bool, spd: float = 1):
+	# Don't allow the player to move
+	freezeMovement = true
+	canInteract = false
+	
+	# Fade out and transition to other scene
+	hud.fade(fadeIn, spd)
+
+
 # -- Audio --
 ## Play footstep sound
 func _playFootstep() -> void:

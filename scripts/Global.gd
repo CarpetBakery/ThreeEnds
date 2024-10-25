@@ -48,3 +48,15 @@ func _process(delta):
 		if Input.is_action_just_pressed("debug_restart"):
 			get_tree().reload_current_scene()
 		pass
+
+
+## Increase the day
+func nextDay() -> void:
+	if Global.Day.ZERO:
+		Global.day = Global.Day.ZERO
+	elif Global.Day.ONE:
+		Global.day = Global.Day.ONE
+	elif Global.Day.TWO:
+		Global.day = Global.Day.TWO
+	elif Global.Day.THREE:
+		Global.day = Global.Day.THREE
