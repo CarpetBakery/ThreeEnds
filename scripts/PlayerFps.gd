@@ -511,6 +511,10 @@ func _processDialog(_delta: float) -> void:
 
 ## Type a single character in the current dialog string
 func _dialogTypeChar() -> void:
+	# NOTE: There is a bug(?), where if the player skips the text on the FRAME that it finishes typing...
+	# it seems to keep typing for an arbitrary amount of time.
+	# Not sure if this breaks anything, but could be something to fix
+	
 	# How frequently to play the dialog noises
 	var playFreq = 2
 	

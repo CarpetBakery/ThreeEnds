@@ -3,6 +3,8 @@ class_name DoorInterior extends Interactable
 @onready var audiofade: AnimationPlayer = $"../../../Audiofade"
 @onready var doorOpen: AudioStreamPlayer3D = $"../AudioStreamPlayer3D"
 
+const MP_OIL_RIG_BLOCKOUT = preload("res://maps/mpOilRigBlockout.tscn")
+
 func onInteract(_player: PlayerFps):
 	match Global.day:
 		Global.Day.ZERO:
@@ -57,4 +59,5 @@ func gotoRig(_player: PlayerFps):
 	
 	await get_tree().create_timer(1.5).timeout
 	
-	TransitionManager.gotoScene("res://maps/mpOilRigBlockout.tscn")
+	#TransitionManager.gotoScene("res://maps/mpOilRigBlockout.tscn")
+	TransitionManager.gotoScenePacked(MP_OIL_RIG_BLOCKOUT)
