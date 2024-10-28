@@ -1,0 +1,5 @@
+-- Minor bugs --
+- Interacting with something and then dying while the text window is open causes some weirdness
+	- Overlapping dialog boxes don't really seem to break anything... but it's still a bug
+
+-- Game breaking bugs --
