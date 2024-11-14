@@ -1,5 +1,8 @@
 -- Minor bugs --
 - Interacting with something and then dying while the text window is open causes some weirdness
 	- Overlapping dialog boxes don't really seem to break anything... but it's still a bug
+- There is a bug(?), where if the player skips the text on the FRAME that it finishes typing...
+	it seems to keep typing for an arbitrary amount of time.
+	Not sure if this breaks anything, but could be something to fix
 
 -- Game breaking bugs --

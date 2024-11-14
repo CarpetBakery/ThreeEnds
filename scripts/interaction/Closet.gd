@@ -10,6 +10,7 @@ func inFocus(_player: PlayerFps):
 		
 		if not Global.dayFinished3:
 			interactionText = "Pack bags"
+		
 		super(_player)
 		
 		interactionText = temp
